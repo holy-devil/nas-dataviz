@@ -47,8 +47,8 @@ rect.cell-border {
   } */
 
 circle.cell {
-    opacity: 0.3;
-    fill: #37474f;
+    opacity: 0.8;
+    /* fill: #37474f; */
 }
 text.heatLabel {
     /* font-size: 9pt; */
