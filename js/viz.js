@@ -133,7 +133,28 @@ var min,max;
         corr_rows.push(nas_data[i].Subjects);
     }
     console.log(nas_data);
-    heatmap(nas_data);
+    // Waypoints controllers
+    $('#heatmap').waypoint({
+        handler: function(direction) {
+          console.log(this.element.id + ' hit')
+          if ($('#heatmap svg').length === 0) // draw the heatmap if the SVG not drawn yet
+          heatmap(nas_data);
+        },
+        // context: '#overflow-scroll-offset',
+        offset: '100%'
+      })
+      $('#intro-row').waypoint({
+        handler: function(direction) {
+          console.log(this.element.id + ' hit')
+          if ($('#studplot svg').length === 0) // draw the heatmap if the SVG not drawn yet
+          studPLot(nas_data);
+          $('#intro-row .alert').removeClass("hidden");
+        },
+        // context: '#overflow-scroll-offset',
+        offset: '100%'
+      })
+      
+    
 });
 
 // Plotting the correlation heatmap
@@ -197,13 +218,41 @@ function heatmap (data) {
                    .attr("cx", marginX/2+(cellw)*(i+1))
                    .attr("cy", marginY+cellh*(j)*1)
                    .attr("r", 0*Math.abs(data[i][corr_headers[j]]))
-                   .transition().duration(5000).ease(d3.easeCubic)
+                   .transition().delay(1000).duration(3000).ease(d3.easeCubic)
                    .attr("r", 150*Math.abs(data[i][corr_headers[j]])) // 50 is the multiplier to scale the data
                    .attr("class", function(d){return "cell r"+i+"c"+j});
         }
     }
  }
+ // Intro student chart
 
+ function studPLot(data) {
+    // let wd = document.getElementById("studplot").clientWidth;
+    let wd = 0.5*w;
+    let marginX = (w-wd)/2;
+    let marginY = 10;
+    let cellsize = wd/100;
+    let t = 50*100;
+    let svgContainer = d3.select("#studplot").append("svg").attr("width", wd).attr("height",20);
+    for (i=0; i<100; i++) {
+        svgContainer.append("circle").attr("cx", cellsize*(i+1/2)).attr("cy",0).attr("r", 3).style("fill","#B0BEC5").style("opacity",0)
+        .transition().delay(i*50).duration(100).ease(d3.easeCubic)
+        .attr("cy",marginY).style("opacity",1);
+    }
+    for (i=0; i<100; i++) {
+        if (i<=64) {
+            svgContainer.append("circle").attr("cx", cellsize*(i+1/2)).attr("cy",marginY).attr("r", 3).style("fill","#FC466B").style("opacity", 0)
+            .transition().delay(t+100).ease(d3.easeCubic)
+            .style("opacity", 1);
+        }
+        if (i>=97) {
+            svgContainer.append("circle").attr("cx", cellsize*(i+1/2)).attr("cy",marginY).attr("r", 3).style("fill","#3F5EFB").style("opacity", 0)
+            .transition().delay(t+100).ease(d3.easeCubic)
+            .style("opacity", 1);
+        }
+    }
+
+ }
  // Calculating absolute min max
  var minmax = function (data) {
      min = max = d3.min(data, function (d) {return(Math.abs(d[corr_headers[1]]))});

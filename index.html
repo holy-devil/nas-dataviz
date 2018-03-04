@@ -21,10 +21,10 @@
 
 <body>
   <div class="container">
-   <section id="home">
     <div class="row justify-content-center" id="cover">
       <img src="https://orig00.deviantart.net/5494/f/2016/245/d/4/quincy_dancing_gif_by_blueelephant7-daga0pe.gif" height=500></img>
     </div>
+    <!-- Cover -->
     <div class="row justify-content-center" id="title-row">
       <div class="col-10 col-xl-8 align-self-end">
         <h1 class="h1-responsive text-center my-3" id="title">What makes an acheiver?</h1>
@@ -32,22 +32,34 @@
         <!-- <hr class="my-2"> -->
       </div>
     </div>
+    <!-- 3 info line -->
     <div class="row justify-content-center py-3">
-      <div class="col-6 col-md-auto mx-auto align-self-end">
+      <div class="col-6 col-md-auto mx-auto align-self-center">
           <span><i class="fa fa-university fa-lg fa-fw" aria-hidden="true"></i></span>
           <span class="text-font small">6722 Schools</span>
           
       </div>
-      <div class="col-6 col-md-auto mx-auto align-self-end">
+      <div class="col-6 col-md-auto mx-auto align-self-center">
           <span><i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i></span>
-          <span class="text-font small">1,88,647 Class VIII students</span>
+          <span class="text-font small">1,84,670 Class VIII students</span>
       </div>
-      <div class="col-6 col-md-auto mx-auto align-self-end">
+      <div class="col-6 col-md-auto mx-auto align-self-center">
           <span><i class="fa fa-map fa-lg fa-fw" aria-hidden="true"></i></span>
           <span class="text-font small">700 districts in 36 States/UTs</span>
       </div>
     </div>
-    <div class="col-6 col-md-auto mx-auto wow fadeIn" data-wow-duration="2s" data-wow-delay="1s" id="heatmap"></div>
+    <!-- intro para -->
+    <div class="row justify-content-center my-5" id="intro-row">
+      <div class="col-6 col-md-auto mx-auto py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="studplot"></div> 
+      <div class="w-100"></div> <!-- break columns to new line -->
+      <div class="col-10 col-xl-8 mx-auto">
+        <div class="alert alert-light text wow fadeIn hidden" data-wow-duration="1s" data-wow-delay="1s">Out of total of 1,84,670 students, 1,18,575 students (64.2%) failed in at least one subject while only 3.4% could secure an A grade without failing in the rest of the subjects.
+            </div>
+      </div>    
+    </div>
+
+    <!-- heatmap -->
+    <div class="row py-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="heatmap"></div>
   </div>
 
   <!-- Optional JavaScript -->
