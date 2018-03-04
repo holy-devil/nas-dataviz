@@ -54,3 +54,37 @@ Readmagazine
 Readabook
 Playgames
 Helpinhousehold
+
+___________________________________________________________________________________
+
+
+Subjects: d.Subjects,
+Gender: +d.Gender,
+Age: +d.Age,
+Siblings: +d.Siblings,
+Handicap: +d.Handicap,
+Category: +d.Category,
+FathersEducation: +d.FathersEducation,
+MothersEducation: +d.MothersEducation,
+FathersOccupation: +d.FathersOccupation,
+MothersOccupation: +d.MothersOccupation,
+BelowPoverty: +d.BelowPoverty,
+HelpInStudy: +d.HelpInStudy,
+PrivateTuition: +d.PrivateTuition,
+UseCalculator: +d.UseCalculator,
+UseInternet: +d.UseInternet,
+UseDictionary: +d.UseDictionary,
+ReadOtherBooks: +d.ReadOtherBooks,
+Books: +d.Books,
+ComputerUse: +d.ComputerUse,
+LibraryUse: +d.LibraryUse,
+SameLanguage: +d.SameLanguage,
+Distance: +d.Distance,
+LikeSchool: +d.LikeSchool,
+GiveHomework: +d.GiveHomework,
+CorrectHomework: +d.CorrectHomework,
+WatchTV: +d.WatchTV,
+ReadMagazine: +d.ReadMagazine,
+ReadaBook: +d.ReadaBook,
+PlayGames: +d.PlayGames,
+HelpInHousehold: +d.HelpInHousehold
