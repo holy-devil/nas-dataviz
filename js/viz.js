@@ -7,15 +7,17 @@ h = wd.innerHeight|| e.clientHeight|| g.clientHeight;
 
 var nas_data, corr_headers, corr_rows=[];
 var min,max;
-d3.csv('datasets/nas/CombinedCorrelation.csv', function(error, data) {
+// d3.csv('datasets/nas/CombinedCorrelation.csv', function(error, data) {
+    d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     if (error) {
-        alert("File Not Found: datasets/nas/CombinedCorrelation.csv");
+        alert("File Not Found: datasets/nas/OverviewCorrelationFinal.csv");
     }
     // Storing the data in a global variable
    
     // Converting data to labels and numbers from CSV strings
     nas_data = data.map(function (d){
         // console.log(d[corr_headers[1]]); Accessing the data dynamically
+        /*
         return {
             Subjects: d.Subjects,
             Gender: +d.Gender,
@@ -73,7 +75,40 @@ d3.csv('datasets/nas/CombinedCorrelation.csv', function(error, data) {
             Readabook: +d.Readabook,
             Playgames: +d.Playgames,
             Helpinhousehold: +d.Helpinhousehold
-        };
+        }; 
+        */
+        return {
+            Subjects: d.Subjects,
+            Gender: +d.Gender,
+            Age: +d.Age,
+            Siblings: +d.Siblings,
+            Handicap: +d.Handicap,
+            Category: +d.Category,
+            FathersEducation: +d.FathersEducation,
+            MothersEducation: +d.MothersEducation,
+            FathersOccupation: +d.FathersOccupation,
+            MothersOccupation: +d.MothersOccupation,
+            BelowPoverty: +d.BelowPoverty,
+            HelpInStudy: +d.HelpInStudy,
+            PrivateTuition: +d.PrivateTuition,
+            UseCalculator: +d.UseCalculator,
+            UseInternet: +d.UseInternet,
+            UseDictionary: +d.UseDictionary,
+            ReadOtherBooks: +d.ReadOtherBooks,
+            Books: +d.Books,
+            ComputerUse: +d.ComputerUse,
+            LibraryUse: +d.LibraryUse,
+            SameLanguage: +d.SameLanguage,
+            Distance: +d.Distance,
+            LikeSchool: +d.LikeSchool,
+            GiveHomework: +d.GiveHomework,
+            CorrectHomework: +d.CorrectHomework,
+            WatchTV: +d.WatchTV,
+            ReadMagazine: +d.ReadMagazine,
+            ReadaBook: +d.ReadaBook,
+            PlayGames: +d.PlayGames,
+            HelpInHousehold: +d.HelpInHousehold
+        }
     });
     // Getting CSV headers
     corr_headers = d3.keys(data[0]); 
@@ -97,12 +132,21 @@ function heatmap (data) {
     let cellw = wd/(corr_rows.length+2);
     let cellh = ht/(corr_headers.length+1);
     console.log("cellh="+cellh+" cellw="+cellw);
+    let colorHeat = d3.scaleLinear().domain([-max,0,max]).range(["#FC466B","white","#3F5EFB"]);
+    // adding bg-fill to row categories
+    // let rowBg = svgContainer.append('g').selectAll("rowBg").data(corr_headers)
+    //                         .enter()
+    //                         .append("rect")
+    //                         .attr("x", 0)
+    //                         .attr("y", function (d, i) { return marginY+cellh*(i)*1; })
+    //                         .attrs({width: cellw*1.2, height: cellh})
+    //                         .attr("fill", "aliceblue");
     let rowLabels = svgContainer.append('g').selectAll(".rowLabelg").data(corr_headers)
-                                .enter()
+                                .enter()                                
                                 .append("text")
                                 .text(function (d) {if (d!="Subjects") return d;})
                                 .attr("x", marginX)
-                                .attr("y", function (d, i) { return marginY+cellh*(i)*2; })
+                                .attr("y", function (d, i) { return marginY+cellh*(i)*1; })
                                 .style("text-anchor", "end")
                                 //.attr("transform", "translate("+(-margin/2)+")," + cellw / 1.5 + ")")
                                 .attr("class", function (d,i) { return "rowLabel heatLabel small r"+i;} );
@@ -125,14 +169,16 @@ function heatmap (data) {
                                 // .attr("cy", function(d, i) { return marginY+cellh*(i+1)*2; })
                                 // .attr("class", function(d){return "cell cell-border"})
                                 // .attr("r", max*50);
+    // build the heatmap
     for (i=0; i<data.length; i++)
     {
         for (j=1; j<corr_headers.length; j++)
         {
             heatMap.append("circle")
+                   .style("fill", function(d) {return colorHeat(data[i][corr_headers[j]])})
                    .attr("cx", marginX/2+(cellw)*(i+1))
-                   .attr("cy", marginY+cellh*(j)*2)
-                   .attr("r", 200*Math.abs(data[i][corr_headers[j]])) // 50 is the multiplier to scale the data
+                   .attr("cy", marginY+cellh*(j)*1)
+                   .attr("r", 100*Math.abs(data[i][corr_headers[j]])) // 50 is the multiplier to scale the data
                    .attr("class", function(d){return "cell r"+i+"c"+j});
         }
     }
