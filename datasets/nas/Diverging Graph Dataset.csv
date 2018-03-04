@@ -19,7 +19,45 @@ Distance,Science,3-5 Km,25.06778828,8.69%,,85.38204546,5.88%
 Distance,Science,1-3 Km,24.92876438,21.22%,,85.01384615,19.12%
 Distance,Science,Upto 1 Km,24.73542506,62.33%,,84.89266798,67.65%
 ,,,,,,,
+GiveHW,Science,Everyday,24.70248821,51.48%,,84.72988152,58.21%
+GiveHW,Science,3-4 times a week,25.17467628,18.19%,,85.22366197,19.59%
+GiveHW,Science,1-2 times a week,25.34341799,19.22%,,84.95864407,16.28%
+GiveHW,Science,Never,24.12655587,11.11%,,86.8955814,5.93%
 ,,,,,,,
+GiveHW,Social,Everyday,24.83422454,48.42%,,85.15940741,59.38%
+GiveHW,Social,3-4 times a week,25.02106446,16.26%,,85.2034375,18.77%
+GiveHW,Social,1-2 times a week,25.31424104,20.47%,,84.93639175,14.22%
+GiveHW,Social,Never,24.46831045,14.85%,,84.09115385,7.62%
+,,,,,,,
+GiveHW,Maths,Everyday,23.17421647,63.62%,,87.02808468,70.96%
+GiveHW,Maths,3-4 times a week,23.28395765,16.59%,,86.83383929,16.02%
+GiveHW,Maths,1-2 times a week,23.3238079,12.00%,,86.11849462,6.65%
+GiveHW,Maths,Never,22.34278229,7.78%,,87.01011236,6.37%
+,,,,,,,
+GiveHW,Reading,Everyday,21.41410727,60.78%,,87.05617496,49.42%
+GiveHW,Reading,3-4 times a week,21.77418803,17.26%,,87.29701299,22.29%
+GiveHW,Reading,1-2 times a week,22.04909684,14.90%,,87.71053025,24.22%
+GiveHW,Reading,Never,21.33889002,7.07%,,87.51542222,4.07%
+,,,,,,,
+CorrectHW,Reading,Everyday,21.41097105,51.86%,,86.9789,40.45%
+CorrectHW,Reading,3-4 times a week,21.63196509,19.56%,,87.2196128,21.84%
+CorrectHW,Reading,1-2 times a week,22.00750701,20.94%,,87.73670787,32.73%
+CorrectHW,Reading,Never,21.63316851,7.65%,,87.56136531,4.98%
+,,,,,,,
+CorrectHW,Maths,Everyday,23.13306562,51.06%,,87.01939429,63.59%
+CorrectHW,Maths,3-4 times a week,23.35890728,19.31%,,86.93692946,17.51%
+CorrectHW,Maths,1-2 times a week,23.28669713,19.96%,,86.04415094,11.56%
+CorrectHW,Maths,Never,22.50317537,9.68%,,87.08940594,7.34%
+,,,,,,,
+CorrectHW,Social,Everyday,24.78653125,40.84%,,85.09032448,50%
+CorrectHW,Social,3-4 times a week,25.15623079,18.37%,,84.84512987,22.71%
+CorrectHW,Social,1-2 times a week,25.29335976,24.34%,,85.53296,18.44%
+CorrectHW,Social,Never,24.5155318,16.44%,,84.22966667,8.85%
+,,,,,,,
+CorrectHW,Science,Everyday,24.61100666,43.17%,,84.69619289,53.53%
+CorrectHW,Science,3-4 times a week,25.12410774,20.18%,,85.30614286,19.02%
+CorrectHW,Science,1-2 times a week,25.27281029,24.02%,,85.15930818,21.60%
+CorrectHW,Science,Never,24.25008335,12.64%,,84.88883721,5.84%
 ,,,,,,,
 ,,,,,,,
 ,,,,,,,
