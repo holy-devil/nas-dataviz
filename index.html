@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="bootstrap-4.0.0/css/bootstrap.min.css">
   <!-- Your custom styles (optional) -->
   <link href="css/viz.css" rel="stylesheet">
+  <link href="css/animate.css" rel="stylesheet">
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Merriweather" rel="stylesheet">
 </head>
@@ -45,7 +46,7 @@
           <span class="text-font small">700 districts in 36 States/UTs</span>
       </div>
     </div>
-    <div class="col-6 col-md-auto mx-auto" id="heatmap"></div>
+    <div class="col-6 col-md-auto mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="0s" id="heatmap"></div>
   </div>
 
   <!-- Optional JavaScript -->
@@ -57,6 +58,8 @@
   <script src="bootstrap-4.0.0/js/bootstrap.min.js"></script>
   <script src="js/d3.js"></script>
   <script src="js/d3-selection.js"></script>
+  <script type="text/javascript" src="js/wow.js"></script>
+  <script type="text/javascript" src="js/graph-scroll.js"></script>
   <!-- Custom scripts -->
   <script type="text/javascript" src="js/viz.js"></script>
 </body>

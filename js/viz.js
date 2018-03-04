@@ -1,3 +1,20 @@
+// initialising the WOW animations
+var wow = new WOW(
+    {
+      boxClass:     'wow',      // animated element css class (default is wow)
+      animateClass: 'animated', // animation css class (default is animated)
+      offset:       0,          // distance to the element when triggering the animation (default is 0)
+      mobile:       true,       // trigger animations on mobile devices (default is true)
+      live:         true,       // act on asynchronously loaded content (default is true)
+    //   callback:     function(box) {
+    //     // the callback is fired every time an animation is started
+    //     // the argument that is passed in is the DOM node being animated
+    //   },
+      scrollContainer: null // optional scroll container selector, otherwise use window
+    }
+  );
+wow.init();
+
 var wd = window,
 d = document,
 e = d.documentElement,
@@ -150,6 +167,7 @@ function heatmap (data) {
                                 .style("text-anchor", "end")
                                 //.attr("transform", "translate("+(-margin/2)+")," + cellw / 1.5 + ")")
                                 .attr("class", function (d,i) { return "rowLabel heatLabel small r"+i;} );
+                                //.classed("wow animated fadeIn", true);
 
     let colLabels = svgContainer.append('g').selectAll(".colLabelg").data(corr_rows)
                                 .enter()
@@ -180,7 +198,7 @@ function heatmap (data) {
                    .attr("cy", marginY+cellh*(j)*1)
                    .attr("r", 0*Math.abs(data[i][corr_headers[j]]))
                    .transition().duration(5000).ease(d3.easeCubic)
-                   .attr("r", 100*Math.abs(data[i][corr_headers[j]])) // 50 is the multiplier to scale the data
+                   .attr("r", 150*Math.abs(data[i][corr_headers[j]])) // 50 is the multiplier to scale the data
                    .attr("class", function(d){return "cell r"+i+"c"+j});
         }
     }
