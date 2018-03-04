@@ -178,6 +178,8 @@ function heatmap (data) {
                    .style("fill", function(d) {return colorHeat(data[i][corr_headers[j]])})
                    .attr("cx", marginX/2+(cellw)*(i+1))
                    .attr("cy", marginY+cellh*(j)*1)
+                   .attr("r", 0*Math.abs(data[i][corr_headers[j]]))
+                   .transition().duration(5000).ease(d3.easeCubic)
                    .attr("r", 100*Math.abs(data[i][corr_headers[j]])) // 50 is the multiplier to scale the data
                    .attr("class", function(d){return "cell r"+i+"c"+j});
         }
