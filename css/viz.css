@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Merriweather');    
 
 body {
+    background: #fafafa;
+}
+.text {
     font-family: 'Noto Sans', sans-serif;
     font-weight: 400;
     color: #37474f;
-    background: #fafafa;
-	-webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 #title {
     font-family: 'Merriweather', serif;
     font-weight: 900;
