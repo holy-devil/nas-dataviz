@@ -25,7 +25,7 @@ h = wd.innerHeight|| e.clientHeight|| g.clientHeight;
 var nas_data, corr_headers, corr_rows=[];
 var min,max;
 // d3.csv('datasets/nas/CombinedCorrelation.csv', function(error, data) {
-    d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
+d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     if (error) {
         alert("File Not Found: datasets/nas/OverviewCorrelationFinal.csv");
     }
@@ -127,6 +127,17 @@ var min,max;
             HelpInHousehold: +d.HelpInHousehold
         }
     });
+    //Grouping the factors in broad impact areas
+    groups = {
+        gId: ["gDemog", "gBehaviour", "gPasstime", "gParents", "gSchool"],
+        gSchool: ["ComputerUse","LibraryUse","SameLanguage","Distance","LikeSchool","GiveHomework","CorrectHomework"],
+        gPasstime: ["WatchTV","ReadMagazine","ReadaBook","PlayGames","HelpInHousehold"],
+        gBehaviour: ["UseCalculator","UseInternet","UseDictionary","ReadOtherBooks","Books"],
+        gParents: ["FathersEducation","MothersEducation","FathersOccupation","MothersOccupation","BelowPoverty","HelpInStudy","PrivateTuition"],
+        gDemog: ["Gender","Age","Siblings","Handicap","Category"]
+    }
+    // Text colors for 5 groups
+    groupsColour = ["g1","g2","g3","g4","g5"];
     // Getting CSV headers
     corr_headers = d3.keys(data[0]); 
     for (i=0; i<nas_data.length; i++) {
@@ -137,8 +148,11 @@ var min,max;
     $('#heatmap').waypoint({
         handler: function(direction) {
           console.log(this.element.id + ' hit')
-          if ($('#heatmap svg').length === 0) // draw the heatmap if the SVG not drawn yet
-          heatmap(nas_data);
+        //   if ($('#subjects svg').length === 0) { // draw the heatmap if the SVG not drawn yet
+          heatmapSub(nas_data);
+        //   heatmap(nas_data,1);
+          this.destroy(); // destroy the waypoint after once trigger
+        //   }
         },
         // context: '#overflow-scroll-offset',
         offset: '96%'
@@ -146,17 +160,17 @@ var min,max;
       $('#intro-row').waypoint({
         handler: function(direction) {
           console.log(this.element.id + ' hit')
-          if ($('#studplot svg').length === 0) // draw the heatmap if the SVG not drawn yet
+        //   if ($('#studplot svg').length === 0) // draw the heatmap if the SVG not drawn yet
           studPlot(nas_data);
           $('#intro-row .alert').removeClass("hidden");
-          if ($('#studsubplot svg').length === 0) // draw the heatmap if the SVG not drawn yet
+        //   if ($('#studsubplot svg').length === 0) // draw the heatmap if the SVG not drawn yet
           studSubPlot(nas_data);
+          this.destroy();
         },
         // context: '#overflow-scroll-offset',
         offset: '96%'
-      })
-      
-    
+      })      
+      heatmap(nas_data,1);
 });
 // Calculating absolute min max
 var minmax = function (data) {
@@ -171,17 +185,35 @@ var minmax = function (data) {
    }
 }
 // Plotting the correlation heatmap
-function heatmap (data) { 
+function heatmapSub (data) {
+    let wd = document.getElementById("heatmap").clientWidth;
+    let marginX = (w-wd)/2;
+    let marginY = 10;
+    // let ht = h*2;
+    let cellw = wd/(corr_rows.length+2);
+    let svgContainer = d3.select("#heatmap #subjects").append("svg").attr("width", wd).attr("height",20);
+    let colLabels = svgContainer.append('g').selectAll(".colLabelg").data(corr_rows)
+                                .enter()
+                                .append("text")
+                                .text(function (d) { return d; })
+                                .attr("x", function (d, i) { return marginX/2+cellw*(i+1); })
+                                .attr("y", marginY)
+                                .style("text-anchor", "middle")
+                                .style("opacity",0.5)
+                                .attr("class",  function (d,i) { return "colLabel heatLabel small c"+i;});
+}
+function heatmap (data,id) { 
     minmax(data);
     console.log("Min="+min+" Max="+max);
     let wd = document.getElementById("heatmap").clientWidth;
     let marginX = (w-wd)/2;
     let marginY = 10;
-    let ht = h*2;
-    let svgContainer = d3.select("#heatmap").append("svg").attr("width", wd).attr("height", ht);
-    // let xScale = d3.scaleLinear().domain([0,data.length]).range([0,180]);
     let cellw = wd/(corr_rows.length+2);
-    let cellh = ht/(corr_headers.length+1);
+    let cellh = 36;
+    let ht = cellh*(groups[groups.gId[id-1]].length+1);
+    let svgContainer = d3.select("#"+String(groups.gId[id-1])).append("svg").attr("width", wd).attr("height", ht);
+    // let xScale = d3.scaleLinear().domain([0,data.length]).range([0,180]);
+
     console.log("cellh="+cellh+" cellw="+cellw);
     let colorHeat = d3.scaleLinear().domain([-max,0,max]).range(["#FC466B","white","#3F5EFB"]);
     // adding bg-fill to row categories
@@ -192,53 +224,72 @@ function heatmap (data) {
     //                         .attr("y", function (d, i) { return marginY+cellh*(i)*1; })
     //                         .attrs({width: cellw*1.2, height: cellh})
     //                         .attr("fill", "aliceblue");
-    let rowLabels = svgContainer.append('g').selectAll(".rowLabelg").data(corr_headers)
-                                .enter()                                
+    $("#"+String(groups.gId[id-1])).waypoint({
+        handler: function(direction) {
+            console.log(this.element.id + ' hit');
+            let rowLabels = svgContainer.append('g').selectAll(".rowLabelg").data(corr_headers)
+                                .enter()                         
+                                .filter( function (d, i) {
+                                    for (j=0; j<(groups[groups.gId[id-1]].length); j++) {
+                                        if (corr_headers[i] === groups[groups.gId[id-1]][j]) {
+                                            console.log(d);
+                                            return d;
+                                        }
+                                    }
+                                })
                                 .append("text")
                                 .text(function (d) {if (d!="Subjects") return d;})
                                 .attr("x", marginX)
                                 .attr("y", function (d, i) { return marginY+cellh*(i)*1; })
                                 .style("text-anchor", "end")
-                                //.attr("transform", "translate("+(-margin/2)+")," + cellw / 1.5 + ")")
-                                .attr("class", function (d,i) { return "rowLabel heatLabel small r"+i;} );
-                                //.classed("wow animated fadeIn", true);
+                                .style("opacity",0.5)
+                                .attr("class", function (d,i) { return "rowLabel heatLabel small r"+i;} )
+                                .attr("class", function(d){return "textg"+id});
+            let heatMap = svgContainer.append("g").attr("class","heatg");
+            //.data(data)
+            // .enter()
+            // .append("circle")
+            // .attr("cx", function(d) { return marginX+(cellw/2); })
+            // .attr("cy", function(d, i) { return marginY+cellh*(i+1)*2; })
+            // .attr("class", function(d){return "cell cell-border"})
+            // .attr("r", max*50);
+            // build the heatmap
+            for (i=0; i<data.length; i++)
+            {
+                for (j=1; j<corr_headers.length; j++)
+                {   
+                    for (k=0; k<(groups[groups.gId[id-1]].length); k++) 
+                    {
+                        if (corr_headers[j] === groups[groups.gId[id-1]][k]) {
+                            heatMap.append("circle")
+                                .style("fill", function(d) {return colorHeat(data[i][corr_headers[j]])})
+                                .attr("cx", marginX/2+(cellw)*(i+1))
+                                .attr("cy", marginY+cellh*(k)*1)
+                                .attr("r", 0*Math.abs(data[i][corr_headers[j]]))
+                                .transition().delay(1000).duration(3000).ease(d3.easeCubic)
+                                .attr("r", 150*Math.abs(data[i][corr_headers[j]])) // 50 is the multiplier to scale the data
+                                .attr("class", function(d){return "cell r"+i+"c"+j});
+                        }
+                    }
+                }
+            }
+            this.destroy(); // restrict drawing the svg to only once waypoint
+        },
+        offset: '100%'
+    })   
 
-    let colLabels = svgContainer.append('g').selectAll(".colLabelg").data(corr_rows)
-                                .enter()
-                                .append("text")
-                                .text(function (d) { return d; })
-                                .attr("x", function (d, i) { return marginX/2+cellw*(i+1); })
-                                .attr("y", marginY)
-                                .style("text-anchor", "middle")
-                                //.attr("transform", "translate("+cellw/2 + ",-6) rotate (-90)")
-                                .attr("class",  function (d,i) { return "colLabel heatLabel small c"+i;});
-
-    let heatMap = svgContainer.append("g").attr("class","heatg");
-                                //.data(data)
-                                // .enter()
-                                // .append("circle")
-                                // .attr("cx", function(d) { return marginX+(cellw/2); })
-                                // .attr("cy", function(d, i) { return marginY+cellh*(i+1)*2; })
-                                // .attr("class", function(d){return "cell cell-border"})
-                                // .attr("r", max*50);
-    // build the heatmap
-    for (i=0; i<data.length; i++)
-    {
-        for (j=1; j<corr_headers.length; j++)
-        {
-            heatMap.append("circle")
-                   .style("fill", function(d) {return colorHeat(data[i][corr_headers[j]])})
-                   .attr("cx", marginX/2+(cellw)*(i+1))
-                   .attr("cy", marginY+cellh*(j)*1)
-                   .attr("r", 0*Math.abs(data[i][corr_headers[j]]))
-                   .transition().delay(1000).duration(3000).ease(d3.easeCubic)
-                   .attr("r", 150*Math.abs(data[i][corr_headers[j]])) // 50 is the multiplier to scale the data
-                   .attr("class", function(d){return "cell r"+i+"c"+j});
-        }
-    }
+    // let colLabels = svgContainer.append('g').selectAll(".colLabelg").data(corr_rows)
+    //                             .enter()
+    //                             .append("text")
+    //                             .text(function (d) { return d; })
+    //                             .attr("x", function (d, i) { return marginX/2+cellw*(i+1); })
+    //                             .attr("y", marginY)
+    //                             .style("text-anchor", "middle")
+    //                             //.attr("transform", "translate("+cellw/2 + ",-6) rotate (-90)")
+    //                             .attr("class",  function (d,i) { return "colLabel heatLabel small c"+i;});   
  }
- // Intro student chart
 
+ // Intro student chart
 function studPlot(data) {
     // let wd = document.getElementById("studplot").clientWidth;
     let wd = 0.5*w;
@@ -314,3 +365,9 @@ function studPlot(data) {
         }
     }
  }
+
+ // Activate-Deactivate button click
+ $("button").on("click", function () {
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active"); 
+ });

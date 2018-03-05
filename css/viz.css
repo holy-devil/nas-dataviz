@@ -20,8 +20,26 @@ body {
 {
     color: #607d8b;
 }
-
+.btn-outline-secondary:focus, .btn-outline-secondary.focus, .btn-outline-secondary:active, .btn-outline-secondary.active {
+    color: #fff;
+    background-color: #607d8b;
+    border-color: #607d8b;
+    box-shadow: none;
+}
+.btn-outline-secondary:not([disabled]):not(.disabled):active, .btn-outline-secondary:not([disabled]):not(.disabled).active,
+.show > .btn-outline-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #607d8b;
+  border-color: #607d8b;
+  /* box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5); */
+  box-shadow: none;
+}
 /* SVG styles */
+svg:not(:root) {
+    overflow: visible;
+    height: auto;
+    width: 100%
+}
 svg *::selection {
     background : transparent;
  }
@@ -51,9 +69,16 @@ circle.cell {
     opacity: 0.8;
     /* fill: #37474f; */
 }
+text {
+    dominant-baseline: central;
+}
 text.heatLabel {
     /* font-size: 9pt; */
-    dominant-baseline: central;
     font-family: 'Noto Sans', sans-serif;
-    fill: #B0BEC5;
+    fill: #607d8b;
   }
+.textg3 {fill:#4CAF50; color:#4CAF50}
+.textg1 {fill:#009688; color:#009688}
+.textg2 {fill:#00BCD4; color:#00BCD4}
+.textg4 {fill:#8BC34A; color:#8BC34A}
+.textg5 {fill:#CDDC39; color:#CDDC39}
