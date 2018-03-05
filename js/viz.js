@@ -291,11 +291,13 @@ function heatmap (data,id) {
 
  // Intro student chart
 function studPlot(data) {
-    // let wd = document.getElementById("studplot").clientWidth;
-    let wd = 0.5*w;
-    let marginX = (w-wd)/2;
+    let wd = document.getElementById("studplot").clientWidth;
+    // let wd = 0.5*w;
+    console.log("wd="+wd);
+
+    let marginX = 10;
     let marginY = 10;
-    let cellsize = wd/100;
+    let cellsize = (wd-40)/100;
     let t = 50*100;
     let svgContainer = d3.select("#studplot").append("svg").attr("width", wd).attr("height",20);
     for (i=0; i<100; i++) {
@@ -317,11 +319,11 @@ function studPlot(data) {
     }
  }
  function studSubPlot(data) {
-    // let wd = document.getElementById("studplot").clientWidth;
-    let wd = 0.5*w;
-    let marginX = (w-wd)/2;
+    let wd = document.getElementById("studplot").clientWidth;
+    // let wd = 0.5*w;
+    let marginX = 10;
     let marginY = 20;
-    let cellsize = wd/4;
+    let cellsize = (wd-marginX*4)/4;
     // let t = 50*100;
     let sub = ["Maths","Reading","Science","Social Science"];
     let studTop = [1300,4144,695,631];
