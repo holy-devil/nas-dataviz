@@ -145,32 +145,35 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     }
     console.log(nas_data);
     // Waypoints controllers
-    $('#heatmap').waypoint({
-        handler: function(direction) {
-          console.log(this.element.id + ' hit')
-        //   if ($('#subjects svg').length === 0) { // draw the heatmap if the SVG not drawn yet
-          heatmapSub(nas_data);
-        //   heatmap(nas_data,1);
-          this.destroy(); // destroy the waypoint after once trigger
-        //   }
-        },
-        // context: '#overflow-scroll-offset',
-        offset: '96%'
-      })
-      $('#intro-row').waypoint({
-        handler: function(direction) {
-          console.log(this.element.id + ' hit')
-        //   if ($('#studplot svg').length === 0) // draw the heatmap if the SVG not drawn yet
-          studPlot(nas_data);
-          $('#intro-row .alert').removeClass("hidden");
-        //   if ($('#studsubplot svg').length === 0) // draw the heatmap if the SVG not drawn yet
-          studSubPlot(nas_data);
-          this.destroy();
-        },
-        // context: '#overflow-scroll-offset',
-        offset: '96%'
-      })      
-      heatmap(nas_data,1);
+    // $('#heatmap').waypoint({
+    //     handler: function(direction) {
+    //       console.log(this.element.id + ' hit')
+    //     //   if ($('#subjects svg').length === 0) { // draw the heatmap if the SVG not drawn yet
+    //       heatmapSub(nas_data);
+    //     //   heatmap(nas_data,1);
+    //       this.destroy(); // destroy the waypoint after once trigger
+    //     //   }
+    //     },
+    //     // context: '#overflow-scroll-offset',
+    //     offset: '96%'
+    //   })
+    //   $('#intro-row').waypoint({
+    //     handler: function(direction) {
+    //       console.log(this.element.id + ' hit')
+    //     //   if ($('#studplot svg').length === 0) // draw the heatmap if the SVG not drawn yet
+    //       studPlot(nas_data);
+    //       $('#intro-row .alert').removeClass("hidden");
+    //     //   if ($('#studsubplot svg').length === 0) // draw the heatmap if the SVG not drawn yet
+    //       studSubPlot(nas_data);
+    //       this.destroy();
+    //     },
+    //     // context: '#overflow-scroll-offset',
+    //     offset: '96%'
+    //   })   
+    studPlot(nas_data);   
+    studSubPlot(nas_data);
+    heatmapSub(nas_data);
+    heatmap(nas_data,1);
 });
 // Calculating absolute min max
 var minmax = function (data) {
@@ -191,7 +194,10 @@ function heatmapSub (data) {
     let marginY = 10;
     // let ht = h*2;
     let cellw = wd/(corr_rows.length+2);
-    let svgContainer = d3.select("#heatmap #subjects").append("svg").attr("width", wd).attr("height",20);
+    let svgContainer = d3.select("#subjects").append("svg").attr("width", wd).attr("height",20);
+    $('#subjects').waypoint({
+        handler: function(direction) {
+            console.log(this.element.id + ' hit');
     let colLabels = svgContainer.append('g').selectAll(".colLabelg").data(corr_rows)
                                 .enter()
                                 .append("text")
@@ -201,6 +207,11 @@ function heatmapSub (data) {
                                 .style("text-anchor", "middle")
                                 .style("opacity",0.5)
                                 .attr("class",  function (d,i) { return "colLabel heatLabel small c"+i;});
+        $("#heatBtn").removeClass("d-none");
+        this.destroy();
+        },
+        offset: '96%'
+    })
 }
 function heatmap (data,id) { 
     minmax(data);
@@ -300,6 +311,9 @@ function studPlot(data) {
     let cellsize = (wd-40)/100;
     let t = 50*100;
     let svgContainer = d3.select("#studplot").append("svg").attr("width", wd).attr("height",20);
+    $('#studplot').waypoint({
+        handler: function(direction) {
+          console.log(this.element.id + ' hit')
     for (i=0; i<100; i++) {
         svgContainer.append("circle").attr("cx", cellsize*(i+1/2)).attr("cy",0).attr("r", 3).style("fill","#B0BEC5").style("opacity",0)
         .transition().delay(i*50).duration(100).ease(d3.easeCubic)
@@ -317,20 +331,28 @@ function studPlot(data) {
             .style("opacity", 1);
         }
     }
+   $("#intro-row .alert").removeClass("d-none");
+    this.destroy();
+    },
+    offset: '100%'
+    })
  }
  function studSubPlot(data) {
     let wd = document.getElementById("studplot").clientWidth;
     // let wd = 0.5*w;
     let marginX = 10;
     let marginY = 20;
-    let cellsize = (wd-marginX*4)/4;
+    let cellsize = (wd-marginX*2)/4;
     // let t = 50*100;
     let sub = ["Maths","Reading","Science","Social Science"];
     let studTop = [1300,4144,695,631];
     let studFail = [60192,28873,41287,36708];
     let studCount = [92255,93079,90918,89485];
     let svgContainer = d3.select("#studsubplot").append("svg").attr("width", wd).attr("height",100);
-    // Adding the subject labels
+    // Adding the subject labels on div hit
+    $('#studsubplot').waypoint({
+        handler: function(direction) {
+          console.log(this.element.id + ' hit')
     svgContainer.selectAll("text").data(sub).enter()
     .append("text")
     .text(function (d) { return d; })
@@ -350,22 +372,26 @@ function studPlot(data) {
                 m++;
                 if (m<=topstud) {
                     svgContainer.append("circle").attr("cx",(i*cellsize)+dotCellSize*(k+1/2)).attr("cy",2*marginY+(j+1/2)*10).attr("r", 0).style("fill","#3F5EFB")
-                    .transition().delay(4000).duration(3000).ease(d3.easeCubic)
+                    .transition().delay(1000).duration(1000).ease(d3.easeCubic)
                     .attr("r",3);
                 }
                 else if (m>100-failstud) {
                     svgContainer.append("circle").attr("cx",(i*cellsize)+dotCellSize*(k+1/2)).attr("cy",2*marginY+(j+1/2)*10).attr("r", 0).style("fill","#FC466B")
-                    .transition().delay(4000).duration(3000).ease(d3.easeCubic)
+                    .transition().delay(1000).duration(1000).ease(d3.easeCubic)
                     .attr("r",3);
                 }
                 else {
-                    svgContainer.append("circle").attr("cx",(i*cellsize)+dotCellSize*(k+1/2)).attr("cy",2*marginY+(j+1/2)*10).attr("r", 3).style("fill","#B0BEC5");
-                    // .transition().delay(3000).duration(5000).ease(d3.easeCubic)
-                    // .attr("r",3);
+                    svgContainer.append("circle").attr("cx",(i*cellsize)+dotCellSize*(k+1/2)).attr("cy",2*marginY+(j+1/2)*10).attr("r", 3).style("fill","#B0BEC5")
+                    .transition().delay(1000).duration(1000).ease(d3.easeCubic)
+                    .attr("r",3);
                 }
             }
         }
     }
+    this.destroy();
+    },
+    offset: '100%'
+    })
  }
 
  // Activate-Deactivate button click

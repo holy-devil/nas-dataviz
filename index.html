@@ -2,12 +2,24 @@
 <html lang="en">
 
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-43582646-2"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-43582646-2');
+  </script>
   <title>National Achievement Survey | Data Artistry Tournament 2018</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+  <meta name="Description" content="Prasanta Kr Dutta is an Information Experience Designer from NID Bangalore, passionate about UI/UX design, Data Visualisation and Photography. He loves solving problems in an aesthetically pleasing way. When he is not designing, he likes to indulge in culinary pleasures.">
+  <meta name="Keywords" content="User interface, User Experience, Designer, Information visualization, Data Narratives, Graphic Design, User centered design, UX, UI, Data Art, Web design, Photography, Travel, Creative writer, Electronics and Communication Engineer, National Institute of Design, National Institute of Technology Durgapur">
+  <meta name="author" content="Prasanta Kr Dutta">
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
   <!-- Bootstrap CSS -->
@@ -53,17 +65,19 @@
       <div class="col-6 col-md-auto mx-auto py-3 w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="studplot"></div> 
       <div class="w-100"></div> <!-- break columns to new line -->
       <div class="col-10 col-xl-8 mx-auto">
-        <div class="alert alert-light text wow fadeIn hidden" data-wow-duration="1s" data-wow-delay="1s">Out of total of 1,84,670 students, 1,18,575 students (64.2%) failed in at least one subject while only 3.4% could secure an A grade without failing in the rest of the subjects.
+        <div class="alert alert-light text wow fadeIn d-none" data-wow-duration="1s" data-wow-delay="1s">Out of total of 1,84,670 students, 1,18,575 students (64.2%) failed in at least one subject while only 3.4% could secure an A grade without failing in the rest of the subjects.
         </div>
       </div>  
       <div class="w-100"></div> <!-- break columns to new line -->
-      <div class="col-6 col-md-auto mx-auto py-3 w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="6s" id="studsubplot"></div>
+      <div class="col-6 col-md-auto mx-auto py-3 w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="studsubplot"></div>
     </div>
+  </div>
 
-    <!-- heatmap -->
-    <div class="row justify-content-center py-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="heatmap">
-
-        <div class="btn-group pb-3" id="heatBtn" role="group">
+  <!-- heatmap -->
+  <div class="container" id="heatmap">
+    <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+      <div class="col-md-auto mx-auto">
+        <div class="btn-group pb-3 d-none" id="heatBtn" role="group">
           <button type="button" class="btn btn-outline-secondary btn-sm mb-2 text active" id="Monthly" onclick="">All factors</button>
           <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg1" onclick="">Demographics</button>
           <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg2" onclick="">Study Behaviour</button>
@@ -71,7 +85,9 @@
           <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg4" onclick="">Parents</button> 
           <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg5" onclick="">School</button> 
         </div>  
-
+      </div>
+    </div>
+    <div class="row justify-content-center">
         <div class="col-6 col-md-auto mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="subjects"></div>
         <div class="col-6 col-md-auto mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gDemog"></div>
         <div class="col-6 col-md-auto mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gBehaviour"></div>
