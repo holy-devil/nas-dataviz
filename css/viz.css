@@ -20,6 +20,19 @@ body {
 {
     color: #607d8b;
 }
+kbd {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 400;
+    /* color: #37474f; */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+kbd.top {
+    background-color: #3F5EFB;
+}
+kbd.fail {
+    background-color: #FC466B;
+}
 .btn-outline-secondary:focus, .btn-outline-secondary.focus, .btn-outline-secondary:active, .btn-outline-secondary.active {
     color: #fff;
     background-color: #607d8b;
