@@ -194,7 +194,7 @@ function heatmapSub (data) {
     let marginY = 10;
     // let ht = h*2;
     let cellw = wd/(corr_rows.length+2);
-    let svgContainer = d3.select("#subjects").append("svg").attr("width", wd).attr("height",20);
+    let svgContainer = d3.select("#subjects").append("svg").attr("width", wd).attr("height",30);
     $('#subjects').waypoint({
         handler: function(direction) {
             console.log(this.element.id + ' hit');
