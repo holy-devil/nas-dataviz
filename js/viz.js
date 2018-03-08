@@ -24,6 +24,7 @@ h = wd.innerHeight|| e.clientHeight|| g.clientHeight;
 
 var nas_data, corr_headers, corr_rows=[];
 var min,max;
+var groups;
 // d3.csv('datasets/nas/CombinedCorrelation.csv', function(error, data) {
 d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     if (error) {
@@ -173,6 +174,11 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     studPlot(nas_data);   
     studSubPlot(nas_data);
     heatmapSub(nas_data);
+    var stickyHeat = new Waypoint.Sticky({
+        element: $('#heatFilters'),
+        offset: '0%'
+      })
+      
     heatmap(nas_data,1);
     heatmap(nas_data,2);
     heatmap(nas_data,3);
@@ -198,7 +204,7 @@ function heatmapSub (data) {
     let marginY = 10;
     // let ht = h*2;
     let cellw = wd/(corr_rows.length+2);
-    let svgContainer = d3.select("#subjects").append("svg").attr("width", wd).attr("height",30);
+    let svgContainer = d3.select("#subjects").append("svg").attr("width", wd).attr("height",20);
     $('#subjects').waypoint({
         handler: function(direction) {
             console.log(this.element.id + ' hit');
@@ -351,31 +357,32 @@ function cellMouseOver(d,i) {
         if ($(this).hasClass("c"+j))
         d3.select(".colLabel.c"+j).classed("opaque",true);
     } // for highlighting the selected column
-    // to get the coloumn no between 0-5, use i%5
+    // to get the coloumn no between 0-length of group, use i%len
+    function len(n) { return groups[groups.gId[n-1]].length; }
     if ($(this).hasClass("gDemog")) {
         d3.select(this).classed("opaque",true);
-        console.log(this+" "+i%5)        
-        d3.select(".rowLabel.textg1.r"+(i%5)).classed("opaque",true);
+        console.log(this+" "+i%len(1))        
+        d3.select(".rowLabel.textg1.r"+(i%len(1))).classed("opaque",true);
     }
     if ($(this).hasClass("gBehaviour")) {
         d3.select(this).classed("opaque",true);
-        console.log(this+" "+i%5)        
-        d3.select(".rowLabel.textg2.r"+(i%5)).classed("opaque",true);
+        console.log(this+" "+i%len(2))        
+        d3.select(".rowLabel.textg2.r"+(i%len(2))).classed("opaque",true);
     }
     if ($(this).hasClass("gPasstime")) {
         d3.select(this).classed("opaque",true);
-        console.log(this+" "+i%5)        
-        d3.select(".rowLabel.textg3.r"+(i%5)).classed("opaque",true);
+        console.log(this+" "+i%len(3))        
+        d3.select(".rowLabel.textg3.r"+(i%len(3))).classed("opaque",true);
     }
     if ($(this).hasClass("gParents")) {
         d3.select(this).classed("opaque",true);
-        console.log(this+" "+i%5)        
-        d3.select(".rowLabel.textg4.r"+(i%5)).classed("opaque",true);
+        console.log(this+" "+i%len(4))        
+        d3.select(".rowLabel.textg4.r"+(i%len(4))).classed("opaque",true);
     }
     if ($(this).hasClass("gSchool")) {
         d3.select(this).classed("opaque",true);
-        console.log(this+" "+i%5)        
-        d3.select(".rowLabel.textg5.r"+(i%5)).classed("opaque",true);
+        console.log(this+" "+i%len(5))        
+        d3.select(".rowLabel.textg5.r"+(i%len(5))).classed("opaque",true);
     }
 }
 function cellMouseOut(d,i) {
@@ -385,11 +392,8 @@ function cellMouseOut(d,i) {
     }
         d3.select(this).classed("opaque",false);
         // removing highlight from any row label
-        d3.select(".rowLabel.textg1.r"+(i%5)).classed("opaque",false);
-        d3.select(".rowLabel.textg2.r"+(i%5)).classed("opaque",false);
-        d3.select(".rowLabel.textg3.r"+(i%5)).classed("opaque",false);
-        d3.select(".rowLabel.textg4.r"+(i%5)).classed("opaque",false);
-        d3.select(".rowLabel.textg5.r"+(i%5)).classed("opaque",false);
+        $(".rowLabel").removeClass("opaque");
+
 }
  // Intro student chart
 function studPlot(data) {

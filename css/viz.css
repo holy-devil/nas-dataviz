@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Merriweather');    
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Noto+Serif|Merriweather');    
 
 body {
     background: #fafafa;
@@ -20,6 +20,12 @@ body {
 {
     color: #607d8b;
 }
+.stuck {
+    position:fixed;
+    top:0rem;
+    background: #fafafa;
+    z-index: 100;
+  }
 kbd {
     font-family: 'Noto Sans', sans-serif;
     font-weight: 400;
@@ -84,6 +90,7 @@ circle.cell {
 }
 .opaque {
     opacity: 1 !important;
+    font-weight: 700 !important;
 }
 text {
     dominant-baseline: central;

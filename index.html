@@ -28,7 +28,7 @@
   <link href="css/viz.css" rel="stylesheet">
   <link href="css/animate.css" rel="stylesheet">
   <!-- Font -->
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Merriweather" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Noto+Serif|Merriweather" rel="stylesheet">
 </head>
 
 <body>
@@ -75,8 +75,8 @@
 
   <!-- heatmap -->
   <div class="container" id="heatmap">
-    <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
-      <div class="col-md-auto mx-auto">
+    <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s"  id="heatFilters">
+      <div class="col-md-auto mx-auto py-3">
         <div class="btn-group pb-3 d-none" id="heatBtn" role="group">
           <button type="button" class="btn btn-outline-secondary btn-sm mb-2 text active" id="Monthly" onclick="">All factors</button>
           <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg1" onclick="">Demographics</button>
@@ -86,9 +86,11 @@
           <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg5" onclick="">School</button> 
         </div>  
       </div>
+      <div class="w-100"></div> <!-- break columns to new line -->
+      <div class="col-6 col-md-auto mx-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="subjects"></div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-6 col-md-auto mx-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="subjects"></div>
+        <!-- <div class="col-6 col-md-auto mx-auto py-3 w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="subjects"></div> -->
         <div class="col-6 col-md-auto mx-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gDemog"></div>
         <div class="col-6 col-md-auto mx-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gBehaviour"></div>
         <div class="col-6 col-md-auto mx-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gPasstime"></div>
