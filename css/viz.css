@@ -37,6 +37,7 @@ kbd {
     /* color: #37474f; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    border-radius: 0rem;
 }
 kbd.top {
     background-color: #3F5EFB;
