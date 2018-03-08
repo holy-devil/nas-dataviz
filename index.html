@@ -40,8 +40,8 @@
     <div class="row justify-content-center" id="title-row">
       <div class="col-10 col-xl-8 align-self-end">
         <h1 class="h1-responsive text-center my-3" id="title">What makes an acheiver?</h1>
-        <p class="text-center" id="subtitle">The National Achievement Survey of 2014 conducted by NCERT provides an insight to the learning achievement of children undergoing elementary education. <br>We have analysed the dataset to understand how the various factors impact the learning and performance of the students.</p>
-        <!-- <hr class="my-2"> -->
+        <p class="text-center subtitle">The National Achievement Survey of 2014 conducted by NCERT provides an insight to the learning achievement of children undergoing elementary education. <br>We have analysed the dataset to understand how the various factors impact the learning and performance of VIIIth standard students thus surveyed.</p>
+        <!-- <hr class="my-2"> -->        
       </div>
     </div>
     <!-- 3 info line -->
@@ -61,20 +61,40 @@
       </div>
     </div>
     <!-- intro para -->
-    <div class="row justify-content-center my-5" id="intro-row">
-      <div class="col-6 col-md-auto mx-auto py-3 w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="studplot"></div> 
+    <div class="row justify-content-center align-items-center my-5 fullheight" id="intro-row">
+      <div class="col-6 col-md-auto mx-auto py-3 mt-5 w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="studplot"></div> 
       <div class="w-100"></div> <!-- break columns to new line -->
-      <div class="col-10 col-xl-8 mx-auto">
+      <div class="col-10 col-xl-8 mx-auto">        
         <div class="alert alert-light text wow fadeIn d-none" data-wow-duration="1s" data-wow-delay="1s">Out of total of 1,84,670 students, <br>1,18,575 students (64.2%) failed in at least one subject <kbd class="fail">underachievers</kbd> <br> 6,306 students (3.4%) could secure grade A and above without failing in the rest of the subjects <kbd class="top">achievers</kbd>.
         </div>
+        <p class="text">Breaking it down subject-wise, Only a fraction of students seem to be achievers - the basic minimum of securing grade A/A+ in any one subject while not failing in the rest.</p>
       </div>  
       <div class="w-100"></div> <!-- break columns to new line -->
       <div class="col-6 col-md-auto mx-auto py-3 w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="studsubplot"></div>
+      <!-- <div class="w-100"></div> break columns to new line -->
+    </div>
+    <div class="row align-items-center my-5 fullheight">
+      <div class="col-md-auto mx-auto py-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+        <blockquote class="blockquote">
+          <p class="mb-0 text-center subtitle">What makes these fraction of achievers different from the rest?<br>What are the underachievers doing differently?<br>Let’s take a dive into the data to try and find out why.</p>
+        </blockquote>
+      </div>
     </div>
   </div>
 
   <!-- heatmap -->
-  <div class="container" id="heatmap">
+  <div class="container fullheight" id="heatmap">
+    <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+      <div class="col-6 mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+        <p class="text">Various things can affect the marks of a student. To find how each parameter affects the marks, the correlation factor for each has been found and plotted in the following heatmap.
+      </p>
+    </div>
+    <div class="w-100"></div> <!-- break columns to new line -->
+    <div class="col-6 mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+        <p class="text">The correlation value ranges from -1(red) to 1(blue). A negative correlation results in a decrease in marks while positive correlation results in an increase.
+      </p>
+    </div>
+    </div>
     <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s"  id="heatFilters">
       <div class="col-md-auto mx-auto py-3">
         <div class="btn-group pb-3 d-none" id="heatBtn" role="group">
@@ -96,7 +116,6 @@
         <div class="col-6 col-md-auto mx-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gPasstime"></div>
         <div class="col-6 col-md-auto mx-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gParents"></div>
         <div class="col-6 col-md-auto mx-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gSchool"></div>
-
     </div>
   </div>
 

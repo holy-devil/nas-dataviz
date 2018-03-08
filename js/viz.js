@@ -211,7 +211,7 @@ function heatmapSub (data) {
                                 .attr("x", function (d, i) { return marginX/2+cellw*(i+1); })
                                 .attr("y", marginY)
                                 .style("text-anchor", "middle")
-                                .style("opacity",0.5)
+                                .style("opacity",0.8)
                                 .attr("class",  function (d,i) { return "colLabel heatLabel small c"+i;});
         $("#heatBtn").removeClass("d-none");
         this.destroy();
@@ -259,7 +259,7 @@ function heatmap (data,id) {
                                 .attr("x", marginX)
                                 .attr("y", function (d, i) { return marginY+cellh*(i)*1; })
                                 .style("text-anchor", "end")
-                                .style("opacity",0.5)
+                                .style("opacity",0.8)
                                 .attr("class", function (d,i) { return "rowLabel heatLabel small textg"+id+" r"+i});
             
             rowLabels.on("mouseover", rowMouseOver).on("mouseout", rowMouseOut);                    
