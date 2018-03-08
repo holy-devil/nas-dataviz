@@ -170,20 +170,16 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     //     },
     //     // context: '#overflow-scroll-offset',
     //     offset: '96%'
-    //   })   
-    studPlot(nas_data);   
-    studSubPlot(nas_data);
-    heatmapSub(nas_data);
+    //   })  
     var stickyHeat = new Waypoint.Sticky({
         element: $('#heatFilters'),
         offset: '0%'
       })
-      
-    heatmap(nas_data,1);
-    heatmap(nas_data,2);
-    heatmap(nas_data,3);
-    heatmap(nas_data,4);
-    heatmap(nas_data,5);
+       
+    studPlot(nas_data);   
+    studSubPlot(nas_data);
+    heatmapSub(nas_data);
+    drawHeatmap(0);
 });
 // Calculating absolute min max
 var minmax = function (data) {
@@ -293,7 +289,7 @@ function heatmap (data,id) {
                                 .attr("cx", marginX/2+(cellw)*(i+1))
                                 .attr("cy", marginY+cellh*(k)*1)
                                 .attr("r", 0*Math.abs(data[i][corr_headers[j]]))
-                                .transition().delay(1000).duration(3000).ease(d3.easeCubic)
+                                .transition().delay(1000).duration(1500).ease(d3.easeCubic)
                                 .attr("r", 150*Math.abs(data[i][corr_headers[j]])) // 50 is the multiplier to scale the data
                                 .attr("class", function(d){return "cell "+groups.gId[id-1]+" r"+k+" c"+i});
                         }
@@ -395,7 +391,42 @@ function cellMouseOut(d,i) {
         $(".rowLabel").removeClass("opaque");
 
 }
- // Intro student chart
+// To remove an draw heatmap groupwise on btn click
+function removeHeatmap() {
+    $("#gDemog svg").remove();
+    $("#gBehaviour svg").remove();
+    $("#gPasstime svg").remove();
+    $("#gParents svg").remove();
+    $("#gSchool svg").remove();
+}
+function drawHeatmap (id) {
+    removeHeatmap(); // delete the svg if already drawn on screen
+    switch(id) {
+        case 1:
+            heatmap(nas_data,1);
+            break;
+        case 2:
+            heatmap(nas_data,2);
+            break;
+        case 3:
+            heatmap(nas_data,3);
+            break;
+        case 4:
+            heatmap(nas_data,4);
+            break;
+        case 5:
+            heatmap(nas_data,5);
+            break;
+        default:
+            heatmap(nas_data,1);
+            heatmap(nas_data,2);
+            heatmap(nas_data,3);
+            heatmap(nas_data,4);
+            heatmap(nas_data,5);
+            break;
+    }
+}
+// Intro student chart
 function studPlot(data) {
     let wd = document.getElementById("studplot").clientWidth;
     // let wd = 0.5*w;

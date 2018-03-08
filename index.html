@@ -78,12 +78,12 @@
     <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s"  id="heatFilters">
       <div class="col-md-auto mx-auto py-3">
         <div class="btn-group pb-3 d-none" id="heatBtn" role="group">
-          <button type="button" class="btn btn-outline-secondary btn-sm mb-2 text active" id="Monthly" onclick="">All factors</button>
-          <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg1" onclick="">Demographics</button>
-          <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg2" onclick="">Study Behaviour</button>
-          <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg3" onclick="">Passtime</button>
-          <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg4" onclick="">Parents</button> 
-          <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg5" onclick="">School</button> 
+          <button type="button" class="btn btn-outline-secondary btn-sm mb-2 text active" id="hg0" onclick="drawHeatmap(0)">All factors</button>
+          <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg1" onclick="drawHeatmap(1)">Demographics</button>
+          <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg2" onclick="drawHeatmap(2)">Study Behaviour</button>
+          <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg3" onclick="drawHeatmap(3)">Passtime</button>
+          <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg4" onclick="drawHeatmap(4)">Parents</button> 
+          <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg5" onclick="drawHeatmap(5)">School</button> 
         </div>  
       </div>
       <div class="w-100"></div> <!-- break columns to new line -->
