@@ -174,6 +174,10 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     studSubPlot(nas_data);
     heatmapSub(nas_data);
     heatmap(nas_data,1);
+    heatmap(nas_data,2);
+    heatmap(nas_data,3);
+    heatmap(nas_data,4);
+    heatmap(nas_data,5);
 });
 // Calculating absolute min max
 var minmax = function (data) {

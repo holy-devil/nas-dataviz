@@ -49,7 +49,7 @@ kbd.fail {
 }
 /* SVG styles */
 svg:not(:root) {
-    /* overflow: visible; */
+    overflow: visible;
     height: auto;
     width: 100%
 }
