@@ -258,8 +258,10 @@ function heatmap (data,id) {
                                 .attr("y", function (d, i) { return marginY+cellh*(i)*1; })
                                 .style("text-anchor", "end")
                                 .style("opacity",0.5)
-                                .attr("class", function (d,i) { return "rowLabel heatLabel small r"+i;} )
-                                .attr("class", function(d){return "textg"+id});
+                                .attr("class", function (d,i) { return "rowLabel heatLabel small textg"+id+" r"+i});
+            
+            rowLabels.on("mouseover", rowMouseOver).on("mouseout", rowMouseOut);                    
+            
             let heatMap = svgContainer.append("g").attr("class","heatg");
             //.data(data)
             // .enter()
@@ -277,33 +279,118 @@ function heatmap (data,id) {
                     {
                         if (corr_headers[j] === groups[groups.gId[id-1]][k]) {
                             heatMap.append("circle")
-                                .style("fill", function(d) {return colorHeat(data[i][corr_headers[j]])})
+                                // .style("fill", function(d) {return colorHeat(data[i][corr_headers[j]])})
+                                .style("fill", function(d) {
+                                    if (data[i][corr_headers[j]] < 0) return "#FC466B"
+                                    else return "#3F5EFB"
+                                })
                                 .attr("cx", marginX/2+(cellw)*(i+1))
                                 .attr("cy", marginY+cellh*(k)*1)
                                 .attr("r", 0*Math.abs(data[i][corr_headers[j]]))
                                 .transition().delay(1000).duration(3000).ease(d3.easeCubic)
                                 .attr("r", 150*Math.abs(data[i][corr_headers[j]])) // 50 is the multiplier to scale the data
-                                .attr("class", function(d){return "cell "+groups.gId[id-1]+" r"+j+"c"+i});
+                                .attr("class", function(d){return "cell "+groups.gId[id-1]+" r"+k+" c"+i});
                         }
                     }
                 }
             }
+            heatMap.selectAll("circle").on("mouseover", cellMouseOver).on("mouseout", cellMouseOut);
             this.destroy(); // restrict drawing the svg to only once waypoint
         },
         offset: '100%'
-    })   
-
-    // let colLabels = svgContainer.append('g').selectAll(".colLabelg").data(corr_rows)
-    //                             .enter()
-    //                             .append("text")
-    //                             .text(function (d) { return d; })
-    //                             .attr("x", function (d, i) { return marginX/2+cellw*(i+1); })
-    //                             .attr("y", marginY)
-    //                             .style("text-anchor", "middle")
-    //                             //.attr("transform", "translate("+cellw/2 + ",-6) rotate (-90)")
-    //                             .attr("class",  function (d,i) { return "colLabel heatLabel small c"+i;});   
+    })    
  }
-
+ function rowMouseOver(d,i) {
+    if ($(this).hasClass("textg1")) {
+        d3.select(this).classed("opaque",true);
+        d3.selectAll(".cell.gDemog.r"+i).classed("opaque",true);
+        // console.log(this+ " "+i)
+    }
+    if ($(this).hasClass("textg2")) {
+        d3.select(this).classed("opaque",true);
+        d3.selectAll(".cell.gBehaviour.r"+i).classed("opaque",true);
+    }
+    if ($(this).hasClass("textg3")) {
+        d3.select(this).classed("opaque",true);
+        d3.selectAll(".cell.gPasstime.r"+i).classed("opaque",true);
+    }
+    if ($(this).hasClass("textg4")) {
+        d3.select(this).classed("opaque",true);
+        d3.selectAll(".cell.gParents.r"+i).classed("opaque",true);
+    }
+    if ($(this).hasClass("textg5")) {
+        d3.select(this).classed("opaque",true);
+        d3.selectAll(".cell.gSchool.r"+i).classed("opaque",true);
+    }
+ }
+function rowMouseOut(d,i) {
+    if ($(this).hasClass("textg1")) {
+        d3.select(this).classed("opaque",false);
+        d3.selectAll(".cell.gDemog.r"+i).classed("opaque",false);
+        // console.log(this)
+    }
+    if ($(this).hasClass("textg2")) {
+        d3.select(this).classed("opaque",false);
+        d3.selectAll(".cell.gBehaviour.r"+i).classed("opaque",false);
+    }
+    if ($(this).hasClass("textg3")) {
+        d3.select(this).classed("opaque",false);
+        d3.selectAll(".cell.gPasstime.r"+i).classed("opaque",false);
+    }
+    if ($(this).hasClass("textg4")) {
+        d3.select(this).classed("opaque",false);
+        d3.selectAll(".cell.gParents.r"+i).classed("opaque",false);
+    }
+    if ($(this).hasClass("textg5")) {
+        d3.select(this).classed("opaque",false);
+        d3.selectAll(".cell.gSchool.r"+i).classed("opaque",false);
+    }
+ }
+function cellMouseOver(d,i) {
+    for (j=0; j<corr_rows.length; j++) {
+        if ($(this).hasClass("c"+j))
+        d3.select(".colLabel.c"+j).classed("opaque",true);
+    } // for highlighting the selected column
+    // to get the coloumn no between 0-5, use i%5
+    if ($(this).hasClass("gDemog")) {
+        d3.select(this).classed("opaque",true);
+        console.log(this+" "+i%5)        
+        d3.select(".rowLabel.textg1.r"+(i%5)).classed("opaque",true);
+    }
+    if ($(this).hasClass("gBehaviour")) {
+        d3.select(this).classed("opaque",true);
+        console.log(this+" "+i%5)        
+        d3.select(".rowLabel.textg2.r"+(i%5)).classed("opaque",true);
+    }
+    if ($(this).hasClass("gPasstime")) {
+        d3.select(this).classed("opaque",true);
+        console.log(this+" "+i%5)        
+        d3.select(".rowLabel.textg3.r"+(i%5)).classed("opaque",true);
+    }
+    if ($(this).hasClass("gParents")) {
+        d3.select(this).classed("opaque",true);
+        console.log(this+" "+i%5)        
+        d3.select(".rowLabel.textg4.r"+(i%5)).classed("opaque",true);
+    }
+    if ($(this).hasClass("gSchool")) {
+        d3.select(this).classed("opaque",true);
+        console.log(this+" "+i%5)        
+        d3.select(".rowLabel.textg5.r"+(i%5)).classed("opaque",true);
+    }
+}
+function cellMouseOut(d,i) {
+    for (j=0; j<corr_rows.length; j++) {
+        if ($(this).hasClass("c"+j))
+        d3.select(".colLabel.c"+j).classed("opaque",false);
+    }
+        d3.select(this).classed("opaque",false);
+        // removing highlight from any row label
+        d3.select(".rowLabel.textg1.r"+(i%5)).classed("opaque",false);
+        d3.select(".rowLabel.textg2.r"+(i%5)).classed("opaque",false);
+        d3.select(".rowLabel.textg3.r"+(i%5)).classed("opaque",false);
+        d3.select(".rowLabel.textg4.r"+(i%5)).classed("opaque",false);
+        d3.select(".rowLabel.textg5.r"+(i%5)).classed("opaque",false);
+}
  // Intro student chart
 function studPlot(data) {
     let wd = document.getElementById("studplot").clientWidth;
@@ -341,6 +428,7 @@ function studPlot(data) {
     offset: '100%'
     })
  }
+
  function studSubPlot(data) {
     let wd = document.getElementById("studplot").clientWidth;
     // let wd = 0.5*w;
