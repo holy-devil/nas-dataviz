@@ -283,7 +283,7 @@ function heatmap (data,id) {
                                 .attr("r", 0*Math.abs(data[i][corr_headers[j]]))
                                 .transition().delay(1000).duration(3000).ease(d3.easeCubic)
                                 .attr("r", 150*Math.abs(data[i][corr_headers[j]])) // 50 is the multiplier to scale the data
-                                .attr("class", function(d){return "cell r"+i+"c"+j});
+                                .attr("class", function(d){return "cell "+groups.gId[id-1]+" r"+j+"c"+i});
                         }
                     }
                 }
