@@ -22,6 +22,7 @@ g = d.getElementsByTagName('body')[0],
 w = wd.innerWidth || e.clientWidth || g.clientWidth,
 h = wd.innerHeight|| e.clientHeight|| g.clientHeight;
 
+/* Heatmap viz */
 var nas_data, corr_headers, corr_rows=[];
 var min,max;
 var groups;
@@ -115,7 +116,7 @@ function heatmapSub (data) {
     let marginX = (w-wd)/2;
     let marginY = 10;
     // let ht = h*2;
-    let cellw = wd/(corr_rows.length+2);
+    let cellw = wd/(corr_rows.length+1);
     let svgContainer = d3.select("#subjects").append("svg").attr("width", wd).attr("height",20);
     $('#subjects').waypoint({
         handler: function(direction) {
@@ -141,7 +142,7 @@ function heatmap (data,id) {
     let wd = document.getElementById("heatmap").clientWidth;
     let marginX = (w-wd)/2;
     let marginY = 10;
-    let cellw = wd/(corr_rows.length+2);
+    let cellw = wd/(corr_rows.length+1);
     let cellh = 36;
     let ht = cellh*(groups[groups.gId[id-1]].length+1);
     let svgContainer = d3.select("#"+String(groups.gId[id-1])).append("svg").attr("width", wd).attr("height", ht);
@@ -341,7 +342,6 @@ function studPlot(data) {
     let wd = document.getElementById("studplot").clientWidth;
     // let wd = 0.5*w;
     console.log("wd="+wd);
-
     let marginX = 10;
     let marginY = 10;
     let cellsize = (wd-40)/100;
@@ -372,9 +372,9 @@ function studPlot(data) {
     },
     offset: '100%'
     })
- }
+}
 
- function studSubPlot(data) {
+function studSubPlot(data) {
     let wd = document.getElementById("studplot").clientWidth;
     // let wd = 0.5*w;
     let marginX = 10;
@@ -429,9 +429,47 @@ function studPlot(data) {
     },
     offset: '100%'
     })
- }
+}
+/* Heatmap viz ENDS */
 
- // Activate-Deactivate button click
+
+/* Bar chart viz */
+var dig_data, dig_headers;
+d3.csv('datasets/nas/DivergingGraphDataset.csv', function(error, data) {
+    if (error) {
+        alert("File Not Found: datasets/nas/DivergingGraphDataset.csv");
+    }
+    // Storing the data in a global variable   
+    // Converting data to labels and numbers from CSV strings
+    dig_data = data.map(function (d){
+        // console.log(d[corr_headers[1]]); Accessing the data dynamically
+        
+        return {
+            Factor: d.Factor,
+            Subject: d.Subject,
+            Options: d.Options,
+            AvgMarksFail: +d.AvgMarksFail,
+            StudentPercentFail: +d.StudentPercentFail,
+            AvgMarksTop: +d.AvgMarksTop,
+            StudentPercentTop: +d.StudentPercentTop
+        }
+    });
+})
+
+// Dot-bar graph
+function digBar(data,subject,id) {
+    let wd = document.getElementById("digbar").clientWidth;
+    let marginX = (w-wd)/2;
+    let marginY = 10;
+    let cellw = wd/(corr_rows.length+2);
+    let cellh = 36;
+    let ht = cellh*(groups[groups.gId[id-1]].length+1);
+    let svgContainer = d3.select("#"+String(groups.gId[id-1])).append("svg").attr("width", wd).attr("height", ht);
+}
+
+
+/* NON-VIZ code */
+// Activate-Deactivate button click
  $("button").on("click", function () {
     $(this).siblings().removeClass("active");
     $(this).addClass("active"); 
