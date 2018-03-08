@@ -25,9 +25,11 @@ body {
 }
 .stuck {
     position:fixed;
-    top:0rem;
     background: #fafafa;
     z-index: 100;
+    left: 50%;
+    top: 0%;
+    transform: translateX(-50%);
   }
 kbd {
     font-family: 'Noto Sans', sans-serif;
