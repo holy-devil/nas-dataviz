@@ -122,11 +122,95 @@ rect {
 		    .curve(d3.curveBasis)
 		    return svgline(data.data);
 		}
+		
+		var color1 = d3.scaleLinear()
+		    .domain([0, 6000])
+		    // .interpolate(d3.interpolateRgb)
+		    .range(['#11998e', '#38ef7d'])
 
 		var spacing = 26,
-		colorlines = ["#d787f9","#87eaf9",
-					  "#87f9b9","#e3f987"]
+		colorlines = ["#DA4453","#38ef7d",
+					  "#662E9B","#8f94fb"]
+
+		var defs = svgContainer1.append("defs");
+
+		var gradient = defs.append("linearGradient")
+		   .attr("id", "svgGradient0")
+		   .attr("x1", "0%")
+		   .attr("x2", "100%")
+		   .attr("y1", "0%")
+		   .attr("y2", "100%");
+
+		gradient.append("stop")
+		   .attr('class', 'start')
+		   .attr("offset", "0%")
+		   .attr("stop-color", "#DA4453")
+		   .attr("stop-opacity", 1);
+
+		gradient.append("stop")
+		   .attr('class', 'end')
+		   .attr("offset", "100%")
+		   .attr("stop-color", "#89216B")
+		   .attr("stop-opacity", 1);
+
+		var gradient1 = defs.append("linearGradient")
+		   .attr("id", "svgGradient1")
+		   .attr("x1", "0%")
+		   .attr("x2", "100%")
+		   .attr("y1", "0%")
+		   .attr("y2", "100%");
+
+		gradient1.append("stop")
+		   .attr('class', 'start')
+		   .attr("offset", "0%")
+		   .attr("stop-color", "#007991")
+		   .attr("stop-opacity", 1);
+
+		gradient1.append("stop")
+		   .attr('class', 'end')
+		   .attr("offset", "100%")
+		   .attr("stop-color", "#78ffd6")
+		   .attr("stop-opacity", 1);
+
+		 var gradient2 = defs.append("linearGradient")
+		   .attr("id", "svgGradient2")
+		   .attr("x1", "0%")
+		   .attr("x2", "100%")
+		   .attr("y1", "0%")
+		   .attr("y2", "100%");
+
+		gradient2.append("stop")
+		   .attr('class', 'start')
+		   .attr("offset", "0%")
+		   .attr("stop-color", "#4568DC")
+		   .attr("stop-opacity", 1);
+
+		gradient2.append("stop")
+		   .attr('class', 'end')
+		   .attr("offset", "100%")
+		   .attr("stop-color", "#B06AB3")
+		   .attr("stop-opacity", 1);
+
+		var gradient3 = defs.append("linearGradient")
+		   .attr("id", "svgGradient3")
+		   .attr("x1", "0%")
+		   .attr("x2", "100%")
+		   .attr("y1", "0%")
+		   .attr("y2", "100%");
+
+		gradient3.append("stop")
+		   .attr('class', 'start')
+		   .attr("offset", "0%")
+		   .attr("stop-color", "#ee0979")
+		   .attr("stop-opacity", 1);
+
+		gradient3.append("stop")
+		   .attr('class', 'end')
+		   .attr("offset", "100%")
+		   .attr("stop-color", "#ff6a00")
+		   .attr("stop-opacity", 1);
 			
+
 
 		function lineEnter(d, i) {
 
@@ -142,26 +226,18 @@ rect {
 		            }
 		        )
 		      .attr("stroke-width", function(e,i) { return e.width;})
-		      .attr("stroke",colorlines[i])
-		      .attr("fill", "none")
+		      .attr("stroke","none")
+		      .attr("fill", "url(#svgGradient"+i+")" )
+		      .attr("opacity",0.8)
 
 		    update_spacing()
 		}
-
-		// var svg = d3.select("svg")
-		//     .attr("width", wart)
-		//     .attr("height", h)
-			// svgContainer1
-		 //  .append("svg:g")
-		    //.attr("transform", "translate(" + w / 2 + "," + h / 2 + ")scale(.6)");
 
 		var line = svgContainer1.selectAll("g.line")
 		    .data(lines)
 		  .enter().append("svg:g")
 		    .attr("class", "line")
 		    .each(lineEnter);
-
-
 
 		var sm = .39 
 		function update_spacing()
@@ -181,12 +257,7 @@ rect {
 		        })
 		}
 
-
-		var color = d3.scaleLinear()
-		    .domain([-1, 1])
-		    .interpolate(d3.interpolateRgb)
-		    .range(['#fff', '#000'])
-
+		
 		var opacity = d3.scaleLinear()
 		    .domain([0, n])
 		    .range([1, .4])
@@ -198,11 +269,6 @@ rect {
 		  var elapsed = Date.now() - start
 		  var damp = .3
 
-		  rotate = function(d,i) { 
-		  var speed = sm * d.speed * elapsed * .1
-		    return "rotate(" + speed + ")"; 
-		  };
-
 		  line = d3.selectAll("g.line path")
 		      .attr("d", function(d,i) {
 		             //var speed = a * d.speed * elapsed + .01 * d.index
@@ -210,8 +276,7 @@ rect {
 		             return line_maker( d, speed ) 
 		        })
 		      .attr("stroke-opacity", function(d,i) { return opacity(d.index);})
-		        
-
+	
 		});	
 
   	}
