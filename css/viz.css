@@ -117,6 +117,9 @@ text.heatLabel {
     font-family: 'Noto Sans', sans-serif;
     fill: #607d8b;
   }
+#digbar line {
+    stroke-width: 0.5rem;
+}
 .textg3 {fill:#4CAF50 !important; color:#4CAF50 !important;}
 .textg1 {fill:#009688 !important; color:#009688 !important;}
 .textg2 {fill:#00BCD4 !important; color:#00BCD4 !important;}
