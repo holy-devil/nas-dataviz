@@ -223,7 +223,7 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
 		        .attr("transform", function(d, i) { 
 		            //console.log("h",h, spacing, d.index);
 		            //return "translate(" + [0, th - spacing * d.index] + ")"; 
-		            return "translate(" + [0, h/2 - spacing * d.index] + ")"; 
+		            return "translate(" + [0, h/2 - spacing * d.index*2] + ")"; 
 		        })
 		}
 
