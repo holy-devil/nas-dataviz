@@ -434,7 +434,7 @@ function studSubPlot(data) {
 
 
 /* Bar chart viz */
-var dig_data, dig_headers;
+var dig_data, dig_factors, dig_groups;
 d3.csv('datasets/nas/DivergingGraphDataset.csv', function(error, data) {
     if (error) {
         alert("File Not Found: datasets/nas/DivergingGraphDataset.csv");
@@ -455,20 +455,42 @@ d3.csv('datasets/nas/DivergingGraphDataset.csv', function(error, data) {
             StudentPercentTop: +d.StudentPercentTop
         }
     });
-
-    dGroups = [];
+    // Storng the factors list (space is also included)
+    dig_factors = d3.map(dig_data, function(d){return d.Factor;}).keys();
+    dig_groups = d3.map(dig_data, function(d){return d.Group;}).keys();
+    digBar(dig_data,"Maths","Distance",1)
 })
 
 // Dot-bar graph
-function digBar(data,subject,id) {
+function digBar(data,subject,factor,id) {
     let wd = (document.getElementById("digbar").clientWidth)*0.6; // leaving 4 columns for text
-    let cellw = wd/(4);
-    let cellh = 10;
-    let ht = cellh*(4);
-    let svgContainer = d3.select("#digbar #Distance").append("svg").attr("width", wd).attr("height", ht);
+    let margin = 10;
+    let barWd = 2*wd/5 - 2*margin;
+    let barHt = 16;
+    let labelWd = 20;
+    let cSize = barWd/10;
+    let cr = 3;
+    
+    let ht = (barHt)*(4);
+    let svgContainer = d3.select("#digbar #"+factor).append("svg").attr("width", wd).attr("height", ht);
+    console.log("bar wd="+wd+" ht"+ht);
+    let groupLabels = svgContainer.append('g')
+                                .append("text")
+                                .attr("x", 0)
+                                .attr("y", 0)
+                                .attr("transform", "translate("+0+","+ht/2+") rotate(-90)")
+                                .text(factor)
+                                .style("text-anchor", "end")
+                                .style("opacity",0.8)
+                                .attr("class", function (d,i) { return "groupLabel small textg"+id+" r"+i});
 
-    let groupLabels = svgContainer.append('g').selectAll(".groupLabel").data(corr_headers)
-                                .enter()
+    let bars = svgContainer.append('g').attr("class","bardots")
+
+    // for (i=0; i<)
+                        .attr("transform", "translate("+margin+",0)")
+                        .append("circle")
+                        .attrs({cx: margin+cSize, cy: barHt/2, r: cr})
+                        .style("fill","#FC466B");
 }
 
 
