@@ -79,6 +79,7 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
         gParents: ["FathersEducation","MothersEducation","FathersOccupation","MothersOccupation","BelowPoverty","HelpInStudy","PrivateTuition"],
         gDemog: ["Gender","Age","Siblings","Handicap","Category"]
     }
+    // groups = {gId: ["gDemog", "gBehaviour", "gPasstime", "gParents", "gSchool"],gSchool: ["LibraryUse","SameLanguage","Distance","LikeSchool","GiveHomework","CorrectHomework"],gPasstime: ["WatchTV","ReadMagazine","ReadaBook","PlayGames","HelpInHousehold"],gBehaviour: ["ComputerUse","UseCalculator","UseInternet","UseDictionary","ReadOtherBooks","Books","PrivateTuition"],gParents: ["FathersEducation","MothersEducation","FathersOccupation","MothersOccupation","BelowPoverty","HelpInStudy"],gDemog: ["Gender","Age","Siblings","Handicap","Category"]}
     // Text colors for 5 groups
     groupsColour = ["g1","g2","g3","g4","g5"];
     // Getting CSV headers
@@ -88,11 +89,22 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     }
     console.log(nas_data);
     // Waypoints controllers
-    var stickyHeat = new Waypoint.Sticky({
+    function stickyHeat() {
+        stkHeat = new Waypoint.Sticky({
         element: $('#heatFilters'),
         offset: '0%'
-      })
-       
+        }) 
+    stickyHeatFlag = 1;
+    }
+    $('#subjects').waypoint({
+        handler: function(direction) {
+            console.log(this.element.id + ' hit');  
+            // if (stickyHeatFlag != 1)    
+            // stickyBar.destroy(); 
+            stickyHeat();     
+        },
+        offset: '100%'
+    })
     studPlot(nas_data);   
     studSubPlot(nas_data);
     heatmapSub(nas_data);
@@ -458,41 +470,124 @@ d3.csv('datasets/nas/DivergingGraphDataset.csv', function(error, data) {
     // Storng the factors list (space is also included)
     dig_factors = d3.map(dig_data, function(d){return d.Factor;}).keys();
     dig_groups = d3.map(dig_data, function(d){return d.Group;}).keys();
-    digBar(dig_data,"Maths","Distance",1)
+    // digBar(dig_data,"Maths","Distance");
+    drawDigBar(dig_data,"Reading");
 })
 
 // Dot-bar graph
-function digBar(data,subject,factor,id) {
-    let wd = (document.getElementById("digbar").clientWidth)*0.6; // leaving 4 columns for text
+function digBar(data,subject) {
+    for (let loc=0; loc<dig_factors.length; loc++) {
+    // filtering the dataset for plot
+    let barData = data.filter (function(d) {return d.Subject===subject}).filter (function(d) {return d.Factor === dig_factors[loc]});
+    let len = barData.length;
+    console.log("barData length="+len);
+    // let strokewidth = 12;
+    let wd = (document.getElementById("digbar").clientWidth)*0.5; // leaving 6 columns for text
     let margin = 10;
     let barWd = 2*wd/5 - 2*margin;
+    let optWd = barWd/5;
     let barHt = 16;
-    let labelWd = 20;
-    let cSize = barWd/10;
-    let cr = 3;
-    
-    let ht = (barHt)*(4);
-    let svgContainer = d3.select("#digbar #"+factor).append("svg").attr("width", wd).attr("height", ht);
+    let labelWd = 20;   
+    let ht = (barHt)*len + 2*margin;
+    let scaling = 3;    
     console.log("bar wd="+wd+" ht"+ht);
+    let svgContainer = d3.select("#digbar #"+dig_factors[loc]).append("svg").attr("width", wd).attr("height", ht);
+    groupId = groups.gId.indexOf(barData[0].Group); // To set group colour to text labels
+    let colourFail = d3.scaleLinear().domain([20,27]).range(["#FFFFFF","#FC466B"]); // harcoded from excel
+    let colourTop = d3.scaleLinear().domain([83,89]).range(["#FFFFFF","#3F5EFB"]);
+
+    $('#'+dig_factors[loc]).waypoint({
+        handler: function(direction) {
+          console.log(this.element.id + ' hit')
+    
+    
     let groupLabels = svgContainer.append('g')
                                 .append("text")
                                 .attr("x", 0)
-                                .attr("y", 0)
+                                .attr("y", margin)
                                 .attr("transform", "translate("+0+","+ht/2+") rotate(-90)")
-                                .text(factor)
-                                .style("text-anchor", "end")
+                                .text(dig_factors[loc])
+                                .style("text-anchor", "middle")
                                 .style("opacity",0.8)
-                                .attr("class", function (d,i) { return "groupLabel small textg"+id+" r"+i});
+                                .attr("class", function (d,i) { return "groupLabel textg"+groupId+" r"+i});
 
-    let bars = svgContainer.append('g').attr("class","bardots")
+    let bars = svgContainer.append('g').selectAll(".barFail").data(barData).enter()
+    // drawing the fail bars                      
+    bars.append("line")
+        .attr("transform", "translate("+(barWd-margin)+",0)")
+        .style("stroke", function(d) {
+            return colourFail(d.AvgMarksFail);
+        })
+        .attr("x1", margin)                        
+        .attr("y1", function (d,i) {return margin+barHt*(i+1/2)})                        
+        .attr("x2", margin)  
+        .attr("y2", function (d,i) {return margin+barHt*(i+1/2)})
+        .transition().delay(1000).duration(2500).ease(d3.easeCubic)
+        .attr("x1", margin)                        
+        .attr("y1", function (d,i) {return margin+barHt*(i+1/2)})                        
+        .attr("x2", function (d) {return -100*(d.StudentPercentFail)*scaling})  
+        .attr("y2", function (d,i) {return margin+barHt*(i+1/2)})                        
+        .attr("class", function (d,i) {return d.Subject+" "+d.Factor+"fail r"+i});
 
-    // for (i=0; i<)
-                        .attr("transform", "translate("+margin+",0)")
-                        .append("circle")
-                        .attrs({cx: margin+cSize, cy: barHt/2, r: cr})
-                        .style("fill","#FC466B");
+    // drawing the factor options
+    bars.append("text")
+        .attr("transform", "translate("+(barWd+optWd+margin)+",0)")
+        .attrs({x:0, y:function (d,i) {return margin+barHt*(i+1/2)}})
+        .text(function(d) {return d.Options})
+        .style("text-anchor", "middle")
+        .style("opacity",0.8)
+        .attr("class", function (d,i) { return "optionsLabel small textg"+groupId+" "+d.Subject+" "+d.Factor+" r"+i});
+
+    // drawing the top bars
+    bars.append("line")
+        .attr("transform", "translate("+(barWd+optWd*2+margin)+",0)")
+        .style("stroke", function(d) {
+            return colourTop(d.AvgMarksTop);
+        })
+        .attr("x1", margin)                        
+        .attr("y1", function (d,i) {return margin+barHt*(i+1/2)})                        
+        .attr("x2", margin)  
+        .attr("y2", function (d,i) {return margin+barHt*(i+1/2)})
+        .transition().delay(1000).duration(2500).ease(d3.easeCubic)
+        .attr("x1", margin)                        
+        .attr("y1", function (d,i) {return margin+barHt*(i+1/2)})                        
+        .attr("x2", function (d) {return 100*(d.StudentPercentTop)*scaling})  
+        .attr("y2", function (d,i) {return margin+barHt*(i+1/2)})                        
+        .attr("class", function (d,i) {return d.Subject+" "+d.Factor+"top r"+i});
+    
+    this.destroy();
+    },
+    offset: '100%'
+    })
+
+    // Waypoints controller
+    
+    $("#"+dig_factors[loc]).waypoint ({
+        handler: function(direction) {
+            console.log(this.element.id + ' hit2')
+            stkHeat.destroy();            
+        // this.destroy()
+        },
+        offset: "50%"
+    })
+    // stickyBar = new Waypoint.Sticky({
+    //             element: $('#subBtn'),
+    //             offset: '0%'
+    //         })
+}
 }
 
+function removeDigBar() {
+    $("#digbar svg").remove();
+}
+
+function drawDigBar(data,subject) {
+    removeDigBar(); // delete the svg if already drawn on screen
+    digDataBySubject = data.filter (function(d) {return d.Subject===subject});
+    // for (i=0; i<dig_factors.length; i++) {
+        digBar(digDataBySubject,subject);
+    // }
+}
 
 /* NON-VIZ code */
 // Activate-Deactivate button click
