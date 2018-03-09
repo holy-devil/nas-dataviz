@@ -50,13 +50,13 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
             MothersOccupation: +d.MothersOccupation,
             BelowPoverty: +d.BelowPoverty,
             HelpInStudy: +d.HelpInStudy,
-            PrivateTuition: +d.PrivateTuition,
             UseCalculator: +d.UseCalculator,
+            ComputerUse: +d.ComputerUse,
             UseInternet: +d.UseInternet,
             UseDictionary: +d.UseDictionary,
             ReadOtherBooks: +d.ReadOtherBooks,
             Books: +d.Books,
-            ComputerUse: +d.ComputerUse,
+            PrivateTuition: +d.PrivateTuition,            
             LibraryUse: +d.LibraryUse,
             SameLanguage: +d.SameLanguage,
             Distance: +d.Distance,
@@ -71,15 +71,22 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
         }
     });
     //Grouping the factors in broad impact areas
+    // groups = {
+    //     gId: ["gDemog", "gBehaviour", "gPasstime", "gParents", "gSchool"],
+    //     gSchool: ["ComputerUse","LibraryUse","SameLanguage","Distance","LikeSchool","GiveHomework","CorrectHomework"],
+    //     gPasstime: ["WatchTV","ReadMagazine","ReadaBook","PlayGames","HelpInHousehold"],
+    //     gBehaviour: ["UseCalculator","UseInternet","UseDictionary","ReadOtherBooks","Books"],
+    //     gParents: ["FathersEducation","MothersEducation","FathersOccupation","MothersOccupation","BelowPoverty","HelpInStudy","PrivateTuition"],
+    //     gDemog: ["Gender","Age","Siblings","Handicap","Category"]
+    // }
     groups = {
         gId: ["gDemog", "gBehaviour", "gPasstime", "gParents", "gSchool"],
-        gSchool: ["ComputerUse","LibraryUse","SameLanguage","Distance","LikeSchool","GiveHomework","CorrectHomework"],
-        gPasstime: ["WatchTV","ReadMagazine","ReadaBook","PlayGames","HelpInHousehold"],
-        gBehaviour: ["UseCalculator","UseInternet","UseDictionary","ReadOtherBooks","Books"],
-        gParents: ["FathersEducation","MothersEducation","FathersOccupation","MothersOccupation","BelowPoverty","HelpInStudy","PrivateTuition"],
-        gDemog: ["Gender","Age","Siblings","Handicap","Category"]
+        gDemog: ["Gender","Age","Siblings","Handicap","Category"],
+        gBehaviour: ["UseCalculator","ComputerUse","UseInternet","UseDictionary","ReadOtherBooks","Books","PrivateTuition"],
+        gPasstime: ["WatchTV","ReadMagazine","ReadaBook","PlayGames","HelpInHousehold"],        
+        gParents: ["FathersEducation","MothersEducation","FathersOccupation","MothersOccupation","BelowPoverty","HelpInStudy"],
+        gSchool: ["LibraryUse","SameLanguage","Distance","LikeSchool","GiveHomework","CorrectHomework"]
     }
-    // groups = {gId: ["gDemog", "gBehaviour", "gPasstime", "gParents", "gSchool"],gSchool: ["LibraryUse","SameLanguage","Distance","LikeSchool","GiveHomework","CorrectHomework"],gPasstime: ["WatchTV","ReadMagazine","ReadaBook","PlayGames","HelpInHousehold"],gBehaviour: ["ComputerUse","UseCalculator","UseInternet","UseDictionary","ReadOtherBooks","Books","PrivateTuition"],gParents: ["FathersEducation","MothersEducation","FathersOccupation","MothersOccupation","BelowPoverty","HelpInStudy"],gDemog: ["Gender","Age","Siblings","Handicap","Category"]}
     // Text colors for 5 groups
     groupsColour = ["g1","g2","g3","g4","g5"];
     // Getting CSV headers
@@ -314,6 +321,32 @@ function cellMouseOut(d,i) {
         $(".rowLabel").removeClass("opaque");
 
 }
+
+// Tooltip the lines
+function tooltipHeat(id) {
+    let group = groups.gId[id-1];
+    for(let i=1; i<=$(".cell."+group).size(); i++) {
+        let line = (function () {
+            let cor;
+            if ($(".cell."+group)[i].style.fill==="rgb(63, 94, 251)") cor="Positive"
+            else cor="Negative"
+
+            return cor+" correlation of factor "+(($(".cell."+group)[i].r.animVal.value)/150).toFixed(2)+" on subject marks";
+        })();
+        $(".cell."+group)[i].tooltip ({
+            "trigger": "hover focus",
+            "template": '<div class="tooltip" role="tooltip"><div class="tooltip-inner small" style="background-color:#37474f; color:'+this.style.fill+';"></div></div>',
+            "container": "body",
+            "placement": "auto",
+            "offset": "0",
+            "animation": true,
+            "title": line,
+            "html": true
+        });
+        console.log ("tooltipheat");
+    }
+}
+
 // To remove an draw heatmap groupwise on btn click
 function removeHeatmap() {
     $("#gDemog svg").remove();
@@ -325,30 +358,41 @@ function removeHeatmap() {
 function drawHeatmap (id) {
     removeHeatmap(); // delete the svg if already drawn on screen
     switch(id) {
-        case 1:
-            heatmap(nas_data,1);
-            break;
+        case 1: 
+            {heatmap(nas_data,1);
+            tooltipHeat(1);
+            break;}
         case 2:
-            heatmap(nas_data,2);
-            break;
+            {heatmap(nas_data,2);
+            tooltipHeat(1);
+            break;}
         case 3:
-            heatmap(nas_data,3);
-            break;
+            {heatmap(nas_data,3);
+            tooltipHeat(1);
+            break;}
         case 4:
-            heatmap(nas_data,4);
-            break;
+            {heatmap(nas_data,4);
+            tooltipHeat(1);
+            break;}
         case 5:
-            heatmap(nas_data,5);
-            break;
+            {heatmap(nas_data,5);
+            tooltipHeat(1);
+            break;}
         default:
-            heatmap(nas_data,1);
+            {heatmap(nas_data,1);
             heatmap(nas_data,2);
             heatmap(nas_data,3);
             heatmap(nas_data,4);
             heatmap(nas_data,5);
-            break;
+            tooltipHeat(1);
+            tooltipHeat(2);
+            tooltipHeat(3);
+            tooltipHeat(4);
+            tooltipHeat(5);
+            break;}
     }
 }
+
 // Intro student chart
 function studPlot(data) {
     let wd = document.getElementById("studplot").clientWidth;
@@ -509,7 +553,7 @@ function digBar(data,subject) {
                                 .text(dig_factors[loc])
                                 .style("text-anchor", "middle")
                                 .style("opacity",0.8)
-                                .attr("class", function (d,i) { return "groupLabel textg"+groupId+" r"+i});
+                                .attr("class", function (d,i) { return "groupLabel small textg"+groupId+" r"+i});
 
     let bars = svgContainer.append('g').selectAll(".barFail").data(barData).enter()
     // drawing the fail bars                      

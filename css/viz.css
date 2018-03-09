@@ -24,6 +24,9 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.bold {
+    font-weight: 700 !important;
+}
 #title {
     font-family: 'Merriweather', serif;
     font-weight: 900;
@@ -48,7 +51,10 @@ kbd {
     /* color: #37474f; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    border-radius: 0rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    border-radius: 1rem;
+    padding: .3rem 1rem;
 }
 kbd.top {
     background-color: #3F5EFB;
