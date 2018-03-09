@@ -1,5 +1,5 @@
 var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
-      	let wart = document.getElementById("dataArt").clientWidth;
+      	let wart = document.getElementById("cover").clientWidth;
       	h=300;
       	let svgContainer1 = d3.select("#cover").append("svg").attr("width", wart).attr("height",h);
 		d3.csv('datasets/nas/StudentDistributionByMarks.csv', function(error, data) {
