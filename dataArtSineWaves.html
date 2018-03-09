@@ -96,7 +96,11 @@ rect {
 
 		var xscale = d3.scaleLinear()
 		    .domain([0,m])
-		    .range([0, wart])
+		    .range([0, wart]);
+
+		var yscale = d3.scaleLinear()
+		    .domain([0,6000])
+		    .range([0, h]);
 
 		var omega = -.22
 		function line_maker( data, speed )
@@ -111,9 +115,9 @@ rect {
 		    {
 		        var theta = freq * d/m * Math.PI * 4 
 		        //console.log("sin", Math.sin(theta), d)
-		        var y = data.height[d] * 0.05 * (Math.sin(theta +  .05 * speed * .18 )); //(n-data.index) *
+		        var y = data.height[d] * 0.3 * (Math.sin(theta +  .05 * speed * .18 )); //(n-data.index) *
 		        //console.log ("y", y)
-		        return y
+		        return yscale(y);
 		    })
 		    .curve(d3.curveBasis)
 		    return svgline(data.data);
