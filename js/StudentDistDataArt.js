@@ -101,10 +101,86 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
 		    return svgline(data.data);
 		}
 
-		var spacing = 26,
-		colorlines = ["#d787f9","#87eaf9",
-					  "#87f9b9","#e3f987"]
+		var spacing = 25;
+		var defs = svgContainer1.append("defs");
+
+		var gradient = defs.append("linearGradient")
+		   .attr("id", "svgGradient0")
+		   .attr("x1", "0%")
+		   .attr("x2", "100%")
+		   .attr("y1", "0%")
+		   .attr("y2", "100%");
+
+		gradient.append("stop")
+		   .attr('class', 'start')
+		   .attr("offset", "0%")
+		   .attr("stop-color", "#DA4453")
+		   .attr("stop-opacity", 1);
+
+		gradient.append("stop")
+		   .attr('class', 'end')
+		   .attr("offset", "100%")
+		   .attr("stop-color", "#89216B")
+		   .attr("stop-opacity", 1);
+
+		var gradient1 = defs.append("linearGradient")
+		   .attr("id", "svgGradient1")
+		   .attr("x1", "0%")
+		   .attr("x2", "100%")
+		   .attr("y1", "0%")
+		   .attr("y2", "100%");
+
+		gradient1.append("stop")
+		   .attr('class', 'start')
+		   .attr("offset", "0%")
+		   .attr("stop-color", "#007991")
+		   .attr("stop-opacity", 1);
+
+		gradient1.append("stop")
+		   .attr('class', 'end')
+		   .attr("offset", "100%")
+		   .attr("stop-color", "#78ffd6")
+		   .attr("stop-opacity", 1);
+
+		 var gradient2 = defs.append("linearGradient")
+		   .attr("id", "svgGradient2")
+		   .attr("x1", "0%")
+		   .attr("x2", "100%")
+		   .attr("y1", "0%")
+		   .attr("y2", "100%");
+
+		gradient2.append("stop")
+		   .attr('class', 'start')
+		   .attr("offset", "0%")
+		   .attr("stop-color", "#4568DC")
+		   .attr("stop-opacity", 1);
+
+		gradient2.append("stop")
+		   .attr('class', 'end')
+		   .attr("offset", "100%")
+		   .attr("stop-color", "#B06AB3")
+		   .attr("stop-opacity", 1);
+
+		var gradient3 = defs.append("linearGradient")
+		   .attr("id", "svgGradient3")
+		   .attr("x1", "0%")
+		   .attr("x2", "100%")
+		   .attr("y1", "0%")
+		   .attr("y2", "100%");
+
+		gradient3.append("stop")
+		   .attr('class', 'start')
+		   .attr("offset", "0%")
+		   .attr("stop-color", "#ee0979")
+		   .attr("stop-opacity", 1);
+
+		gradient3.append("stop")
+		   .attr('class', 'end')
+		   .attr("offset", "100%")
+		   .attr("stop-color", "#ff6a00")
+		   .attr("stop-opacity", 1);
 			
+
 
 		function lineEnter(d, i) {
 
@@ -120,8 +196,9 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
 		            }
 		        )
 		      .attr("stroke-width", function(e,i) { return e.width;})
-		      .attr("stroke",colorlines[i])
-		      .attr("fill", "none")
+		      .attr("stroke","none")
+		      .attr("fill", "url(#svgGradient"+i+")" )
+		      .attr("opacity",0.8)
 
 		    update_spacing()
 		}
@@ -146,7 +223,7 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
 		        .attr("transform", function(d, i) { 
 		            //console.log("h",h, spacing, d.index);
 		            //return "translate(" + [0, th - spacing * d.index] + ")"; 
-		            return "translate(" + [0, h/2 + th / 2 - spacing * d.index] + ")"; 
+		            return "translate(" + [0, h/2 - spacing * d.index] + ")"; 
 		        })
 		}
 

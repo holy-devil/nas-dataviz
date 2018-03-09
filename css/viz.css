@@ -16,6 +16,10 @@ body {
     margin: 0 auto;
 }
 
+#cover{
+    position: relative;
+}
+
 /*TESTING SNAP SCROLL ENDS HERE*/
 .text {
     font-family: 'Noto Sans', sans-serif;
