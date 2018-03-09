@@ -71,22 +71,22 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
         }
     });
     //Grouping the factors in broad impact areas
-    // groups = {
-    //     gId: ["gDemog", "gBehaviour", "gPasstime", "gParents", "gSchool"],
-    //     gSchool: ["ComputerUse","LibraryUse","SameLanguage","Distance","LikeSchool","GiveHomework","CorrectHomework"],
-    //     gPasstime: ["WatchTV","ReadMagazine","ReadaBook","PlayGames","HelpInHousehold"],
-    //     gBehaviour: ["UseCalculator","UseInternet","UseDictionary","ReadOtherBooks","Books"],
-    //     gParents: ["FathersEducation","MothersEducation","FathersOccupation","MothersOccupation","BelowPoverty","HelpInStudy","PrivateTuition"],
-    //     gDemog: ["Gender","Age","Siblings","Handicap","Category"]
-    // }
     groups = {
         gId: ["gDemog", "gBehaviour", "gPasstime", "gParents", "gSchool"],
-        gDemog: ["Gender","Age","Siblings","Handicap","Category"],
-        gBehaviour: ["UseCalculator","ComputerUse","UseInternet","UseDictionary","ReadOtherBooks","Books","PrivateTuition"],
-        gPasstime: ["WatchTV","ReadMagazine","ReadaBook","PlayGames","HelpInHousehold"],        
-        gParents: ["FathersEducation","MothersEducation","FathersOccupation","MothersOccupation","BelowPoverty","HelpInStudy"],
-        gSchool: ["LibraryUse","SameLanguage","Distance","LikeSchool","GiveHomework","CorrectHomework"]
+        gSchool: ["ComputerUse","LibraryUse","SameLanguage","Distance","LikeSchool","GiveHomework","CorrectHomework"],
+        gPasstime: ["WatchTV","ReadMagazine","ReadaBook","PlayGames","HelpInHousehold"],
+        gBehaviour: ["UseCalculator","UseInternet","UseDictionary","ReadOtherBooks","Books"],
+        gParents: ["FathersEducation","MothersEducation","FathersOccupation","MothersOccupation","BelowPoverty","HelpInStudy","PrivateTuition"],
+        gDemog: ["Gender","Age","Siblings","Handicap","Category"]
     }
+    // groups = {
+    //     gId: ["gDemog", "gBehaviour", "gPasstime", "gParents", "gSchool"],
+    //     gDemog: ["Gender","Age","Siblings","Handicap","Category"],
+    //     gBehaviour: ["UseCalculator","ComputerUse","UseInternet","UseDictionary","ReadOtherBooks","Books","PrivateTuition"],
+    //     gPasstime: ["WatchTV","ReadMagazine","ReadaBook","PlayGames","HelpInHousehold"],        
+    //     gParents: ["FathersEducation","MothersEducation","FathersOccupation","MothersOccupation","BelowPoverty","HelpInStudy"],
+    //     gSchool: ["LibraryUse","SameLanguage","Distance","LikeSchool","GiveHomework","CorrectHomework"]
+    // }
     // Text colors for 5 groups
     groupsColour = ["g1","g2","g3","g4","g5"];
     // Getting CSV headers
