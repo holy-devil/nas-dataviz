@@ -515,7 +515,7 @@ d3.csv('datasets/nas/DivergingGraphDataset.csv', function(error, data) {
     dig_factors = d3.map(dig_data, function(d){return d.Factor;}).keys();
     dig_groups = d3.map(dig_data, function(d){return d.Group;}).keys();
     // digBar(dig_data,"Maths","Distance");
-    drawDigBar(dig_data,"Reading");
+    drawDigBar("Maths");
 })
 
 // Dot-bar graph
@@ -625,12 +625,10 @@ function removeDigBar() {
     $("#digbar svg").remove();
 }
 
-function drawDigBar(data,subject) {
+function drawDigBar(subject) {
     removeDigBar(); // delete the svg if already drawn on screen
-    digDataBySubject = data.filter (function(d) {return d.Subject===subject});
-    // for (i=0; i<dig_factors.length; i++) {
-        digBar(digDataBySubject,subject);
-    // }
+    digDataBySubject = dig_data.filter (function(d) {return d.Subject===subject});
+        digBar(digDataBySubject,subject);  
 }
 
 /* NON-VIZ code */
