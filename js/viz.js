@@ -445,6 +445,7 @@ d3.csv('datasets/nas/DivergingGraphDataset.csv', function(error, data) {
         // console.log(d[corr_headers[1]]); Accessing the data dynamically
         
         return {
+            Group: d.Group,
             Factor: d.Factor,
             Subject: d.Subject,
             Options: d.Options,
@@ -454,17 +455,20 @@ d3.csv('datasets/nas/DivergingGraphDataset.csv', function(error, data) {
             StudentPercentTop: +d.StudentPercentTop
         }
     });
+
+    dGroups = [];
 })
 
 // Dot-bar graph
 function digBar(data,subject,id) {
-    let wd = document.getElementById("digbar").clientWidth;
-    let marginX = (w-wd)/2;
-    let marginY = 10;
-    let cellw = wd/(corr_rows.length+2);
-    let cellh = 36;
-    let ht = cellh*(groups[groups.gId[id-1]].length+1);
-    let svgContainer = d3.select("#"+String(groups.gId[id-1])).append("svg").attr("width", wd).attr("height", ht);
+    let wd = (document.getElementById("digbar").clientWidth)*0.6; // leaving 4 columns for text
+    let cellw = wd/(4);
+    let cellh = 10;
+    let ht = cellh*(4);
+    let svgContainer = d3.select("#digbar #Distance").append("svg").attr("width", wd).attr("height", ht);
+
+    let groupLabels = svgContainer.append('g').selectAll(".groupLabel").data(corr_headers)
+                                .enter()
 }
 
 
