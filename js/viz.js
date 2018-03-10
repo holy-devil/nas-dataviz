@@ -581,7 +581,7 @@ function digBar(data,subject) {
         .transition().delay(1000).duration(2500).ease(d3.easeCubic)
         .attr("x1", margin)                        
         .attr("y1", function (d,i) {return margin+barHt*(i+1/2)})                        
-        .attr("x2", function (d) {return -100*(d.StudentPercentFail)*scaling})  
+        .attr("x2", function (d) {return margin-100*(d.StudentPercentFail)*scaling})  
         .attr("y2", function (d,i) {return margin+barHt*(i+1/2)})                        
         .attr("class", function (d,i) {return d.Subject+" "+d.Factor+" fail r"+i});
 
@@ -607,7 +607,7 @@ function digBar(data,subject) {
         .transition().delay(1000).duration(2500).ease(d3.easeCubic)
         .attr("x1", margin)                        
         .attr("y1", function (d,i) {return margin+barHt*(i+1/2)})                        
-        .attr("x2", function (d) {return 100*(d.StudentPercentTop)*scaling})  
+        .attr("x2", function (d) {return margin+100*(d.StudentPercentTop)*scaling})  
         .attr("y2", function (d,i) {return margin+barHt*(i+1/2)})                        
         .attr("class", function (d,i) {return d.Subject+" "+d.Factor+" top r"+i});
     
