@@ -29,6 +29,12 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.cl-top {
+    color: #3F5EFB;
+}
+.cl-fail {
+    color: #FC466B;
+}
 .bold {
     font-weight: 700 !important;
 }
