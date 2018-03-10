@@ -54,6 +54,8 @@ body {
     z-index: 100;
     /* left: 50%; */
     top: 0%;
+    /* width: 100%;  */
+    /* to fix shift of the fixed bar */
     /* transform: translateX(-50%); */
   }
 kbd {

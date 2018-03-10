@@ -103,7 +103,12 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     var stkHeat = new Waypoint.Sticky({
         element: $('#heatFilters'),
         offset: '0%'
-        }) 
+    })
+
+    var stkBar = new Waypoint.Sticky({
+        element: $('#subBtn'),
+        offset: '0%'
+    }) 
    
     // $('#subjects').waypoint({
     //     handler: function(direction) {
@@ -120,8 +125,57 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
             stkHeat.destroy();            
         // this.destroy()
         },
-        offset: "100%"
+        offset: "10%"
     })
+    $("#endSlide").waypoint ({
+        handler: function(direction) {
+            console.log(this.element.id + ' hit2')
+            stkBar.destroy();            
+        // this.destroy()
+        },
+        offset: "10%"
+    })
+    /*
+    var stkBar=0, stkHeat=0; // sticky elements
+       
+    $("#heatmap").waypoint ({
+        handler: function(direction) {
+            console.log(this.element.id + ' hit2')
+            stkHeat = new Waypoint.Sticky({
+                element: $('#heatFilters'),
+                offset: '0%'
+            })            
+        },
+        offset: "10%"
+    })
+    $("div").not("#heatmap").waypoint ({
+        handler: function(direction) {
+            console.log(this.element.id + ' hit2')
+            if (stkHeat!=0) {stkHeat.destroy(); stkHeat=0;}
+        // this.destroy()
+        },
+        offset: "10%"
+    })
+
+    $('#digbar').waypoint({
+        handler: function(direction) {
+            console.log(this.element.id + ' hit'); 
+            stkBar = new Waypoint.Sticky({
+                element: $('#subBtn'),
+                offset: '0%'
+            })      
+        },
+        offset: '100%'
+    }) 
+    $("div").not("#digbar").waypoint ({
+        handler: function(direction) {
+            console.log(this.element.id + ' hit2')
+            if (stkBar!=0) {stkBar.destroy(); stkBar=0;}
+        // this.destroy()
+        },
+        offset: "10%"
+    })
+    */
     studPlot(nas_data);   
     studSubPlot(nas_data);
     heatmapSub(nas_data);
