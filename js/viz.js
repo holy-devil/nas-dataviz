@@ -96,21 +96,27 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     }
     console.log(nas_data);
     // Waypoints controllers
-    function stickyHeat() {
-        stkHeat = new Waypoint.Sticky({
+    var stkHeat = new Waypoint.Sticky({
         element: $('#heatFilters'),
         offset: '0%'
         }) 
-    stickyHeatFlag = 1;
-    }
-    $('#subjects').waypoint({
+   
+    // $('#subjects').waypoint({
+    //     handler: function(direction) {
+    //         console.log(this.element.id + ' hit');  
+    //         // if (stickyHeatFlag != 1)    
+    //         // stickyBar.destroy(); 
+    //         stickyHeat();     
+    //     },
+    //     offset: '100%'
+    // })
+    $("#qs2").waypoint ({
         handler: function(direction) {
-            console.log(this.element.id + ' hit');  
-            // if (stickyHeatFlag != 1)    
-            // stickyBar.destroy(); 
-            stickyHeat();     
+            console.log(this.element.id + ' hit2')
+            stkHeat.destroy();            
+        // this.destroy()
         },
-        offset: '100%'
+        offset: "100%"
     })
     studPlot(nas_data);   
     studSubPlot(nas_data);
@@ -606,14 +612,14 @@ function digBar(data,subject) {
 
     // Waypoints controller
     
-    $("#"+dig_factors[loc]).waypoint ({
-        handler: function(direction) {
-            console.log(this.element.id + ' hit2')
-            stkHeat.destroy();            
-        // this.destroy()
-        },
-        offset: "50%"
-    })
+    // $("#"+dig_factors[loc]).waypoint ({
+    //     handler: function(direction) {
+    //         console.log(this.element.id + ' hit2')
+    //         stkHeat.destroy();            
+    //     // this.destroy()
+    //     },
+    //     offset: "50%"
+    // })
     // stickyBar = new Waypoint.Sticky({
     //             element: $('#subBtn'),
     //             offset: '0%'
