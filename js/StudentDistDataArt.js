@@ -3,7 +3,7 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
       	h=300;
       	let svgContainer1 = d3.select("#cover").append("svg").attr("width", wart).attr("height",h);
 		d3.csv('datasets/nas/StudentDistributionByMarks.csv', function(error, data) {
-			 console.log("1. in csv"+marks_data);
+			
 	    if (error) {
 	        alert("File Not Found: datasets/nas/StudentDistributionByMarks.csv");
 	    }
@@ -23,7 +23,7 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
 
     	 // Getting CSV headers
 	    marks_headers = d3.keys(data[0]); 
-	    console.log("2. exiting csv"+marks_data);
+	   
 	    drawwaves();
 	});
 
@@ -32,10 +32,8 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
             dataS = [];
             dataO = [];
             dataR = [];
-            console.log("3. initialize for k pehele bitch :  "+dataM);
-
-              for (k in marks_data){
-                //console.log("here"+marks_data[k].MathsStudent);
+             for (k in marks_data){
+                
                 dataM.push(marks_data[k].MathsStudent);
                 dataS.push(marks_data[k].ScienceStudent);
                 dataO.push(marks_data[k].SocialStudent);
