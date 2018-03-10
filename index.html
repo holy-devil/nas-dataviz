@@ -32,12 +32,13 @@
 </head>
 
 <body>
-	<div class="container-fluid" id="cover" style="min-height: 200px"></div>
+	<!-- <div class="container-fluid" id="cover" style="min-height: 200px"></div> -->
     <!-- Cover -->
-    <div class="container">
+    <div class="container-fluid">
     <section class="panel home" data-section-name="home" style="min-height: 100vh;">
+        <div class="row justify-content-center" id="cover"></div>
       <div class="inner">
-        
+          
         <div class="row justify-content-center" id="title-row">
             <div class="col-10 col-xl-8 align-self-end">
                 <h1 class="h1-responsive text-center my-3" id="title">What makes an achiever?</h1>
@@ -62,7 +63,11 @@
                 <span class="text small">700 districts in 36 States/UTs</span>
             </div>
         </div>
+        </div>
+        </section>
         <!-- intro para -->
+        <section class="panel panel1" data-section-name="intro" style="min-height: 100vh;">
+          <div class="inner">
         <div class="row justify-content-center align-items-center my-5 fullheight" id="intro-row">
             <div class="col-6 col-md-auto mx-auto py-3 mt-5 w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="studplot"></div>
             <div class="w-100"></div>
@@ -94,20 +99,20 @@
         </div>
         </div>
         </section>
-        <section class="panel panel1" data-section-name="second" style="min-height: 100vh;">
+        <section class="panel panel2" data-section-name="plots" style="min-height: 100vh;">
         <div class="inner">
 	        <div class="row align-items-center fullheight">
-	            <div class="col-10 col-md-6 mx-auto pt-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+	            <div class="col-10 col-md-10 mx-auto pt-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
 	                <blockquote class="blockquote">
-	                    <p class="mb-0 text-center subtitle">What factors affect the marks of a student?</p>
+	                    <p class="mb-0 text-center h1 subtitle">What factors affect the marks of a student?</p>
 	                </blockquote>
 	            </div>
-	            <div class="w-100"></div> 
+	            <!-- <div class="w-100"></div>  -->
 	            <!-- break columns to new line -->
-	            <div class="col-10 col-md-6 mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="2s">
+	            <!-- <div class="col-10 col-md-6 mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="2s">
 	                <p class="text">Various things, as enlisted in the survey, can affect the marks of a student . To find how each parameter affects the learning, the correlation factor for each parameter with the subjects' marks has been calculated and plotted in the following heatmap.
 	                </p>
-	            </div>
+	            </div> -->
 	        </div>
 	    	</div>
 	    	
@@ -120,7 +125,11 @@
         <
       </div>
         <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
-            <!-- <div class="w-100"></div> -->
+            <div class="col-10 col-md-6 mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="2s">
+                <p class="text">Various things, as enlisted in the survey, can affect the marks of a student . To find how each parameter affects the learning, the correlation factor for each parameter with the subjects' marks has been calculated and plotted in the following heatmap.
+                </p>
+            </div>
+            <div class="w-100"></div>
             <!-- break columns to new line -->
             <div class="col-6 mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
                 <p class="text">The correlation value ranges from&nbsp;<kbd class="fail">&nbsp;-1&nbsp;</kbd>&nbsp;to&nbsp;<kbd class="top">&nbsp;1&nbsp;</kbd> <br><br>A negative correlation results in a decrease in marks while positive correlation results in an increase.
