@@ -15,7 +15,7 @@ var wow = new WOW(
   );
 wow.init();
 // One line enable-disable console log
-console.log = function() {}
+// console.log = function() {}
 
 var wd = window,
 d = document,
@@ -546,7 +546,9 @@ function digBar(data,subject) {
     let scaling = 3;    
     console.log("bar wd="+wd+" ht"+ht);
     let svgContainer = d3.select("#digbar #"+dig_factors[loc]).append("svg").attr("width", wd).attr("height", ht);
-    groupId = groups.gId.indexOf(barData[0].Group); // To set group colour to text labels
+
+    let groupId = groups.gId.indexOf(barData[0].Group)+1; // To set group colour to text labels (1,2,3,4,5)
+
     let colourFail = d3.scaleLinear().domain([20,27]).range(["#FFFFFF","#FC466B"]); // harcoded from excel
     let colourTop = d3.scaleLinear().domain([83,89]).range(["#FFFFFF","#3F5EFB"]);
 
@@ -581,7 +583,7 @@ function digBar(data,subject) {
         .attr("y1", function (d,i) {return margin+barHt*(i+1/2)})                        
         .attr("x2", function (d) {return -100*(d.StudentPercentFail)*scaling})  
         .attr("y2", function (d,i) {return margin+barHt*(i+1/2)})                        
-        .attr("class", function (d,i) {return d.Subject+" "+d.Factor+"fail r"+i});
+        .attr("class", function (d,i) {return d.Subject+" "+d.Factor+" fail r"+i});
 
     // drawing the factor options
     bars.append("text")
@@ -590,7 +592,7 @@ function digBar(data,subject) {
         .text(function(d) {return d.Options})
         .style("text-anchor", "middle")
         .style("opacity",0.8)
-        .attr("class", function (d,i) { return "optionsLabel small textg"+groupId+" "+d.Subject+" "+d.Factor+" r"+i});
+        .attr("class", function (d,i) { return "optionsLabel small textg"+groupId+" "+d.Subject+" "+d.Factor+" r"+loc});
 
     // drawing the top bars
     bars.append("line")
@@ -607,7 +609,7 @@ function digBar(data,subject) {
         .attr("y1", function (d,i) {return margin+barHt*(i+1/2)})                        
         .attr("x2", function (d) {return 100*(d.StudentPercentTop)*scaling})  
         .attr("y2", function (d,i) {return margin+barHt*(i+1/2)})                        
-        .attr("class", function (d,i) {return d.Subject+" "+d.Factor+"top r"+i});
+        .attr("class", function (d,i) {return d.Subject+" "+d.Factor+" top r"+i});
     
     this.destroy();
     },
