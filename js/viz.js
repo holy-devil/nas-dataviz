@@ -14,6 +14,8 @@ var wow = new WOW(
     }
   );
 wow.init();
+// One line enable-disable console log
+console.log = function() {}
 
 var wd = window,
 d = document,
@@ -79,7 +81,7 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     //     gParents: ["FathersEducation","MothersEducation","FathersOccupation","MothersOccupation","BelowPoverty","HelpInStudy","PrivateTuition"],
     //     gDemog: ["Gender","Age","Siblings","Handicap","Category"]
     // }
-    
+
     // New grouping 
     groups = {
         gId: ["gDemog", "gBehaviour", "gPasstime", "gParents", "gSchool"],
