@@ -291,6 +291,8 @@ function heatmap (data,id) {
                 }
             }
             heatMap.selectAll("circle").on("mouseover", cellMouseOver).on("mouseout", cellMouseOut);
+            // tooltipHeat(id);
+            // callback(null);
             this.destroy(); // restrict drawing the svg to only once waypoint
         },
         offset: '100%'
@@ -399,7 +401,7 @@ function tooltipHeat(id) {
         })();
         $(".cell."+group)[i].tooltip ({
             "trigger": "hover focus",
-            "template": '<div class="tooltip" role="tooltip"><div class="tooltip-inner small" style="background-color:#37474f; color:'+this.style.fill+';"></div></div>',
+            "template": '<div class="tooltip" role="tooltip"><div class="tooltip-inner small" style="background-color:#37474f; color:'+"#f4f4f4"+';"></div></div>',
             "container": "body",
             "placement": "auto",
             "offset": "0",
@@ -423,37 +425,40 @@ function drawHeatmap (id) {
     removeHeatmap(); // delete the svg if already drawn on screen
     switch(id) {
         case 1: 
-            {heatmap(nas_data,1);
+            heatmap(nas_data,1);
             tooltipHeat(1);
-            break;}
+            break;
         case 2:
-            {heatmap(nas_data,2);
-            tooltipHeat(1);
-            break;}
-        case 3:
-            {heatmap(nas_data,3);
-            tooltipHeat(1);
-            break;}
-        case 4:
-            {heatmap(nas_data,4);
-            tooltipHeat(1);
-            break;}
-        case 5:
-            {heatmap(nas_data,5);
-            tooltipHeat(1);
-            break;}
-        default:
-            {heatmap(nas_data,1);
             heatmap(nas_data,2);
+            tooltipHeat(1);
+            break;
+        case 3:
             heatmap(nas_data,3);
+            tooltipHeat(1);
+            break;
+        case 4:
             heatmap(nas_data,4);
+            tooltipHeat(1);
+            break;
+        case 5:
             heatmap(nas_data,5);
             tooltipHeat(1);
-            tooltipHeat(2);
-            tooltipHeat(3);
-            tooltipHeat(4);
-            tooltipHeat(5);
-            break;}
+            break;
+        default:
+        var q = d3.queue();
+        for (let i=1; i<=5; i++) {
+            q.defer(heatmap,nas_data,i);
+        }
+        // q.awaitAll(function(error) {
+        //     if (error) throw error;
+        //     tooltipHeat(1);
+        //     tooltipHeat(2);
+        //     tooltipHeat(3);
+        //     tooltipHeat(4);
+        //     tooltipHeat(5);
+        //     console.log("Tooltipheat added");
+        //   });
+            break;
     }
 }
 
@@ -602,7 +607,10 @@ function digBar(data,subject) {
     let svgContainer = d3.select("#digbar #"+dig_factors[loc]).append("svg").attr("width", wd).attr("height", ht);
 
     let groupId = groups.gId.indexOf(barData[0].Group)+1; // To set group colour to text labels (1,2,3,4,5)
-
+    // let extentFail = d3.extent(data, function (d) { return d.AvgMarksFail});
+    // let extentTop = d3.extent(data, function (d) { return d.AvgMarksTop});
+    // let colourFail = d3.scaleLinear().domain(extentFail).range(["#FFFFFF","#FC466B"]);
+    // let colourTop = d3.scaleLinear().domain(extentTop).range(["#FFFFFF","#3F5EFB"]);
     let colourFail = d3.scaleLinear().domain([20,27]).range(["#FFFFFF","#FC466B"]); // harcoded from excel
     let colourTop = d3.scaleLinear().domain([83,89]).range(["#FFFFFF","#3F5EFB"]);
 
