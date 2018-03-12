@@ -89,6 +89,23 @@ kbd.fail {
   /* box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5); */
   box-shadow: none;
 }
+/* Tooltip styles */
+.tooltip-inner {
+    /* font-family: 'Noto Sans', sans-serif; */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* background: #607d8b !important; */
+    background: #37474f !important;
+
+}
+.tooltip.bs-tooltip-right .arrow::before, .tooltip.bs-tooltip-auto[x-placement^="right"] .arrow::before {
+    margin-top: -3px;
+    content: "";
+    border-width: 5px 5px 5px 0;
+    border-right-color: #37474f !important;
+    /* border-right-color: #607d8b !important; */
+  }
+
 /* SVG styles */
 svg:not(:root) {
     overflow: visible;

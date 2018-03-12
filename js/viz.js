@@ -14,6 +14,7 @@ var wow = new WOW(
     }
   );
 wow.init();
+
 // One line enable-disable console log
 // console.log = function() {}
 
@@ -285,7 +286,24 @@ function heatmap (data,id) {
                                 .attr("r", 0*Math.abs(data[i][corr_headers[j]]))
                                 .transition().delay(1000).duration(1500).ease(d3.easeCubic)
                                 .attr("r", 150*Math.abs(data[i][corr_headers[j]])) // 50 is the multiplier to scale the data
-                                .attr("class", function(d){return "cell "+groups.gId[id-1]+" r"+k+" c"+i});
+                                // .attr("class", function(d) {
+                                //     if (data[i][corr_headers[j]]<0)                                   {return "neg";}
+                                //     else {return "pos";}
+                                // })
+                                .attr("class", function(d){return "cell "+groups.gId[id-1]+" r"+k+" c"+i})
+                                // adding tooltip content for the circle
+                                .attr("data-toggle","tooltip")
+                                .attr("data-template",'<div class="tooltip" role="tooltip"><div class="arrow" style="top: 11px;"></div><div class="tooltip-inner small"></div></div>')
+                                .attr("data-placement","right")
+                                .attr("data-html",true)
+                                .attr("data-animation",true)                                
+                                .attr("title",function (d) {
+                                    let val = data[i][corr_headers[j]].toFixed(2);
+                                    let sign = val<0?"Negative":"Positive";
+                                    let sub = i==0?"Maths%":(i==1?"Reading%":(i==2?"Science%":"Social Science%"));
+                                    if (val==0) return "Zero correlation on "+sub+" marks";
+                                    else return sign+" correlation of factor "+val+" on "+sub+" marks";
+                                });     
                         }
                     }
                 }
@@ -302,7 +320,7 @@ function heatmap (data,id) {
     if ($(this).hasClass("textg1")) {
         d3.select(this).classed("opaque",true);
         d3.selectAll(".cell.gDemog.r"+i).classed("opaque",true);
-        // console.log(this+ " "+i)
+        // console.log(this+ " "+i+" "+JSON.stringify($(this)));
     }
     if ($(this).hasClass("textg2")) {
         d3.select(this).classed("opaque",true);
@@ -389,29 +407,29 @@ function cellMouseOut(d,i) {
 }
 
 // Tooltip the lines
-function tooltipHeat(id) {
-    let group = groups.gId[id-1];
-    for(let i=1; i<=$(".cell."+group).size(); i++) {
-        let line = (function () {
-            let cor="Neutral";
-            if ($(".cell."+group)[i].style.fill==="rgb(63, 94, 251)") cor="Positive";
-            else cor="Negative";
+// function tooltipHeat(id) {
+//     let group = groups.gId[id-1];
+//     for(let i=1; i<=$(".cell."+group).size(); i++) {
+//         let line = (function () {
+//             let cor="Neutral";
+//             if ($(".cell."+group)[i].style.fill==="rgb(63, 94, 251)") cor="Positive";
+//             else cor="Negative";
 
-            return cor+" correlation of factor "+(($(".cell."+group)[i].r.animVal.value)/150).toFixed(2)+" on subject marks";
-        })();
-        $($(".cell."+group)[i]).tooltip ({
-            "trigger": "hover focus",
-            "template": '<div class="tooltip" role="tooltip"><div class="tooltip-inner small" style="background-color:#37474f; color:#f00f00;"></div></div>',
-            "container": "body",
-            "placement": "right",
-            "offset": "0",
-            "animation": true,
-            "title": 'tooltipppppp',
-            "html": true
-        });
-        console.log ("tooltipheat");
-    }
-}
+//             return cor+" correlation of factor "+(($(".cell."+group)[i].r.animVal.value)/150).toFixed(2)+" on subject marks";
+//         })();
+//         $($(".cell."+group)[i]).tooltip ({
+//             "trigger": "hover focus",
+//             "template": '<div class="tooltip" role="tooltip"><div class="tooltip-inner small" style="background-color:#37474f; color:#f00f00;"></div></div>',
+//             "container": "body",
+//             "placement": "right",
+//             "offset": "0",
+//             "animation": true,
+//             "title": 'tooltipppppp',
+//             "html": true
+//         });
+//         console.log ("tooltipheat");
+//     }
+// }
 
 // To remove an draw heatmap groupwise on btn click
 function removeHeatmap() {
@@ -426,38 +444,23 @@ function drawHeatmap (id) {
     switch(id) {
         case 1: 
             heatmap(nas_data,1);
-            tooltipHeat(1);
             break;
         case 2:
             heatmap(nas_data,2);
-            tooltipHeat(1);
             break;
         case 3:
             heatmap(nas_data,3);
-            tooltipHeat(1);
             break;
         case 4:
             heatmap(nas_data,4);
-            tooltipHeat(1);
             break;
         case 5:
             heatmap(nas_data,5);
-            tooltipHeat(1);
             break;
         default:
-        var q = d3.queue();
         for (let i=1; i<=5; i++) {
-            q.defer(heatmap,nas_data,i);
+            heatmap(nas_data,i);
         }
-        // q.awaitAll(function(error) {
-        //     if (error) throw error;
-        //     tooltipHeat(1);
-        //     tooltipHeat(2);
-        //     tooltipHeat(3);
-        //     tooltipHeat(4);
-        //     tooltipHeat(5);
-        //     // console.log("Tooltipheat added");
-        //   });
             break;
     }
 }
@@ -711,3 +714,8 @@ function drawDigBar(subject) {
     $(this).siblings().removeClass("active");
     $(this).addClass("active"); 
  });
+
+ //enabling tooltips to listen and display
+$("body").tooltip({
+    selector: '[data-toggle="tooltip"]'
+});
