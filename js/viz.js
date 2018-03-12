@@ -393,20 +393,20 @@ function tooltipHeat(id) {
     let group = groups.gId[id-1];
     for(let i=1; i<=$(".cell."+group).size(); i++) {
         let line = (function () {
-            let cor;
-            if ($(".cell."+group)[i].style.fill==="rgb(63, 94, 251)") cor="Positive"
-            else cor="Negative"
+            let cor="Neutral";
+            if ($(".cell."+group)[i].style.fill==="rgb(63, 94, 251)") cor="Positive";
+            else cor="Negative";
 
             return cor+" correlation of factor "+(($(".cell."+group)[i].r.animVal.value)/150).toFixed(2)+" on subject marks";
         })();
-        $(".cell."+group)[i].tooltip ({
+        $($(".cell."+group)[i]).tooltip ({
             "trigger": "hover focus",
-            "template": '<div class="tooltip" role="tooltip"><div class="tooltip-inner small" style="background-color:#37474f; color:'+"#f4f4f4"+';"></div></div>',
+            "template": '<div class="tooltip" role="tooltip"><div class="tooltip-inner small" style="background-color:#37474f; color:#f00f00;"></div></div>',
             "container": "body",
-            "placement": "auto",
+            "placement": "right",
             "offset": "0",
             "animation": true,
-            "title": line,
+            "title": 'tooltipppppp',
             "html": true
         });
         console.log ("tooltipheat");
@@ -456,7 +456,7 @@ function drawHeatmap (id) {
         //     tooltipHeat(3);
         //     tooltipHeat(4);
         //     tooltipHeat(5);
-        //     console.log("Tooltipheat added");
+        //     // console.log("Tooltipheat added");
         //   });
             break;
     }
@@ -607,12 +607,12 @@ function digBar(data,subject) {
     let svgContainer = d3.select("#digbar #"+dig_factors[loc]).append("svg").attr("width", wd).attr("height", ht);
 
     let groupId = groups.gId.indexOf(barData[0].Group)+1; // To set group colour to text labels (1,2,3,4,5)
-    // let extentFail = d3.extent(data, function (d) { return d.AvgMarksFail});
-    // let extentTop = d3.extent(data, function (d) { return d.AvgMarksTop});
-    // let colourFail = d3.scaleLinear().domain(extentFail).range(["#FFFFFF","#FC466B"]);
-    // let colourTop = d3.scaleLinear().domain(extentTop).range(["#FFFFFF","#3F5EFB"]);
-    let colourFail = d3.scaleLinear().domain([20,27]).range(["#FFFFFF","#FC466B"]); // harcoded from excel
-    let colourTop = d3.scaleLinear().domain([83,89]).range(["#FFFFFF","#3F5EFB"]);
+    let extentFail = d3.extent(data, function (d) { return d.AvgMarksFail});
+    let extentTop = d3.extent(data, function (d) { return d.AvgMarksTop});
+    let colourFail = d3.scaleLinear().domain(extentFail).range(["#FFFFFF","#FC466B"]);
+    let colourTop = d3.scaleLinear().domain(extentTop).range(["#FFFFFF","#3F5EFB"]);
+    // let colourFail = d3.scaleLinear().domain([20,27]).range(["#FFFFFF","#FC466B"]); // harcoded from excel
+    // let colourTop = d3.scaleLinear().domain([83,89]).range(["#FFFFFF","#3F5EFB"]);
 
     $('#'+dig_factors[loc]).waypoint({
         handler: function(direction) {
