@@ -612,8 +612,8 @@ function digBar(data,subject) {
     let groupId = groups.gId.indexOf(barData[0].Group)+1; // To set group colour to text labels (1,2,3,4,5)
     let extentFail = d3.extent(data, function (d) { return d.AvgMarksFail});
     let extentTop = d3.extent(data, function (d) { return d.AvgMarksTop});
-    let colourFail = d3.scaleLinear().domain(extentFail).range(["#FFFFFF","#FC466B"]);
-    let colourTop = d3.scaleLinear().domain(extentTop).range(["#FFFFFF","#3F5EFB"]);
+    let colourFail = d3.scaleLinear().domain(extentFail).range(["#FECDD7","#FC466B"]);
+    let colourTop = d3.scaleLinear().domain(extentTop).range(["#CDD5FE","#3F5EFB"]);
     // let colourFail = d3.scaleLinear().domain([20,27]).range(["#FFFFFF","#FC466B"]); // harcoded from excel
     // let colourTop = d3.scaleLinear().domain([83,89]).range(["#FFFFFF","#3F5EFB"]);
 
