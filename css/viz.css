@@ -7,7 +7,7 @@ body {
    min-height: 100vh;
 }
 .parallax {
-    background-image: url(/img/pexels-photo-249360.jpeg);
+    background-image: url(/img/pexels-photo-249360.jpg);
     position: relative;
     height: 100vh;
     background-attachment: fixed;
@@ -16,7 +16,7 @@ body {
     background-repeat: no-repeat;
 }
 .parallax1 {
-    background-image: url(/img/pexels-photo-261909.jpeg);
+    background-image: url(/img/pexels-photo-261909.jpg);
     position: relative;
     height: 100vh;
     background-attachment: fixed;
