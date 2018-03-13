@@ -2,6 +2,7 @@
 
 body {
     background: #fafafa;
+    overflow-x: hidden;
 }
 .fullheight {
    min-height: 100vh;
