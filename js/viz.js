@@ -212,7 +212,7 @@ function heatmapSub (data) {
                                 .attr("x", function (d, i) { return marginX/2+cellw*(i+1); })
                                 .attr("y", marginY)
                                 .style("text-anchor", "middle")
-                                .style("opacity",0.8)
+                                .style("opacity",1)
                                 .attr("class",  function (d,i) { return "colLabel heatLabel small c"+i;});
         $("#heatBtn").removeClass("d-none");
         this.destroy();
@@ -260,7 +260,7 @@ function heatmap (data,id) {
                                 .attr("x", marginX)
                                 .attr("y", function (d, i) { return marginY+cellh*(i)*1; })
                                 .style("text-anchor", "end")
-                                .style("opacity",0.8)
+                                .style("opacity",1)
                                 .attr("class", function (d,i) { return "rowLabel heatLabel small textg"+id+" r"+i});
             
             rowLabels.on("mouseover", rowMouseOver).on("mouseout", rowMouseOut);                    
@@ -631,7 +631,7 @@ function digBar(data,subject) {
                                 .attr("transform", "translate("+0+","+ht/2+") rotate(-90)")
                                 .text(dig_factors[loc])
                                 .style("text-anchor", "middle")
-                                .style("opacity",0.8)
+                                .style("opacity",1)
                                 .attr("class", function (d,i) { return "groupLabel small textg"+groupId+" r"+i})
                                 .attr("data-factor",dig_factors[loc]);
 
@@ -663,7 +663,7 @@ function digBar(data,subject) {
         .attrs({x:0, y:function (d,i) {return margin+barHt*(i+1/2)}})
         .text(function(d) {return d.Options})
         .style("text-anchor", "middle")
-        .style("opacity",0.8)
+        .style("opacity",1)
         .attr("class", function (d,i) { return "optionsLabel small textg"+groupId+" "+d.Subject+" "+d.Factor+" r"+i})
         .attr("data-factor",function (d,i) {return d.Factor})
         .attr("data-option",function (d,i) {return d.Options});
