@@ -655,7 +655,23 @@ function digBar(data,subject) {
         .attr("y2", function (d,i) {return margin+barHt*(i+1/2)})                        
         .attr("class", function (d,i) {return d.Subject+" "+d.Factor+" bar fail r"+i})
         .attr("data-factor",function (d,i) {return d.Factor})
-        .attr("data-option",function (d,i) {return d.Options});
+        .attr("data-option",function (d,i) {return d.Options})
+        // tooltip data
+        .attr("data-marks",function (d) {return d.AvgMarksFail;})
+        .attr("data-percent",function (d) {return d.StudentPercentFail;})
+        // adding tooltip content for the circle
+        // .attr("data-toggle","tooltip")
+        // .attr("data-template",'<div class="tooltip" role="tooltip"><div class="arrow" style="top: 11px;"></div><div class="tooltip-inner small"></div></div>')
+        // .attr("data-placement","auto")
+        // .attr("data-html",true)
+        // .attr("data-animation",true)                                
+        // .attr("title",function (d) {
+        //     let val = data[i][corr_headers[j]].toFixed(2);
+        //     let sign = val<0?"Negative":"Positive";
+        //     let sub = i==0?"Maths%":(i==1?"Reading%":(i==2?"Science%":"Social Science%"));
+        //     if (val==0) return "Zero correlation on "+sub+" marks";
+        //     else return sign+" correlation of factor "+val+" on "+sub+" marks";
+        // });
 
     // drawing the factor options
     bars.append("text")
@@ -687,7 +703,10 @@ function digBar(data,subject) {
         .attr("y2", function (d,i) {return margin+barHt*(i+1/2)})                        
         .attr("class", function (d,i) {return d.Subject+" "+d.Factor+" bar top r"+i})
         .attr("data-factor",function (d,i) {return d.Factor})
-        .attr("data-option",function (d,i) {return d.Options});
+        .attr("data-option",function (d,i) {return d.Options})
+        // tooltip data
+        .attr("data-marks",function (d) {return d.AvgMarksTop;})
+        .attr("data-percent",function (d) {return d.StudentPercentTop;})
     
     // hover
     bars.selectAll("line").on("mouseover", barMouseOver).on("mouseout", barMouseOut);
@@ -748,3 +767,36 @@ function drawDigBar(subject) {
 $("body").tooltip({
     selector: '[data-toggle="tooltip"]'
 });
+
+// Checking mobile browser
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+}; 
+// Store the meta element
+var viewport_meta = document.getElementById('viewport-meta');
+
+// Define our viewport meta values
+var viewports = {
+		default: viewport_meta.getAttribute('content'),
+		landscape: 'width=1280'
+	};
+if (isMobile) {
+    viewport_meta.setAttribute( 'content', viewports.landscape );
+}
