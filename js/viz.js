@@ -660,18 +660,16 @@ function digBar(data,subject) {
         .attr("data-marks",function (d) {return d.AvgMarksFail;})
         .attr("data-percent",function (d) {return d.StudentPercentFail;})
         // adding tooltip content for the circle
-        // .attr("data-toggle","tooltip")
-        // .attr("data-template",'<div class="tooltip" role="tooltip"><div class="arrow" style="top: 11px;"></div><div class="tooltip-inner small"></div></div>')
-        // .attr("data-placement","auto")
-        // .attr("data-html",true)
-        // .attr("data-animation",true)                                
-        // .attr("title",function (d) {
-        //     let val = data[i][corr_headers[j]].toFixed(2);
-        //     let sign = val<0?"Negative":"Positive";
-        //     let sub = i==0?"Maths%":(i==1?"Reading%":(i==2?"Science%":"Social Science%"));
-        //     if (val==0) return "Zero correlation on "+sub+" marks";
-        //     else return sign+" correlation of factor "+val+" on "+sub+" marks";
-        // });
+        .attr("data-toggle","tooltip")
+        .attr("data-template",'<div class="tooltip" role="tooltip"><div class="arrow" style="top: 11px;"></div><div class="tooltip-inner small"></div></div>')
+        .attr("data-placement","left")
+        .attr("data-html",true)
+        .attr("data-animation",true)                                
+        .attr("title",function (d) {
+            let val = d.AvgMarksFail.toFixed(2);
+            let per = (d.StudentPercentFail*100).toFixed(2);            
+            return per+"% of Underachievers in this criteria scored "+val+" marks";
+        });
 
     // drawing the factor options
     bars.append("text")
@@ -707,6 +705,17 @@ function digBar(data,subject) {
         // tooltip data
         .attr("data-marks",function (d) {return d.AvgMarksTop;})
         .attr("data-percent",function (d) {return d.StudentPercentTop;})
+        // adding tooltip content for the circle
+        .attr("data-toggle","tooltip")
+        .attr("data-template",'<div class="tooltip" role="tooltip"><div class="arrow" style="top: 11px;"></div><div class="tooltip-inner small"></div></div>')
+        .attr("data-placement","right")
+        .attr("data-html",true)
+        .attr("data-animation",true)                                
+        .attr("title",function (d) {
+            let val = d.AvgMarksTop.toFixed(2);
+            let per = (d.StudentPercentTop*100).toFixed(2);            
+            return per+"% of Achievers in this criteria scored "+val+" marks";
+        });
     
     // hover
     bars.selectAll("line").on("mouseover", barMouseOver).on("mouseout", barMouseOut);
@@ -723,6 +732,7 @@ function barMouseOver(d,i) {
     $(".groupLabel[data-factor='"+$(this).data('factor')+"']").addClass("opaque");
     $(".optionsLabel[data-factor='"+$(this).data('factor')+"'][data-option='"+$(this).data('option')+"']").addClass("opaque");
     $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").addClass("opaque");
+    $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").tooltip('show');
     $("#"+$(this).data('factor')+"Text .alert").addClass("alert-light");
 
 }
@@ -730,6 +740,7 @@ function barMouseOut(d,i) {
     $(".groupLabel[data-factor='"+$(this).data('factor')+"']").removeClass("opaque");
     $(".optionsLabel[data-factor='"+$(this).data('factor')+"'][data-option='"+$(this).data('option')+"']").removeClass("opaque");
     $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").removeClass("opaque");
+    $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").tooltip('hide');
     $("#"+$(this).data('factor')+"Text .alert").removeClass("alert-light");
 }
 
@@ -737,12 +748,14 @@ function barOptionMouseOver(d,i) {
     $(this).addClass("opaque");
     $(".groupLabel[data-factor='"+$(this).data('factor')+"']").addClass("opaque");
     $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").addClass("opaque");
+    $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").tooltip('show');
     $("#"+$(this).data('factor')+"Text .alert").addClass("alert-light");
 }
 function barOptionMouseOut(d,i) {
     $(this).removeClass("opaque");
     $(".groupLabel[data-factor='"+$(this).data('factor')+"']").removeClass("opaque");
     $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").removeClass("opaque");
+    $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").tooltip('hide');
     $("#"+$(this).data('factor')+"Text .alert").removeClass("alert-light");
 }
 
