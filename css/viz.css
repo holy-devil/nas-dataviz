@@ -6,15 +6,43 @@ body {
 .fullheight {
    min-height: 100vh;
 }
+.parallax {
+    background-image: url(/img/pexels-photo-249360.jpeg);
+    position: relative;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.parallax1 {
+    background-image: url(/img/pexels-photo-261909.jpeg);
+    position: relative;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.overlay {
+    background: linear-gradient(to bottom right, #780206, #061161);
+    /* background: linear-gradient(to bottom right, #FC466B, #3F5EFB); */
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    opacity: 0.8;
+}
+
 /*TESTING SNAP SCROLL STARTS HERE*/
 
-.panel {
+/* .panel {
     position: relative;
 }
 .inner {
     width: 960px;
     margin: 0 auto;
-}
+} */
 
 #cover{
     /* position: absolute; */

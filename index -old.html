@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-43582646-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'UA-43582646-2');
+    </script>
+    <title>National Achievement Survey | Data Artistry Tournament 2018</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="Description" content="Transforming data into compelling stories is what the Data Artistry Tournament 2018, is all about. It brings together data scientists, visualizers, big data enthusiasts and students, and challenges them to present data insights in the most effective visual format. The National Achievement Survey of 2014 conducted by NCERT provides an insight to the learning achievement of children undergoing elementary education. 
+    We have analysed the dataset to understand how the various factors impact the learning and performance of VIIIth standard students thus surveyed. This visual story shows how various factors affect the learning. It also analysis what behavioural differences exist between toppers and failures.">
+    <meta name="Keywords" content="National Achievement Survey, NCERT, CBSE student performance, Learning Experience in School, Class 8 students survey,User interface, User Experience, Designer, Information visualization, Data Narratives, Graphic Design, User centered design, UX, UI, Data Art, Web design, Photography, Travel, Creative writer, Electronics and Communication Engineer, National Institute of Design, National Institute of Technology Durgapur">
+    <meta name="author" content="Prasanta Kr Dutta">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-4.0.0/css/bootstrap.min.css">
+    <!-- Your custom styles (optional) -->
+    <link href="css/viz.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Noto+Serif|Merriweather" rel="stylesheet">
+</head>
+
+<body>
+	<!-- <div class="container-fluid" id="cover" style="min-height: 200px"></div> -->
+    <!-- Cover -->
+    
+    <!-- <section class="panel home" data-section-name="home" style="min-height: 100vh;"> -->
+        <div class="row justify-content-center" id="cover"></div>
+      <!-- <div class="inner"> -->
+        <div class="container">
+        <div class="row justify-content-center" id="title-row">
+            <div class="col-10 col-xl-8 align-self-end">
+                <h1 class="h1-responsive text-center my-3" id="title">What makes an achiever?</h1>
+                <p class="text-center subtitle">The National Achievement Survey of 2014 conducted by NCERT provides an insight to the learning achievement of children undergoing elementary education. <br>We have analysed the dataset to understand how the various factors impact the learning
+                    and performance of VIIIth standard students thus surveyed.</p>
+                <!-- <hr class="my-2"> -->
+            </div>
+        </div>
+        <!-- 3 info line -->
+        <div class="row justify-content-center py-3">
+            <div class="col-6 col-md-auto mx-auto align-self-end">
+                <span><i class="fa fa-university fa-lg fa-fw" aria-hidden="true"></i></span>
+                <span class="text small">6722 Schools</span>
+
+            </div>
+            <div class="col-6 col-md-auto mx-auto align-self-center">
+                <span><i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i></span>
+                <span class="text small">1,84,670 Class VIII students</span>
+            </div>
+            <div class="col-6 col-md-auto mx-auto align-self-start">
+                <span><i class="fa fa-map fa-lg fa-fw" aria-hidden="true"></i></span>
+                <span class="text small">700 districts in 36 States/UTs</span>
+            </div>
+        </div>
+        <!-- Cover description -->
+        <div class="row pt-3 justify-content-center">
+            <div class="col-auto align-self-end">
+                <p class="text-center small subtitle">Cover art is generated using Student Distribution over Marks (0&mdash;100 across the screen) of <span style="color: #DA4453">Maths</span>,  <span style="color: #007991">Science</span> , <span style="color: #4568DC">Social Science </span> &amp; <span style="color: #ee0979">Reading</span>&nbsp;(bottom to top)</p>
+            </div>
+        </div>
+        </div>
+        <!-- </div> -->
+        <!-- </section> -->
+        <!-- intro para -->
+        <!-- <section class="panel panel1" data-section-name="intro" style="min-height: 100vh;"> -->
+          <!-- <div class="inner"> -->
+        <div class="container">
+        <div class="row justify-content-center align-items-center my-5" id="intro-row">
+            <div class="col-6 col-md-auto mx-auto pt-3 mt-5 w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="studplot"></div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+            <div class="col-6"><p class="text-left small cl-fail">1,18,575 students (64.2%)</div>
+            <div class="col-6"><p class="text-right small cl-top">6,306 students (3.4%)</div>
+            <div class="col-10 col-xl-8 mx-auto">
+                <div class="alert alert-light text  wow fadeIn d-none" data-wow-duration="1s" data-wow-delay="1s"><p class="text py-3">Out of total of 1,84,670 students</p>
+                    <!-- <kbd class="top">achievers</kbd>. -->
+                <div class="row ">
+                    <div class="col-auto ">
+                      <p class="text"><kbd class="fail">underachievers</kbd>&nbsp;&mdash;failed in at least one subject</p>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-auto">
+                      <p class="text"><kbd  class="top">achievers</kbd>&nbsp;&mdash;Grade A/A+ in one subject without failing in the rest</p>
+                    </div>
+                </div>
+              </div>
+                <p class="text text-center pt-5 pb-3">Breaking it down subject-wise</p>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+            <div class="col-6 col-md-auto mx-auto pt-3 w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="studsubplot"></div>
+            <div class="w-100"></div> 
+            <!-- break columns to new line -->
+            <div class="col-3"><p class="text-left small">Total 92,255 students<br><span class="cl-fail">underachievers 60,192 (65.2%)</span><br><span class="cl-top">achievers 1,300 (1.4%)</span></div>
+            <div class="col-3"><p class="text-left small">Total 90,918 students<br><span class="cl-fail">underachievers 41,287 (45.4%)</span><br><span class="cl-top">achievers 695 (0.8%)</span></div>
+            <div class="col-3"><p class="text-left small">Total 89,485 students<br><span class="cl-fail">underachievers 36,708 (41%)</span><br><span class="cl-top">achievers 631 (0.7%)</span></div>
+            <div class="col-3"><p class="text-left small">Total 93,079 students<br><span class="cl-fail">underachievers 28,873 (31%)</span><br><span class="cl-top">achievers 4,144 (4.5)</span></div>
+            <!-- Captions -->
+            <div class="col-10 col-xl-6 py-5 mx-auto">
+              <p class="text">Only a fraction of students seem to be achievers - the basic minimum of securing grade A/A+ in any one subject while not failing in the rest.</p>
+            </div>
+        </div>
+    </div>
+        <!-- </div> -->
+        <!-- </section> -->
+        <!-- <section class="panel panel2" data-section-name="plots" style="min-height: 100vh;">
+        <div class="inner"> -->
+	        <div class="row align-items-center parallax">
+                <div class="overlay"></div>
+	            <div class="col-10 col-md-10 mx-auto pt-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+	                <blockquote class="blockquote">
+	                    <p class="mb-0 text-center h1 subtitle">What factors affect the marks of a student?</p>
+	                </blockquote>
+	            </div>
+	            <!-- <div class="w-100"></div>  -->
+	            <!-- break columns to new line -->
+	            <!-- <div class="col-10 col-md-6 mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="2s">
+	                <p class="text">Various things, as enlisted in the survey, can affect the marks of a student . To find how each parameter affects the learning, the correlation factor for each parameter with the subjects' marks has been calculated and plotted in the following heatmap.
+	                </p>
+	            </div> -->
+	        </div>
+	    	<!-- </div>	    	
+	    </section> -->
+        </div>
+
+    <!-- heatmap -->
+    <div class="container fullheight" id="heatmap">
+      <div id="tooltipHeatmap" class="d-none"></div>
+      
+        <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+            <div class="col-10 col-md-6 mx-auto py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                <p class="text">Various things, as enlisted in the survey, can affect the marks of a student . To find how each parameter affects the learning, the correlation factor for each parameter with the subjects' marks has been calculated and plotted in the following heatmap.
+                </p>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+            <div class="col-6 mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                <p class="text">The correlation value ranges from&nbsp;<kbd class="fail">&nbsp;-1&nbsp;</kbd>&nbsp;to&nbsp;<kbd class="top">&nbsp;+1&nbsp;</kbd> <br><br>A negative correlation results in a decrease in marks while positive correlation results in an increase.
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="heatFilters">
+            <div class="col-md-auto py-3">
+                <div class="btn-group pb-3 d-none" id="heatBtn" role="group">
+                    <button type="button" class="btn btn-outline-secondary btn-sm mb-2 text active" id="hg0" onclick="drawHeatmap(0)">All factors</button>
+                    <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg1" onclick="drawHeatmap(1)">Demographics</button>
+                    <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg2" onclick="drawHeatmap(2)">Student Behaviour</button>
+                    <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg3" onclick="drawHeatmap(3)">Passtime</button>
+                    <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg4" onclick="drawHeatmap(4)">Parents</button>
+                    <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="hg5" onclick="drawHeatmap(5)">School</button>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+            <div class="col-md-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="subjects"></div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gDemog"></div>
+            <div class="col-md-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gBehaviour"></div>
+            <div class="col-md-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gPasstime"></div>
+            <div class="col-md-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gParents"></div>
+            <div class="col-md-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gSchool"></div>
+        </div>
+    </div>
+    <div class="container-fluid">
+    <!-- <section class="panel panel4" data-section-name="barplots" style="min-height: 100vh;">
+        <div class="inner"> -->
+	        <div class="row align-items-center parallax1" id="qs2">
+                <div class="overlay"></div>
+	            <div class="col-10 col-md-10 mx-auto pt-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+	                <blockquote class="blockquote">
+	                    <p class="mb-0 text-center subtitle">But how different are the achievers from the rest?</p><br><br>
+	                    <p class="mb-0 text-center h1 subtitle">What are the underachievers doing differently?</p>
+	                </blockquote>
+	            </div>
+	        </div>
+	    	<!-- </div>	    	
+      </section> -->
+    </div> 
+    <!-- Bar charts -->
+    <div class="container-fluid" id="barplots">
+        <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+            <div class="col-10 col-md-6 mx-auto py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                <p class="text">The various factors are plotted against the percentage of&nbsp;<span class="cl-top">achievers</span>&nbsp;and&nbsp;<span class="cl-fail">underachievers</span>&nbsp;following them. Intensity of color shows the marks obtained by each category.
+                </p>
+                <!-- <p class="text">The various factors are plotted against the percentage of&nbsp;<kbd class="top">achievers</kbd>&nbsp;and&nbsp;<kbd class="fail">underachievers</kbd>&nbsp;following them. Intensity of color shows the marks obtained by each category.
+                </p> -->
+            </div>
+          </div>
+        <div class="row justify-content-center w-100 py-3 wow fadeIn" id="subBtn" data-wow-duration="1s" data-wow-delay="1s">
+            <div class="col-md-auto py-3">
+                <div class="btn-group pb-3" role="group">
+                    <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text active" id="sub1" onclick="drawDigBar('Maths')">Maths</button>
+                    <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="sub2" onclick="drawDigBar('Reading')">Reading</button>
+                    <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="sub3" onclick="drawDigBar('Science')">Science</button>
+                    <button type="radio" class="btn btn-outline-secondary btn-sm mb-2 text" id="sub4" onclick="drawDigBar('Social')">Social Science</button>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" id="digbar">
+            
+			 <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="Gender"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="GenderText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Gender seems to have no considerable impact on the marks.
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+			
+            <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="Age"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="AgeText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Students of 13-14 years are scoring slightly higher than those of ages 11-12 (except for toppers from maths). Initial increase with age might relate to the brain development of the older kids. <br>But beyond a point then they would constitute a majority who have failed and have dropped down.
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+			
+			
+			 <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="Siblings"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="SiblingsText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Subject Reading is affected negatively by having more siblings. More siblings around might not give an ideal environment for extra reading.<br>           Performance in maths increases with more siblings. More siblings might mean they are more adept in dividing things by higher numbers.
+                    
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+         
+			
+            <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="Category"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="CategoryText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">In general average marks are only slightly affected by category for toppers and underachievers General and OBC edge out the rest of the categories in performance in all subjects among toppers and the rest.
+              </div>
+            </div>
+            <div class="w-100 py-5"></div>
+            <!-- break columns to new line -->
+			
+					
+            <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="ComputerUse"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="ComputerUseText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Majority of students use computers once a week. <br> Among the underachievers, the most common and the better scoring students have been the ones who use computer once a week. Among toppers, the difference is only of 1.5% in marks between those who use and do not use computer. 
+              </div>
+            </div>
+            <div class="w-100 pb-3"></div>
+            <!-- break columns to new line -->
+			
+						
+			<div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="UseDictionary"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="UseDictionaryText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Majority of the students were found to be using dictionary to learn. Ones who use dictionary are found on an average to score higher than those who do not. Science and Social were the only subjects where the toppers were found to be not using dictionary.
+
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+			
+			<div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="ReadOtherBooks"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="ReadOtherBooksText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Majority of students tend to read other books which is a positive sign. It does not seem to affect the marks in any adverse way.
+
+              </div>
+            </div>
+            <div class="w-100 pb-3"></div>
+            <!-- break columns to new line -->
+            
+            <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="PrivateTuition"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="PrivateTuitionText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Students having private tuition on average scored more than those who don't.<br>              But in toppers the difference in marks is only around 1% while 60% of students do not take private tuitions.
+                    
+              </div>
+            </div>
+            <div class="w-100 py-5"></div>
+            <!-- break columns to new line -->
+			
+            <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="WatchTV"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="WatchTVText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">65% of all students watch TV daily. <br> Marks does not seem to be affected much by watching TV. Reading subject has the most positive impact on watching TV.
+
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+            
+            <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="ReadMagazine"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="ReadMagazineText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Majority of students tend to read magazines every day. And students who read magazine everyday seems to be scoring the same or more than the ones who do not. <br> Magazines seems to have the most positive effect on the subject Reading.
+
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+
+			  <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="PlayGames"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="PlayGamesText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Playing does not seem to affect the marks adversely. Majority of students including of toppers tend to play most days.
+
+              </div>
+            </div>
+            <div class="w-100 pb-3"></div>
+            <!-- break columns to new line -->
+			
+						
+			  <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="HelpInHousehold"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="HelpInHouseholdText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">75% of all students including of toppers tend to help in the household everyday. But the highest scoring toppers tend to help only once a month.
+
+              </div>
+            </div>
+            <div class="w-100 py-5"></div>
+            <!-- break columns to new line -->
+			
+			
+			
+				
+            <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="FathersEducation"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="FathersEducationText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Father’s education seems to be one of the strongest factor in determining the marks of a student. Toppers of reading subject have the highest share of educated fathers giving it a higher correlation value. This is consistent with mother’s education as well. <br> But majority of fathers surveyed have either primary education or are illiterate.
+
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+			
+			
+            <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="MothersEducation"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="MothersEducation">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Mother’s education just like father’s provides a strong correlation to the marks of the student. But almost 40% of the mothers surveyed were found to be illiterate. <br> The toppers in each subject were found to have a higher percentage of educated mothers as compared to the underachievers in the same subject. 40% of mothers were unemployed.
+
+
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+			
+			
+            <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="HelpInStudy"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="HelpInStudyText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">80% of students agreed to taking help from family members in studying or completing homeworks. Students who seek help are found to score higher on average than those who don’t.  <br>Toppers of Maths, Science and Social subject who scored higher marks on average tend to not seek help from family members.
+
+              </div>
+            </div>
+            <div class="w-100 py-5"></div>
+            <!-- break columns to new line -->
+			
+				
+			<div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="Distance"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="DistanceText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">More than 60% of the students stay within 1km from the school. <br>Staying closer to school leads to better marks except for Reading whose marks increases with distance.
+
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+			
+			 <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="SameLanguage"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="SameLanguageText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Having the same vernacular language as the spoken medium at school has a slight negative impact on Maths and Reading while Social and Science have slight positive relation.
+
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+			
+			
+            <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="GiveHW"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="GiveHWText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Maths seems to benefit the most with getting homework everyday. Other subjects peak at either 1-2, 3-4 times a week.
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+			
+            <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="CorrectHW"></div>
+            <div class="col-5 wow fadeIn text small" data-wow-duration="1s" data-wow-delay="1s" id="CorrectHWText">
+                <div class="alert alert-light text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">More than 60% of the students stay within 1km from the school.<br>For most subjects staying closer to school leads to better marks except for Reading whose marks increases the farther you stay. This might be due to the fact that one gets more time to talk and reason and read during the long everyday commute.
+              </div>
+            </div>
+            <div class="w-100 py-5"></div>
+            <!-- break columns to new line -->	
+			
+        </div>
+    </div>
+    <!-- Closing -->
+    <div class="container">
+        <div class="row align-items-center fullheight py-3 wow fadeIn" id ="endSlide" data-wow-duration="1s" data-wow-delay="1s">
+            <div class="col-10 col-md-6 mx-auto py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                <!-- <div class="alert alert-light text  wow fadeIn" data-wow-duration="1s" data-wow-delay="1s"> -->
+                <p class="text text-center">Various factors affect the marks of a student and the quality of his/her life. Playing, watching TV and surfing the Internet does not significantly affect the marks but can prove to be the building blocks of a student’s character.</p>
+                <!-- </div> -->
+                <blockquote class="blockquote my-5 py-5">
+                    <p class="mb-0 text-center h1 subtitle">Finding a balance between studies and other activities can go a long way.</p>
+                </blockquote>                
+            </div>
+          </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="bootstrap-4.0.0/js/bootstrap.min.js"></script>
+    <script src="js/d3.js"></script>
+    <script src="js/d3-selection.js"></script>
+    <script type="text/javascript" src="js/wow.js"></script>
+    <!-- <script type="text/javascript" src="js/graph-scroll.js"></script> -->
+    <script src="js/waypoints/jquery.waypoints.min.js"></script>
+    <script src="js/waypoints/shortcuts/infinite.min.js"></script>
+    <script src="js/waypoints/shortcuts/inview.min.js"></script>
+    <script src="js/waypoints/shortcuts/sticky.min.js"></script>
+    <!-- scrollify js -->
+    <!-- <script src="js/scrollify/easing.js"></script>
+    <script src="js/scrollify/jquery.scrollify.js"></script>
+    <script src="js/scrollify/scrollmain.js"></script> -->
+    
+    <!-- Custom scripts -->
+    <script src="js/StudentDistDataArt.js"></script>
+    <script type="text/javascript" src="js/viz.js"></script>
+</body>
+
+</html>
