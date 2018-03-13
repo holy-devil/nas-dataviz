@@ -614,6 +614,8 @@ function digBar(data,subject) {
     let extentTop = d3.extent(data, function (d) { return d.AvgMarksTop});
     let colourFail = d3.scaleLinear().domain(extentFail).range(["#FECDD7","#FC466B"]);
     let colourTop = d3.scaleLinear().domain(extentTop).range(["#CDD5FE","#3F5EFB"]);
+    let opacityFail = d3.scaleLinear().domain(extentFail).range([0.1,1]);
+    let opacityTop = d3.scaleLinear().domain(extentTop).range([0.1,1]);
     // let colourFail = d3.scaleLinear().domain([20,27]).range(["#FFFFFF","#FC466B"]); // harcoded from excel
     // let colourTop = d3.scaleLinear().domain([83,89]).range(["#FFFFFF","#3F5EFB"]);
 
@@ -630,15 +632,18 @@ function digBar(data,subject) {
                                 .text(dig_factors[loc])
                                 .style("text-anchor", "middle")
                                 .style("opacity",0.8)
-                                .attr("class", function (d,i) { return "groupLabel small textg"+groupId+" r"+i});
+                                .attr("class", function (d,i) { return "groupLabel small textg"+groupId+" r"+i})
+                                .attr("data-factor",dig_factors[loc]);
 
     let bars = svgContainer.append('g').selectAll(".barFail").data(barData).enter()
     // drawing the fail bars                      
     bars.append("line")
         .attr("transform", "translate("+(barWd-margin)+",0)")
-        .style("stroke", function(d) {
-            return colourFail(d.AvgMarksFail);
-        })
+        .style("stroke", "#FC466B")
+        .style("opacity", function(d) {return opacityFail(d.AvgMarksFail);})
+        // .style("stroke", function(d) {
+        //     return colourFail(d.AvgMarksFail);
+        // })
         .attr("x1", margin)                        
         .attr("y1", function (d,i) {return margin+barHt*(i+1/2)})                        
         .attr("x2", margin)  
@@ -648,7 +653,9 @@ function digBar(data,subject) {
         .attr("y1", function (d,i) {return margin+barHt*(i+1/2)})                        
         .attr("x2", function (d) {return margin-100*(d.StudentPercentFail)*scaling})  
         .attr("y2", function (d,i) {return margin+barHt*(i+1/2)})                        
-        .attr("class", function (d,i) {return d.Subject+" "+d.Factor+" fail r"+i});
+        .attr("class", function (d,i) {return d.Subject+" "+d.Factor+" bar fail r"+i})
+        .attr("data-factor",function (d,i) {return d.Factor})
+        .attr("data-option",function (d,i) {return d.Options});
 
     // drawing the factor options
     bars.append("text")
@@ -657,14 +664,18 @@ function digBar(data,subject) {
         .text(function(d) {return d.Options})
         .style("text-anchor", "middle")
         .style("opacity",0.8)
-        .attr("class", function (d,i) { return "optionsLabel small textg"+groupId+" "+d.Subject+" "+d.Factor+" r"+loc});
+        .attr("class", function (d,i) { return "optionsLabel small textg"+groupId+" "+d.Subject+" "+d.Factor+" r"+i})
+        .attr("data-factor",function (d,i) {return d.Factor})
+        .attr("data-option",function (d,i) {return d.Options});
 
     // drawing the top bars
     bars.append("line")
         .attr("transform", "translate("+(barWd+optWd*2+margin)+",0)")
-        .style("stroke", function(d) {
-            return colourTop(d.AvgMarksTop);
-        })
+        .style("stroke", "#3F5EFB")
+        .style("opacity", function(d) { return opacityTop(d.AvgMarksTop); })
+        // .style("stroke", function(d) {
+        //     return colourTop(d.AvgMarksTop);
+        // })
         .attr("x1", margin)                        
         .attr("y1", function (d,i) {return margin+barHt*(i+1/2)})                        
         .attr("x2", margin)  
@@ -674,7 +685,13 @@ function digBar(data,subject) {
         .attr("y1", function (d,i) {return margin+barHt*(i+1/2)})                        
         .attr("x2", function (d) {return margin+100*(d.StudentPercentTop)*scaling})  
         .attr("y2", function (d,i) {return margin+barHt*(i+1/2)})                        
-        .attr("class", function (d,i) {return d.Subject+" "+d.Factor+" top r"+i});
+        .attr("class", function (d,i) {return d.Subject+" "+d.Factor+" bar top r"+i})
+        .attr("data-factor",function (d,i) {return d.Factor})
+        .attr("data-option",function (d,i) {return d.Options});
+    
+    // hover
+    bars.selectAll("line").on("mouseover", barMouseOver).on("mouseout", barMouseOut);
+    bars.selectAll("text").on("mouseover", barOptionMouseOver).on("mouseout", barOptionMouseOut);
     
     this.destroy();
     },
@@ -696,6 +713,29 @@ function digBar(data,subject) {
     //             offset: '0%'
     //         })
 }
+}
+// bar chart hover function
+function barMouseOver(d,i) {
+    $(".groupLabel[data-factor='"+$(this).data('factor')+"']").addClass("opaque");
+    $(".optionsLabel[data-factor='"+$(this).data('factor')+"'][data-option='"+$(this).data('option')+"']").addClass("opaque");
+    $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").addClass("opaque");
+
+}
+function barMouseOut(d,i) {
+    $(".groupLabel[data-factor='"+$(this).data('factor')+"']").removeClass("opaque");
+    $(".optionsLabel[data-factor='"+$(this).data('factor')+"'][data-option='"+$(this).data('option')+"']").removeClass("opaque");
+    $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").removeClass("opaque");
+}
+
+function barOptionMouseOver(d,i) {
+    $(this).addClass("opaque");
+    $(".groupLabel[data-factor='"+$(this).data('factor')+"']").addClass("opaque");
+    $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").addClass("opaque");
+}
+function barOptionMouseOut(d,i) {
+    $(this).removeClass("opaque");
+    $(".groupLabel[data-factor='"+$(this).data('factor')+"']").removeClass("opaque");
+    $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").removeClass("opaque");
 }
 
 function removeDigBar() {

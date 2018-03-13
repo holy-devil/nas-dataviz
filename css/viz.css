@@ -77,6 +77,9 @@ body {
 {
     color: #607d8b !important;
 }
+.slide {
+    color: #fafafa;
+}
 .stuck {
     position:fixed;
     background: #fafafa;
@@ -139,7 +142,8 @@ kbd.fail {
 svg:not(:root) {
     overflow: visible;
     height: auto;
-    width: 100%
+    width: 100%;
+    cursor: pointer;
 }
 svg *::selection {
     background : transparent;
@@ -184,6 +188,9 @@ text.heatLabel {
   }
 #digbar line {
     stroke-width: 0.5rem;
+}
+#digbar .bar:hover, .bar:focus {
+    stroke: #000;
 }
 .textg3 {fill:#4CAF50 !important; color:#4CAF50 !important;}
 .textg1 {fill:#009688 !important; color:#009688 !important;}
