@@ -605,7 +605,7 @@ function digBar(data,subject) {
     let barHt = 16;
     let labelWd = 20;   
     let ht = (barHt)*len + 2*margin;
-    let scaling = 3;    
+    let scaling = 2.5;    
     console.log("bar wd="+wd+" ht"+ht);
     let svgContainer = d3.select("#digbar #"+dig_factors[loc]).append("svg").attr("width", wd).attr("height", ht);
 
