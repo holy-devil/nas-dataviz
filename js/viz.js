@@ -732,7 +732,9 @@ function barMouseOver(d,i) {
     $(".groupLabel[data-factor='"+$(this).data('factor')+"']").addClass("opaque");
     $(".optionsLabel[data-factor='"+$(this).data('factor')+"'][data-option='"+$(this).data('option')+"']").addClass("opaque");
     $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").addClass("opaque");
+    // Showing both acheiver and underachiever tooltips
     $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").tooltip('show');
+    // To add alert-white bg to the supporting text
     $("#"+$(this).data('factor')+"Text .alert").addClass("alert-light");
 
 }
