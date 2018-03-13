@@ -697,21 +697,6 @@ function digBar(data,subject) {
     },
     offset: '100%'
     })
-
-    // Waypoints controller
-    
-    // $("#"+dig_factors[loc]).waypoint ({
-    //     handler: function(direction) {
-    //         console.log(this.element.id + ' hit2')
-    //         stkHeat.destroy();            
-    //     // this.destroy()
-    //     },
-    //     offset: "50%"
-    // })
-    // stickyBar = new Waypoint.Sticky({
-    //             element: $('#subBtn'),
-    //             offset: '0%'
-    //         })
 }
 }
 // bar chart hover function
@@ -719,23 +704,27 @@ function barMouseOver(d,i) {
     $(".groupLabel[data-factor='"+$(this).data('factor')+"']").addClass("opaque");
     $(".optionsLabel[data-factor='"+$(this).data('factor')+"'][data-option='"+$(this).data('option')+"']").addClass("opaque");
     $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").addClass("opaque");
+    $("#"+$(this).data('factor')+"Text .alert").addClass("alert-light");
 
 }
 function barMouseOut(d,i) {
     $(".groupLabel[data-factor='"+$(this).data('factor')+"']").removeClass("opaque");
     $(".optionsLabel[data-factor='"+$(this).data('factor')+"'][data-option='"+$(this).data('option')+"']").removeClass("opaque");
     $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").removeClass("opaque");
+    $("#"+$(this).data('factor')+"Text .alert").removeClass("alert-light");
 }
 
 function barOptionMouseOver(d,i) {
     $(this).addClass("opaque");
     $(".groupLabel[data-factor='"+$(this).data('factor')+"']").addClass("opaque");
     $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").addClass("opaque");
+    $("#"+$(this).data('factor')+"Text .alert").addClass("alert-light");
 }
 function barOptionMouseOut(d,i) {
     $(this).removeClass("opaque");
     $(".groupLabel[data-factor='"+$(this).data('factor')+"']").removeClass("opaque");
     $(".bar."+$(this).data('factor')+"[data-option='"+$(this).data('option')+"']").removeClass("opaque");
+    $("#"+$(this).data('factor')+"Text .alert").removeClass("alert-light");
 }
 
 function removeDigBar() {
