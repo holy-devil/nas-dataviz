@@ -6,10 +6,10 @@ w = wd.innerWidth || e.clientWidth || g.clientWidth,
 h = wd.innerHeight|| e.clientHeight|| g.clientHeight;
 
 
-var marks_data, marks_headers, dataM, dataS, dataO, dataR,coverHt,spacing=25;
+var marks_data, marks_headers, dataM, dataS, dataO, dataR,coverHt,offset,spacing=25;
       	let wart = document.getElementById("cover").clientWidth;
-      	coverHt=h*0.55;
-      	let svgContainer1 = d3.select("#cover").append("svg").attr("width", wart).attr("height",coverHt);
+      	coverHt=h*0.5;
+      	let svgContainer1 = d3.select("#cover").append("svg").attr("width", wart).attr("height",coverHt).attr("class","coversvg");
 		d3.csv('datasets/nas/StudentDistributionByMarks.csv', function(error, data) {
 			
 	    if (error) {
@@ -33,7 +33,7 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,coverHt,spacing=25;
 		marks_headers = d3.keys(data[0]); 		
 		drawGrid();
 		drawwaves();
-		d3.selectAll(".line")
+		d3.selectAll(".coversvg")
 		.on("mouseover", function(d){ return d3.select(".covergrid").classed("d-none",false)})
 		.on("mouseout", function(d){ return d3.select(".covergrid").classed("d-none",true)});
 	});
@@ -87,7 +87,7 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,coverHt,spacing=25;
 
 		var yscale = d3.scaleLinear()
 		    .domain([0,6000])
-		    .range([0, coverHt]);
+		    .range([0, coverHt*1.618]);
 
 		var omega = -.22
 		function line_maker( data, speed )
@@ -225,14 +225,14 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,coverHt,spacing=25;
 		    var hscale = d3.scaleLinear()
 		        .domain([0, n])
 		        .range([0, coverHt])
-
+			offset=coverHt;
 		    //console.log("th", th, hscale(99))
 		    console.log("spacing", spacing)
 		    d3.selectAll("g.line path")
 		        .attr("transform", function(d, i) { 
 		            //console.log("coverHt",coverHt, spacing, d.index);
 		            //return "translate(" + [0, th - spacing * d.index] + ")"; 
-		            return "translate(" + [0, 3*coverHt/4 - spacing * d.index*2] + ")"; 
+		            return "translate(" + [0, 0.9*offset - spacing * d.index*2] + ")"; 
 		        })
 		}
 
@@ -294,7 +294,7 @@ function drawGrid() {
 		
 	}	
 	// adding subjects
-	let start = coverHt*0.75-10;
+	let start = coverHt*0.9-10;
 	grid.append("text").text("Maths").attrs({x: wart*0.95, y: start}).attr("class","text small");
 	grid.append("text").text("Science").attrs({x: wart*0.95, y: (start-spacing*2)}).attr("class","text small");
 	grid.append("text").text("Social").attrs({x: wart*0.95, y: (start-(spacing*4))}).attr("class","text small");
