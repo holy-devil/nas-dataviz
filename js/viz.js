@@ -181,6 +181,18 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     studSubPlot(nas_data);
     heatmapSub(nas_data);
     drawHeatmap(0);
+
+    // On window resize
+    wd.addEventListener("resize", function() {
+        w_new = wd.innerWidth || e.clientWidth || g.clientWidth,
+        h_new = wd.innerHeight|| e.clientHeight|| g.clientHeight;
+        if (w_new!=w && h_new!=h) {
+            w=w_new, h=h_new;
+            d3.select("#cover svg").remove();
+            drawHeatmap(0);
+            console.log("heatmap redrawn on resize");
+        }
+    });
 });
 // Calculating absolute min max
 var minmax = function (data) {
@@ -290,6 +302,7 @@ function heatmap (data,id) {
                                 //     if (data[i][corr_headers[j]]<0)                                   {return "neg";}
                                 //     else {return "pos";}
                                 // })
+                                .attr("data-factor",corr_headers[j])
                                 .attr("class", function(d){return "cell "+groups.gId[id-1]+" r"+k+" c"+i})
                                 // adding tooltip content for the circle
                                 .attr("data-toggle","tooltip")
@@ -302,7 +315,7 @@ function heatmap (data,id) {
                                     let sign = val<0?"Negative":"Positive";
                                     let sub = i==0?"Maths%":(i==1?"Reading%":(i==2?"Science%":"Social Science%"));
                                     if (val==0) return "Zero correlation on "+sub+" marks";
-                                    else return sign+" correlation of factor "+val+" on "+sub+" marks";
+                                    else return corr_headers[j]+" has a "+sign+" correlation of factor "+val+" on "+sub;
                                 });     
                         }
                     }
@@ -405,31 +418,6 @@ function cellMouseOut(d,i) {
         $(".rowLabel").removeClass("opaque");
 
 }
-
-// Tooltip the lines
-// function tooltipHeat(id) {
-//     let group = groups.gId[id-1];
-//     for(let i=1; i<=$(".cell."+group).size(); i++) {
-//         let line = (function () {
-//             let cor="Neutral";
-//             if ($(".cell."+group)[i].style.fill==="rgb(63, 94, 251)") cor="Positive";
-//             else cor="Negative";
-
-//             return cor+" correlation of factor "+(($(".cell."+group)[i].r.animVal.value)/150).toFixed(2)+" on subject marks";
-//         })();
-//         $($(".cell."+group)[i]).tooltip ({
-//             "trigger": "hover focus",
-//             "template": '<div class="tooltip" role="tooltip"><div class="tooltip-inner small" style="background-color:#37474f; color:#f00f00;"></div></div>',
-//             "container": "body",
-//             "placement": "right",
-//             "offset": "0",
-//             "animation": true,
-//             "title": 'tooltipppppp',
-//             "html": true
-//         });
-//         console.log ("tooltipheat");
-//     }
-// }
 
 // To remove an draw heatmap groupwise on btn click
 function removeHeatmap() {
@@ -588,6 +576,16 @@ d3.csv('datasets/nas/DivergingGraphDataset.csv', function(error, data) {
     dig_groups = d3.map(dig_data, function(d){return d.Group;}).keys();
     // digBar(dig_data,"Maths","Distance");
     drawDigBar("Maths");
+    // On window resize
+    wd.addEventListener("resize", function() {
+        w_new = wd.innerWidth || e.clientWidth || g.clientWidth,
+        h_new = wd.innerHeight|| e.clientHeight|| g.clientHeight;
+        if (w_new!=w && h_new!=h) {
+            w=w_new, h=h_new;
+            drawDigBar("Maths");
+            console.log("bar plot redrawn on resize");
+        }
+    });
 })
 
 // Dot-bar graph
