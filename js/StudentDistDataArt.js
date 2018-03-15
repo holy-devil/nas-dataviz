@@ -1,7 +1,15 @@
-var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
+var wd = window,
+d = document,
+e = d.documentElement,
+g = d.getElementsByTagName('body')[0],
+w = wd.innerWidth || e.clientWidth || g.clientWidth,
+h = wd.innerHeight|| e.clientHeight|| g.clientHeight;
+
+
+var marks_data, marks_headers, dataM, dataS, dataO, dataR,coverHt,spacing=25;
       	let wart = document.getElementById("cover").clientWidth;
-      	h=300;
-      	let svgContainer1 = d3.select("#cover").append("svg").attr("width", wart).attr("height",h);
+      	coverHt=h*0.55;
+      	let svgContainer1 = d3.select("#cover").append("svg").attr("width", wart).attr("height",coverHt);
 		d3.csv('datasets/nas/StudentDistributionByMarks.csv', function(error, data) {
 			
 	    if (error) {
@@ -22,9 +30,12 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
     	});
 
     	 // Getting CSV headers
-	    marks_headers = d3.keys(data[0]); 
-	   
-	    drawwaves();
+		marks_headers = d3.keys(data[0]); 		
+		drawGrid();
+		drawwaves();
+		d3.selectAll(".line")
+		.on("mouseover", function(d){ return d3.select(".covergrid").classed("d-none",false)})
+		.on("mouseout", function(d){ return d3.select(".covergrid").classed("d-none",true)});
 	});
 
 	function drawwaves(){
@@ -76,7 +87,7 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
 
 		var yscale = d3.scaleLinear()
 		    .domain([0,6000])
-		    .range([0, h]);
+		    .range([0, coverHt]);
 
 		var omega = -.22
 		function line_maker( data, speed )
@@ -99,7 +110,7 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
 		    return svgline(data.data);
 		}
 
-		var spacing = 25;
+		spacing = 25;
 		var defs = svgContainer1.append("defs");
 
 		var gradient = defs.append("linearGradient")
@@ -188,7 +199,7 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
 		      .enter()
 		    .append("svg:path")
 		      .attr("class", "path")
-		      //.attr("transform", function(_, i) { return "translate(" + [0, h - spacing * d.index] + ")"; })
+		      //.attr("transform", function(_, i) { return "translate(" + [0, coverHt - spacing * d.index] + ")"; })
 		    .attr("d", function(d,i) {
 		              return line_maker( d, 0 ) 
 		            }
@@ -213,15 +224,15 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
 		    var th = spacing * n;
 		    var hscale = d3.scaleLinear()
 		        .domain([0, n])
-		        .range([0, h])
+		        .range([0, coverHt])
 
 		    //console.log("th", th, hscale(99))
 		    console.log("spacing", spacing)
 		    d3.selectAll("g.line path")
 		        .attr("transform", function(d, i) { 
-		            //console.log("h",h, spacing, d.index);
+		            //console.log("coverHt",coverHt, spacing, d.index);
 		            //return "translate(" + [0, th - spacing * d.index] + ")"; 
-		            return "translate(" + [0, h/2 - spacing * d.index*2] + ")"; 
+		            return "translate(" + [0, 3*coverHt/4 - spacing * d.index*2] + ")"; 
 		        })
 		}
 
@@ -256,4 +267,36 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,h;
 	
 		});	
 
-  	}
+}
+
+function drawGrid() {
+	let grid = svgContainer1.append('g').attr("class","covergrid d-none")
+							 
+	grid.append('line').style("stroke", "#FC466B").style("stroke-width","0.1rem").style("opacity","0.8")
+							 .attrs({x1: (wart/100)*33, y1: coverHt*0.2, x2: (wart/100)*33, y2: coverHt*0.9});
+	
+	grid.append('line').style("stroke", "#3F5EFB").style("stroke-width","0.1rem").style("opacity","0.8")
+							 .attrs({x1: (wart/100)*80, y1: coverHt*0.2, x2: (wart/100)*80, y2: coverHt*0.9});
+	for (let i=0; i<100; i+=1) {
+		grid.append('line').style("stroke", "#607d8b").style("stroke-width","0.05rem").style("opacity","0.3")
+							 .attrs({x1: (wart/100)*i, y1: coverHt*0.2, x2: (wart/100)*i, y2: coverHt*0.9});
+		
+		if (i==33) {
+			grid.append("text").text("33%").attrs({x:(wart/100)*32 ,y: coverHt*0.15 }).attr("class","text small cl-fail");
+		}
+		if (i==50) {
+			grid.append('line').style("stroke", "#607d8b").style("stroke-width","0.1rem").style("opacity","0.8").attrs({x1: (wart/100)*50, y1: coverHt*0.2, x2: (wart/100)*50, y2: coverHt*0.9});
+			grid.append("text").text("50%").attrs({x:(wart/100)*49 ,y: coverHt*0.15 }).attr("class","text small");
+		}
+		if (i==80) {
+			grid.append("text").text("80%").attrs({x:(wart/100)*79 ,y: coverHt*0.15 }).attr("class","text small cl-top");
+		}
+		
+	}	
+	// adding subjects
+	let start = coverHt*0.75-10;
+	grid.append("text").text("Maths").attrs({x: wart*0.95, y: start}).attr("class","text small");
+	grid.append("text").text("Science").attrs({x: wart*0.95, y: (start-spacing*2)}).attr("class","text small");
+	grid.append("text").text("Social").attrs({x: wart*0.95, y: (start-(spacing*4))}).attr("class","text small");
+	grid.append("text").text("Reading").attrs({x: wart*0.95, y: (start-(spacing*6))}).attr("class","text small");
+}

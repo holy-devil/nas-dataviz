@@ -182,6 +182,13 @@ text.rowLabel.heatLabel, circle.cell, text.optionsLabel, line.bar {
 cursor: pointer;
 }
 
+/* svg .covergrid {
+    opacity: 0.3;
+} */
+.covergrid text {
+    fill: #607d8b;
+    opacity: 0.8;
+}
 /* rect.selection {
     stroke          : #333;
     stroke-dasharray: 4px;
@@ -207,6 +214,7 @@ circle.cell {
 text {
     dominant-baseline: central;
 }
+
 text.heatLabel {
     /* font-size: 9pt; */
     font-family: 'Noto Sans', sans-serif;
