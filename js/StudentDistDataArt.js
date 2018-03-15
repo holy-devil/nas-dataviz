@@ -34,8 +34,14 @@ var marks_data, marks_headers, dataM, dataS, dataO, dataR,coverHt,offset,spacing
 		drawGrid();
 		drawwaves();
 		d3.selectAll(".coversvg")
-		.on("mouseover", function(d){ return d3.select(".covergrid").classed("d-none",false)})
-		.on("mouseout", function(d){ return d3.select(".covergrid").classed("d-none",true)});
+		.on("mouseover", function(d){ 
+			d3.select(".covergrid").classed("d-none",false);
+			d3.select("#covercaption").classed("d-none",false);
+		})
+		.on("mouseout", function(d){ 
+			d3.select(".covergrid").classed("d-none",true);
+			d3.select("#covercaption").classed("d-none",true);
+		});
 	});
 
 	function drawwaves(){
