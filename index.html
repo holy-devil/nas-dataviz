@@ -56,12 +56,18 @@
 <body>
     <div class="container-fluid">
         <div class="row justify-content-center" id="cover"></div>
+        <!-- Cover description -->
+        <div class="row justify-content-end d-none" id="covercaption">
+                <div class="col-auto">
+                    <p class="text-right small subtitle">Cover art is generated using Student Distribution over Marks (0&mdash;100 across the screen)<br> of <span style="color: #DA4453">Maths</span>, <span style="color: #007991">Science</span> , <span style="color: #4568DC">Social Science </span>                    &amp; <span style="color: #ee0979">Reading</span>&nbsp;(bottom to top)</p>
+                </div>
+            </div>
     </div>
     <!-- <div class="inner"> -->
-    <div class="container">
+    <div class="container mt-3">
         <div class="row justify-content-center" id="title-row">
             <div class="col-10 col-xl-8 align-self-end">
-                <h1 class="h1-responsive text-center my-3" id="title">What makes an achiever?</h1>
+                <h1 class="h1-responsive text-center py-4" id="title">What makes an achiever?</h1>
                 <p class="text-center subtitle">The National Achievement Survey of 2014 conducted by NCERT provides an insight to the learning achievement of children undergoing elementary education. <br>We have analysed the dataset to understand how the various factors impact the learning
                     and performance of VIIIth standard students thus surveyed.</p>
             </div>
@@ -82,12 +88,7 @@
                 <span class="text small">700 districts in 36 States/UTs</span>
             </div>
         </div>
-        <!-- Cover description -->
-        <div class="row pt-3 justify-content-center">
-            <div class="col-auto align-self-end">
-                <p class="text-center small subtitle">Cover art is generated using Student Distribution over Marks (0&mdash;100 across the screen) of <span style="color: #DA4453">Maths</span>, <span style="color: #007991">Science</span> , <span style="color: #4568DC">Social Science </span>                    &amp; <span style="color: #ee0979">Reading</span>&nbsp;(bottom to top)</p>
-            </div>
-        </div>
+        
     </div>
 
     <div class="container">
@@ -96,14 +97,64 @@
             <div class="w-100"></div>
             <!-- break columns to new line -->
             <div class="col-6">
-                <p class="text-left small cl-fail">1,18,575 students(64.2%)</p></div>
+                <p class="text-left small cl-fail">1,18,575 students (64.2%)</p>
+            </div>
             <div class="col-6">
                 <p class="text-right small cl-top">6,306 students (3.4%)</p></div>
             <div class="col-10 col-xl-8 mx-auto">
-                <div class="alert alert-light text  wow fadeIn d-none" data-wow-duration="1s" data-wow-delay="1s">
-                    <p class="text-center py-3">Out of total of 1,84,670 students</p>
+                <div class="row my-5">
+                    <div class="col-auto mx-auto">
+                        <p class="text">1,84,670&nbsp;&mdash;&nbsp;Total Students Surveyed</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-light text  wow fadeIn d-none" data-wow-duration="1s" data-wow-delay="1s">
+                            <div class="row justify-content-center">
+                                <p class="text h1 cl-fail">64.2%</p>
+                            </div>
+                            <div class="row justify-content-center">
+                                <p class="text cl-fail">(1,18,575)</p>
+                            </div>
+                            <div class="row justify-content-center">
+                                <p class="text-center ">Failed in at least one subject<br><br></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="alert alert-light text  wow fadeIn d-none" data-wow-duration="1s" data-wow-delay="1s">
+                            <div class="row justify-content-center">
+                                <p class="text h1 cl-top">3.4%</p>
+                            </div>
+                            <div class="row justify-content-center">
+                                <p class="text cl-top">(6,306)</p>
+                            </div>
+                            <div class="row justify-content-center">
+                                <p class="text-center">Secured A grade (80% &amp; above) in at least one subject without failing in the rest</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-xl-6 mx-auto">
+                    <div class="row my-5">
+                        <div class="col mx-auto">
+                            <p class="text">The vast majority is unable to pass in all subjects and only a fraction of students seem to be able to manage an A grade (80%) in at least ONE subject while not failing in the rest.</p>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <!-- <div class="col mx-auto">
+                                <p class="text">For further analysis let’s call these two groups as&mdash;</p>
+                            </div> -->
+                            <!-- <div class="w-100">     -->
+                            <div class="col mx-auto">
+                                <p class="text-left">For further analysis let’s call these two groups as&nbsp;&mdash;<br><b class="cl-fail">underachievers</b>&nbsp; and <b class="cl-top">&nbsp;achievers</b> </p>
+                                <!-- <p class="text-center"><kbd class="fail">underachievers&nbsp;</kbd> and <kbd class="top">&nbsp;achievers</kbd> </p> -->
+                            </div>
+                    </div>
+                </div>    
 
-                    <div class="row ">
+                    <!-- <div class="row ">
                         <div class="col-3 p-0 m-0">
                             <p class="text-right">1,18,575 <b class="cl-fail">(64.2%)</b>&nbsp;&mdash;&nbsp;</p>
                         </div>
@@ -113,8 +164,8 @@
                         <div class="col-7 m-0">
                             <p class="text-left">&nbsp;&mdash;&nbsp;failed in at least one subject</p>
                         </div>
-                    </div>
-                    <div class="row ">
+                    </div> -->
+                    <!-- <div class="row ">
                         <div class="col-3 p-0 m-0">
                             <p class="text-right">6,306 <b class="cl-top">(3.4%)</b>&nbsp;&mdash;&nbsp;</p>
                         </div>
@@ -124,12 +175,23 @@
                         <div class="col-7 p-0 m-0">
                             <p class="text-left">&nbsp;&mdash;&nbsp;Grade A/A+ in one subject without failing in the rest</p>
                         </div>
-                    </div>
+                    </div> -->
+
                 </div>
-                <p class="text text-center pt-5 pb-3">Breaking it down subject-wise</p>
-            </div>
+                </div>
+                </div>
+                </div>
+        <div class="container">
+            <div class="row">  
+                <div class="col-6 mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                    <p class="text pb-3">Breaking down the performance subject-wise we have</p>
+                </div>  
+                </div>
+                
+            
             <div class="w-100"></div>
             <!-- break columns to new line -->
+            <div class="row justify-content-center">
             <div class="col-6 col-md-auto mx-auto pt-3 w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="studsubplot"></div>
             <div class="w-100"></div>
             <!-- break columns to new line -->
@@ -145,10 +207,11 @@
             <div class="col-3">
                 <p class="text-left small">Total 89,485 students<br><span class="cl-fail">underachievers 36,708 (41%)</span><br><span class="cl-top">achievers 631 (0.7%)</span></p>
             </div>
+        </div>
             
             <!-- Captions -->
             <div class="col-10 col-xl-6 py-5 mx-auto">
-                <p class="text">Only a fraction of students seem to be achievers - the basic minimum of securing grade A/A+ in any one subject while not failing in the rest.</p>
+                <p class="text">Maths unsurprisingly has highest share <b class="cl-fail">(62.5%) of underachievers</b>. While Reading has the highest share <b class="cl-top">(4.5%) of achievers</b>.</p>
             </div>
         </div>
     </div>
@@ -197,7 +260,7 @@
             <!-- break columns to new line -->
             <div class="col-md-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="subjects"></div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center pb-5">
             <div class="col-md-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gDemog"></div>
             <div class="col-md-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gBehaviour"></div>
             <div class="col-md-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gPasstime"></div>
@@ -211,8 +274,8 @@
             <div class="overlay"></div>
             <div class="col-10 col-md-10 mx-auto pt-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
                 <blockquote class="blockquote">
-                    <!-- <p class="mb-0 text-center slide">But how different are the achievers from the rest?</p><br><br> -->
-                    <p class="mb-0 text-center h1 slide">Are the achievers doing anything differently?</p>
+                    <p class="mb-0 text-center slide">In terms of these factors</p><br><br>
+                    <p class="mb-0 text-center h1 slide">How different are the underachievers from the achievers?</p>
                 </blockquote>
             </div>
         </div>
