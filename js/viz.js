@@ -130,15 +130,15 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
             stkHeat.destroy();            
         // this.destroy()
         },
-        offset: "10%"
+        offset: "90%"
     })
-    $("#endSlide").waypoint ({
+    $("#qs3").waypoint ({
         handler: function(direction) {
             console.log(this.element.id + ' hit2')
             stkBar.destroy();            
         // this.destroy()
         },
-        offset: "10%"
+        offset: "50%"
     })
     /*
     var stkBar=0, stkHeat=0; // sticky elements
