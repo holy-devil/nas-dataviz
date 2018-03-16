@@ -50,7 +50,7 @@
     <!-- <link rel="manifest" href="js/manifest.json"> -->
     <script src="js/pleaserotate.min.js"></script>
     <!-- Font -->
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Noto+Serif|Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700|Merriweather" rel="stylesheet">
 </head>
 
 <body>
@@ -191,7 +191,7 @@
             
             <div class="w-100"></div>
             <!-- break columns to new line -->
-            <div class="row justify-content-center">
+            <div class="row justify-content-center my-3">
             <div class="col-6 col-md-auto mx-auto pt-3 w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="studsubplot"></div>
             <div class="w-100"></div>
             <!-- break columns to new line -->
@@ -211,7 +211,7 @@
             
             <!-- Captions -->
             <div class="col-10 col-xl-6 py-5 mx-auto">
-                <p class="text">Maths unsurprisingly has highest share <b class="cl-fail">(62.5%) of underachievers</b>. While Reading has the highest share <b class="cl-top">(4.5%) of achievers</b>.</p>
+                <p class="text"><b>Maths</b> unsurprisingly has highest share <b class="cl-fail">(62.5%) of underachievers</b>. While <b>Reading</b> has the highest share <b class="cl-top">(4.5%) of achievers</b>.</p>
             </div>
         </div>
     </div>
@@ -229,9 +229,7 @@
     </div>
 
     <!-- heatmap -->
-    <div class="container fullheight" id="heatmap">
-        <div id="tooltipHeatmap" class="d-none"></div>
-
+    <div class="container fullheight my-5" id="heatmap">
         <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
             <div class="col-10 col-md-6 mx-auto py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
                 <p class="text">Various things, as enlisted in the survey, can affect the marks of a student . To find how each parameter affects the learning, the correlation factor for each parameter with the subjects' marks has been calculated and plotted in the following
@@ -267,6 +265,18 @@
             <div class="col-md-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gParents"></div>
             <div class="col-md-auto w-100 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="gSchool"></div>
         </div>
+        <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+            <div class="col-10 col-md-6 mx-auto py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                <p class="text">The various factors here have a correlation value between to -0.14 to +0.19. Even though statistically a strong correlation (positive/negative) needs to have a value of more than +0.5/-0.5, these does give the indicators to prod further.
+                </p>
+            </div>
+            <div class="w-100"></div>
+            <!-- break columns to new line -->
+            <div class="col-6 alert alert-light mx-auto wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                <p class="text pt-2"><b>Reading</b> seems to be the most affected subject by these factors. <em>Parent’s Education</em> and <em>Occupation</em> seems to be the biggest influencers along with few of the reading and study habits.
+                </p>
+            </div>
+        </div>
     </div>
     <div class="container-fluid">
 
@@ -282,14 +292,15 @@
 
     </div>
     <!-- Bar charts -->
-    <div class="container-fluid" id="barplots">
+    <div class="container-fluid my-5" id="barplots">
+        <div class="container">
         <div class="row justify-content-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
             <div class="col-10 col-md-6 mx-auto py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
-                <p class="text">To find this out, we have plotted the share of&nbsp;<span class="cl-top">achievers</span>&nbsp;and&nbsp;<span class="cl-fail">underachievers</span>&nbsp;against the options they opt for in the various parameters. Longer length of bars represent higher share of students, whereas, darker colour intensity represents higher marks obtained in the corresponding subject.
+                <p class="text">To find this out, we have plotted the share of&nbsp;<b class="cl-fail">underachievers</b>&nbsp;and&nbsp;<b class="cl-top">achievers</b>&nbsp;against the options they opt for in the various parameters.<br><br> Longer length of bars represent higher share of students, whereas, darker colour intensity represents higher marks obtained in the corresponding subject.
                 </p>
-
             </div>
         </div>
+    </div>
         <div class="row justify-content-center w-100 py-3 wow fadeIn" id="subBtn" data-wow-duration="1s" data-wow-delay="1s">
             <div class="col-md-auto py-3">
                 <div class="btn-group pb-3" role="group">
@@ -349,7 +360,7 @@
                 <div class="alert  text wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">Majority of the students were found to be using dictionary to learn. Ones who use dictionary are found on an average to score higher than those who do not.
                 </div>
             </div>
-            <div class="w-100"></div>
+            <div class="w-100 py-3"></div>
             <!-- break columns to new line -->
 
             <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="ReadOtherBooks"></div>
@@ -358,7 +369,7 @@
 
                 </div>
             </div>
-            <div class="w-100 pb-3"></div>
+            <div class="w-100 py-3"></div>
             <!-- break columns to new line -->
 
             <div class="col-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s" id="PrivateTuition"></div>
@@ -461,10 +472,106 @@
         </div>
     </div>
     <!-- Closing -->
-    <div class="container">
-        <div class="row align-items-center fullheight py-3 wow fadeIn" id="endSlide" data-wow-duration="1s" data-wow-delay="1s">
-            <div class="col-10 col-md-6 mx-auto py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
-                <p class="text text-center">Various factors affect the marks of a student and the quality of his/her life. Playing, watching TV and surfing the Internet does not significantly affect the marks but can prove to be the building blocks of a student’s character.</p>
+    <div class="container-fluid">
+
+            <div class="row align-items-center parallax2" id="qs3">
+                <div class="overlay"></div>
+                <div class="col-10 col-md-10 mx-auto pt-5 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                    <blockquote class="blockquote">
+                        <p class="mb-0 text-center h1 slide">So, what does it all mean?</p>
+                    </blockquote>
+                </div>
+            </div>
+    
+        </div>
+    <div class="container my-5" id="endSlide">
+            <!-- <div class="row align-items-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                    <div class="col-10 col-md-6 mx-auto py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                        <p class="text subtitle h1">
+                            So, what does it all mean?
+                        </p>
+                    </div>
+            </div> -->
+            <div class="row align-items-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                    <div class="col-10 col-md-6 mx-auto py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                        <p class="text">
+                            Factors that seem to <em>affect</em> the performance the most&nbsp;&mdash;
+                            <ul>
+                                <li>Social factors like <em>Parents Education </em>and<em> Occupation</em></li>
+                                <li>Students'<em> Reading </em>and<em> Studying </em> habits</li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-10 col-md-6 mx-auto py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                            <p class="text">
+                                    Factors that <em>do not seem to affect</em> much include&nbsp;&mdash;
+                                <ul>
+                                    <li><em>Gender </em>,<em> Watching TV</em> and<em> Playing</em></li>
+                                    <li>Using<em> Computer </em>or the <em> Internet </em></li>
+                                </ul>
+                            </p>
+                        </div>
+                    <div class="w-100"></div>
+                    <div class="col-10 col-md-6 mx-auto pt-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                            
+                            <p class="text">To see what extent social factors affect the marks we can take the following two extreme cases and see performance under them&nbsp;&mdash;</p>
+                        </div>
+            </div>
+        <div class="row align-items-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+            <div class="col-10 col-md-8 mx-auto py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                
+                <div class="row">
+                        <div class="col">
+                            <p class="text-center"><b>Case 1</b><br>Students who have <em>illiterate parents</em>, live <em>below poverty line</em> and have <em>no private tuition</em></p>
+                            <div class="alert alert-light text  wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                                    <div class="row justify-content-center">
+                                            <p class="text-center ">Out of <b>10,804</b> students <br>who meet this criteria</p>
+                                        </div>
+                                <div class="row justify-content-center">
+                                    <p class="text h1 cl-fail">69.96%</p>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <p class="text cl-fail">7,559 underachievers</p>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <p class="text h1 cl-top">1.75%</p>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <p class="text cl-top">190 achievers</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col">
+                            <p class="text-center"><b>Case 2</b><br>Students who have <em>graduate parents</em>, live <em>above poverty line</em> and have <em> private tuition</em></p>
+                            <div class="alert alert-light text  wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                                    <div class="row justify-content-center">
+                                            <p class="text-center ">Out of <b>621</b> students<br> who meet this criteria</p>
+                                        </div>
+                                <div class="row justify-content-center">
+                                    <p class="text h1 cl-fail">28.66%</p>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <p class="text cl-fail">178 underachievers</p>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <p class="text h1 cl-top">17.23%</p>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <p class="text cl-top">107 achievers</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        </div>
+            </div>
+        </div>
+        <div class="row align-items-center py-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+            <div class="col-10 col-md-6 mx-auto pb-3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                <p class="text text-center">Thus, we can see that <em>Social Factors</em> seem to have a huge impact on the learning and academic performance of a student.</p><br><br>
+                <p class="text text-center">However, many of the other factors also affect the quality of life of a student. They are critical in personal development and can contribute significantly to the success of the student in other walks of life.</p>
+                        <!-- Various factors affect the marks of a student and the quality of his/her life. Playing, watching TV and surfing the Internet does not significantly affect the marks but can prove to be the building blocks of a student’s character.</p> -->
                 <blockquote class="blockquote my-5 py-5">
                     <p class="mb-0 text-center h1 subtitle">Finding a balance between studies and other activities can go a long way.</p>
                 </blockquote>

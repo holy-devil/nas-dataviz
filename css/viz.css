@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Noto+Serif|Merriweather');    
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700|Merriweather');    
 
 body {
     background: #fafafa;
@@ -19,6 +19,15 @@ body {
 }
 .parallax1 {
     background-image: url(../img/pexels-photo-261909.jpg);
+    position: relative;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.parallax2 {
+    background-image: url(../img/pexels-photo-373488.jpg);
     position: relative;
     height: 100vh;
     background-attachment: fixed;
@@ -64,7 +73,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 b {
+    font-family: 'Noto Sans', sans-serif;
     font-weight: 700 !important;
+}
+em {
+    font-family: 'Noto Sans', sans-serif;
+    font-style: italic;
 }
 .cl-top {
     color: #3F5EFB;
