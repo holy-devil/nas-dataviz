@@ -11,7 +11,7 @@ body {
 .parallax {
     background-image: url(../img/pexels-photo-249360.jpg);
     position: relative;
-    height: 100vh;
+    height: 110vh;
     background-attachment: fixed;
     background-position: center center;
     background-size: cover;
@@ -20,7 +20,7 @@ body {
 .parallax1 {
     background-image: url(../img/pexels-photo-261909.jpg);
     position: relative;
-    height: 100vh;
+    height: 110vh;
     background-attachment: fixed;
     background-position: center center;
     background-size: cover;
@@ -29,7 +29,7 @@ body {
 .parallax2 {
     background-image: url(../img/pexels-photo-373488.jpg);
     position: relative;
-    height: 100vh;
+    height: 110vh;
     background-attachment: fixed;
     background-position: center center;
     background-size: cover;
@@ -206,20 +206,22 @@ cursor: pointer;
 .covergrid text {
     fill: #607d8b;
     opacity: 0.8;
+    text-anchor: end;
 }
-/* rect.selection {
-    stroke          : #333;
-    stroke-dasharray: 4px;
-    stroke-opacity  : 0.5;
+rect.tickline {
+    /* stroke          : #607d8b !important; */
+    /* stroke-dasharray: 4px; */
+    stroke-width: 0.05rem;
+    stroke-opacity  : 0.1;
     fill            : transparent;
   }
 
-rect.cell-border {
+/* rect.cell-border {
     stroke: #eee;
     stroke-width:0.3px;  
     fill: #000; 
     opacity: 0.3;
-  } */
+} */
 
 circle.cell {
     opacity: 0.5;

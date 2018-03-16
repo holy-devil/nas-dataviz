@@ -16,7 +16,7 @@ var wow = new WOW(
 wow.init();
 
 // One line enable-disable console log
-// console.log = function() {}
+console.log = function() {}
 
 var wd = window,
 d = document,
@@ -638,6 +638,16 @@ function digBar(data,subject) {
                                 .attr("data-factor",dig_factors[loc]);
 
     let bars = svgContainer.append('g').selectAll(".barFail").data(barData).enter()
+    // drawing the fail scale
+    bars.append("rect")
+        .attr("transform", "translate("+(barWd-margin)+",0)")
+        .style("stroke", "#fff")
+        .attr("x", margin-100*(1)*scaling)                        
+        .attr("y", function (d,i) {return margin+barHt*(i+1/4)}) 
+        .attrs({width: Math.abs(100*(1)*scaling), height: 8})
+        .style("stroke", "#FC466B")
+        .attr("class", function (d,i) {return d.Subject+" "+d.Factor+" tickline fail r"+i});
+   
     // drawing the fail bars                      
     bars.append("line")
         .attr("transform", "translate("+(barWd-margin)+",0)")
@@ -683,6 +693,15 @@ function digBar(data,subject) {
         .attr("class", function (d,i) { return "optionsLabel small textg"+groupId+" "+d.Subject+" "+d.Factor+" r"+i})
         .attr("data-factor",function (d,i) {return d.Factor})
         .attr("data-option",function (d,i) {return d.Options});
+
+    // drawing the top scale
+    bars.append("rect")
+        .attr("transform", "translate("+(barWd+optWd*2+margin)+",0)")
+        .attr("x", margin)                        
+        .attr("y", function (d,i) {return margin+barHt*(i+1/4)}) 
+        .attrs({width: Math.abs(margin+100*(1)*scaling), height: 8})
+        .style("stroke", "#3F5EFB")
+        .attr("class", function (d,i) {return d.Subject+" "+d.Factor+" tickline top r"+i});
 
     // drawing the top bars
     bars.append("line")
