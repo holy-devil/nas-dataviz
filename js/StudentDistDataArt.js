@@ -301,8 +301,8 @@ function drawGrid() {
 	}	
 	// adding subjects
 	let start = coverHt*0.9-10;
-	grid.append("text").text("Maths").attrs({x: wart*0.95, y: start}).attr("class","text small");
-	grid.append("text").text("Science").attrs({x: wart*0.95, y: (start-spacing*2)}).attr("class","text small");
-	grid.append("text").text("Social").attrs({x: wart*0.95, y: (start-(spacing*4))}).attr("class","text small");
-	grid.append("text").text("Reading").attrs({x: wart*0.95, y: (start-(spacing*6))}).attr("class","text small");
+	grid.append("text").text("Maths").attrs({x: wart*0.98, y: start}).attr("class","text small");
+	grid.append("text").text("Science").attrs({x: wart*0.98, y: (start-spacing*2)}).attr("class","text small");
+	grid.append("text").text("Social").attrs({x: wart*0.98, y: (start-(spacing*4))}).attr("class","text small");
+	grid.append("text").text("Reading").attrs({x: wart*0.98, y: (start-(spacing*6))}).attr("class","text small");
 }
