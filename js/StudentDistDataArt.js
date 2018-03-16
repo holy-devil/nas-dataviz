@@ -288,14 +288,14 @@ function drawGrid() {
 							 .attrs({x1: (wart/100)*i, y1: coverHt*0.2, x2: (wart/100)*i, y2: coverHt*0.9});
 		
 		if (i==33) {
-			grid.append("text").text("33%").attrs({x:(wart/100)*32 ,y: coverHt*0.15 }).attr("class","text small cl-fail");
+			grid.append("text").text("33%").attrs({x:(wart/100)*34 ,y: coverHt*0.15 }).attr("class","text small cl-fail");
 		}
 		if (i==50) {
 			grid.append('line').style("stroke", "#607d8b").style("stroke-width","0.1rem").style("opacity","0.8").attrs({x1: (wart/100)*50, y1: coverHt*0.2, x2: (wart/100)*50, y2: coverHt*0.9});
-			grid.append("text").text("50%").attrs({x:(wart/100)*49 ,y: coverHt*0.15 }).attr("class","text small");
+			grid.append("text").text("50%").attrs({x:(wart/100)*51 ,y: coverHt*0.15 }).attr("class","text small");
 		}
 		if (i==80) {
-			grid.append("text").text("80%").attrs({x:(wart/100)*79 ,y: coverHt*0.15 }).attr("class","text small cl-top");
+			grid.append("text").text("80%").attrs({x:(wart/100)*81 ,y: coverHt*0.15 }).attr("class","text small cl-top");
 		}
 		
 	}	
