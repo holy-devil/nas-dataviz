@@ -5,6 +5,9 @@ body {
     font-family: 'Noto Sans', sans-serif;
     overflow-x: hidden;
 }
+.purple {
+    background-color: #41295a!important;
+}
 .fullheight {
    min-height: 100vh;
 }
@@ -250,3 +253,120 @@ text.heatLabel {
 .textg4 {fill:#8BC34A !important; color:#8BC34A !important;}
 .textg5 {fill:#9E9D24 !important; color:#9E9D24 !important;}
 /* .textg5 {fill:#CDDC39 !important; color:#CDDC39 !important;} */
+
+#team a, #team i {
+    text-decoration: none;
+    color: #6f42c1;
+}
+/* FOOTER CSS */
+.page-footer {
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    height: 144.4px;
+    text-align: left;
+    text-decoration: none solid rgb(255, 255, 255);
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    width: 1519.2px;
+    column-rule-color: rgb(255, 255, 255);
+    perspective-origin: 759.6px 72.2px;
+    transform-origin: 759.6px 72.2px;
+    caret-color: rgb(255, 255, 255);
+    background: rgb(65, 41, 90) none repeat scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgb(255, 255, 255);
+    font: normal normal 300 normal 16px / 24px Roboto, sans-serif;
+    outline: rgb(255, 255, 255) none 0px;
+    padding: 20px 0px 0px;
+}/*#FOOTER_1*/
+
+.footer-btn {
+    bottom: 0px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 5px 0px, rgba(0, 0, 0, 0.12) 0px 2px 10px 0px;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    display: block;
+    height: 46.4px;
+    left: 0px;
+    min-height: auto;
+    min-width: auto;
+    overflow-wrap: break-word;
+    position: relative;
+    right: 0px;
+    text-align: center;
+    text-decoration: none solid rgb(255, 255, 255);
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    text-transform: uppercase;
+    top: 0px;
+    touch-action: manipulation;
+    vertical-align: middle;
+    width: 302.138px;
+    word-wrap: break-word;
+    z-index: 1;
+    column-rule-color: rgb(255, 255, 255);
+    perspective-origin: 151.063px 23.2px;
+    transform-origin: 151.063px 23.2px;
+    user-select: none;
+    caret-color: rgb(255, 255, 255);
+    background: rgb(81, 45, 168) none repeat scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgb(255, 255, 255);
+    border-radius: 2px 2px 2px 2px;
+    font: normal normal 400 normal 12.8px / 19.2px Roboto, sans-serif;
+    margin: 6px;
+    outline: rgb(255, 255, 255) none 0px;
+    overflow: hidden;
+    padding: 13.6px 34.08px;
+    transition: all 0.2s ease-out 0s;
+}/*#A_4*/
+.footer-btn:hover, .page-footer a:hover {
+    text-decoration: none;
+    color: inherit;
+    background-color: #5b32bc!important;
+}
+.hoverable:hover {
+    -webkit-transition: box-shadow .45s;
+    transition: box-shadow .45s;
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+}
+
+.footer-copyright {
+    box-sizing: border-box;
+    color: rgba(255, 255, 255, 0.6);
+    height: 50px;
+    text-align: center;
+    text-decoration: none solid rgba(255, 255, 255, 0.6);
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    width: 1519.2px;
+    column-rule-color: rgba(255, 255, 255, 0.6);
+    perspective-origin: 759.6px 25px;
+    transform-origin: 759.6px 25px;
+    caret-color: rgba(255, 255, 255, 0.6);
+    background: rgba(0, 0, 0, 0.2) none repeat scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgba(255, 255, 255, 0.6);
+    font: normal normal 300 normal 14.4px / 50px Roboto, sans-serif;
+    outline: rgba(255, 255, 255, 0.6) none 0px;
+    overflow: hidden;
+}/*#DIV_6*/
+
+.copyright-text {
+    box-sizing: border-box;
+    color: rgba(255, 255, 255, 0.6);
+    display: block;
+    height: 49.6px;
+    min-height: auto;
+    min-width: auto;
+    text-align: center;
+    text-decoration: none solid rgba(255, 255, 255, 0.6);
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    width: 31.925px;
+    column-rule-color: rgba(255, 255, 255, 0.6);
+    perspective-origin: 15.9625px 24.8px;
+    transform-origin: 15.9625px 24.8px;
+    caret-color: rgba(255, 255, 255, 0.6);
+    border: 0px none rgba(255, 255, 255, 0.6);
+    font: normal normal 300 normal 14.4px / 50px Roboto, sans-serif;
+    outline: rgba(255, 255, 255, 0.6) none 0px;
+}/*#SPAN_9*/
+
