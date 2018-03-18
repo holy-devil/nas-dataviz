@@ -16,7 +16,7 @@ var wow = new WOW(
 wow.init();
 
 // One line enable-disable console log
-// console.log = function() {}
+console.log = function() {}
 
 var wd = window,
 d = document,
