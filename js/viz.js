@@ -102,42 +102,42 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
         corr_rows.push(nas_data[i].Subjects);
     }
     console.log(nas_data);
-    // Waypoints controllers
-    var stkHeat = new Waypoint.Sticky({
-        element: $('#heatFilters'),
-        offset: '0%'
-    })
-
-    var stkBar = new Waypoint.Sticky({
-        element: $('#subBtn'),
-        offset: '0%'
-    }) 
-   
-    // $('#subjects').waypoint({
-    //     handler: function(direction) {
-    //         console.log(this.element.id + ' hit');  
-    //         // if (stickyHeatFlag != 1)    
-    //         // stickyBar.destroy(); 
-    //         stickyHeat();     
-    //     },
-    //     offset: '100%'
+    // // Waypoints controllers
+    // var stkHeat = new Waypoint.Sticky({
+    //     element: $('#heatFilters')[0],
+    //     offset: 0
     // })
-    $("#qs2").waypoint ({
-        handler: function(direction) {
-            console.log(this.element.id + ' hit2')
-            stkHeat.destroy();            
-        // this.destroy()
-        },
-        offset: "90%"
-    })
-    $("#qs3").waypoint ({
-        handler: function(direction) {
-            console.log(this.element.id + ' hit2')
-            stkBar.destroy();            
-        // this.destroy()
-        },
-        offset: "50%"
-    })
+
+    // var stkBar = new Waypoint.Sticky({
+    //     element: $('#subBtn')[0],
+    //     offset: 0
+    // }) 
+   
+    // // $('#subjects').waypoint({
+    // //     handler: function(direction) {
+    // //         console.log(this.element.id + ' hit');  
+    // //         // if (stickyHeatFlag != 1)    
+    // //         // stickyBar.destroy(); 
+    // //         stickyHeat();     
+    // //     },
+    // //     offset: '100%'
+    // // })
+    // $("#qs2").waypoint ({
+    //     handler: function(direction) {
+    //         console.log(this.element.id + ' hit2')
+    //         stkHeat.destroy();            
+    //     // this.destroy()
+    //     },
+    //     offset: "50%"
+    // })
+    // $("#qs3").waypoint ({
+    //     handler: function(direction) {
+    //         console.log(this.element.id + ' hit2')
+    //         stkBar.destroy();            
+    //     // this.destroy()
+    //     },
+    //     offset: "50%"
+    // })
     /*
     var stkBar=0, stkHeat=0; // sticky elements
        
@@ -183,18 +183,6 @@ d3.csv('datasets/nas/OverviewCorrelationFinal.csv', function(error, data) {
     studSubPlot(nas_data);
     heatmapSub(nas_data);
     drawHeatmap(0);
-
-    // On window resize
-    // wd.addEventListener("resize", function() {
-    //     w_new = wd.innerWidth || e.clientWidth || g.clientWidth,
-    //     h_new = wd.innerHeight|| e.clientHeight|| g.clientHeight;
-    //     if (w_new!=w && h_new!=h) {
-    //         w=w_new, h=h_new;
-    //         d3.select("#cover svg").remove();
-    //         drawHeatmap(0);
-    //         console.log("heatmap redrawn on resize");
-    //     }
-    // });
 });
 // Calculating absolute min max
 var minmax = function (data) {
@@ -578,16 +566,6 @@ d3.csv('datasets/nas/DivergingGraphDataset.csv', function(error, data) {
     dig_groups = d3.map(dig_data, function(d){return d.Group;}).keys();
     // digBar(dig_data,"Maths","Distance");
     drawDigBar("Maths");
-    // On window resize
-    // wd.addEventListener("resize", function() {
-    //     // w_new = wd.innerWidth || e.clientWidth || g.clientWidth,
-    //     // h_new = wd.innerHeight|| e.clientHeight|| g.clientHeight;
-    //     // if (w_new!=w && h_new!=h) {
-    //     //     w=w_new, h=h_new;
-    //         drawDigBar("Maths");
-    //         console.log("bar plot redrawn on resize");
-    //     // }
-    // });
 })
 
 // Dot-bar graph
@@ -801,6 +779,35 @@ function drawDigBar(subject) {
 $("body").tooltip({
     selector: '[data-toggle="tooltip"]'
 });
+
+// Waypoints controllers
+var stkHeat = new Waypoint.Sticky({
+    element: $('#heatFilters')[0],
+    offset: '-12%'
+})
+
+var stkBar = new Waypoint.Sticky({
+    element: $('#subBtn')[0],
+    offset: '-12%'
+}) 
+
+$("#qs2").waypoint ({
+    handler: function(direction) {
+        console.log(this.element.id + ' hit2')
+        stkHeat.destroy();            
+    // this.destroy()
+    },
+    offset: "50%"
+})
+$("#qs3").waypoint ({
+    handler: function(direction) {
+        console.log(this.element.id + ' hit2')
+        stkBar.destroy();            
+    // this.destroy()
+    },
+    offset: "50%"
+})
+
 
 // Checking mobile browser
 var isMobile = {
