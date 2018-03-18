@@ -780,6 +780,18 @@ $("body").tooltip({
     selector: '[data-toggle="tooltip"]'
 });
 
+// smooth-scroll to an element on click
+// $(".smooth-scroll").on("click", "a", function(t) {
+//     t.preventDefault();
+//     var e = $(this).attr("href")
+//       , n = $(this).attr("data-offset") ? $(this).attr("data-offset") : 0
+//       , i = $(this).closest("ul").attr("data-allow-hashes");
+//     $("body,html").animate({
+//         scrollTop: $(e).offset().top - n
+//     }, 700),
+//     void 0 !== i && i !== !1 && history.replaceState(null, null, e)
+// })
+
 // Waypoints controllers
 var stkHeat = new Waypoint.Sticky({
     element: $('#heatFilters')[0],
