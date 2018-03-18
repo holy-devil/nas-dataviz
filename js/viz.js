@@ -16,7 +16,7 @@ var wow = new WOW(
 wow.init();
 
 // One line enable-disable console log
-console.log = function() {}
+// console.log = function() {}
 
 var wd = window,
 d = document,
@@ -25,9 +25,7 @@ g = d.getElementsByTagName('body')[0],
 w = wd.innerWidth || e.clientWidth || g.clientWidth,
 h = wd.innerHeight|| e.clientHeight|| g.clientHeight;
 
-wd.addEventListener("resize", function() {
-    location.reload();
-});
+
 
 /* Heatmap viz */
 var nas_data, corr_headers, corr_rows=[];
@@ -825,6 +823,29 @@ var isMobile = {
         return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
     }
 }; 
+
+// On window resize
+wd.addEventListener("resize", function() {
+    var w_new = wd.innerWidth || e.clientWidth || g.clientWidth,
+    h_new = wd.innerHeight|| e.clientHeight|| g.clientHeight;
+    console.log(w_new+" wnew hnew "+h_new);
+    console.log(w+" w h "+h);
+    if (w_new!=w && h_new!=h) {
+        w=w_new, h=h_new;
+            location.reload();
+    }
+    else if(w_new==w && h_new!=h) {
+        h=h_new;
+    }
+    else {
+        w=w_new;
+    }
+});
+// wd.addEventListener("resize", function() {
+//     if(isMobile!=true) {
+//     location.reload();
+//     }
+// });
 // Store the meta element
 var viewport_meta = document.getElementById('viewport-meta');
 

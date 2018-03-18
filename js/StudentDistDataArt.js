@@ -1,14 +1,14 @@
-var wd = window,
-d = document,
-e = d.documentElement,
-g = d.getElementsByTagName('body')[0],
-w = wd.innerWidth || e.clientWidth || g.clientWidth,
-h = wd.innerHeight|| e.clientHeight|| g.clientHeight;
+let wid = window,
+dc = document,
+ec = dc.documentElement,
+gc = dc.getElementsByTagName('body')[0],
+wc = wid.innerWidth || ec.clientWidth || gc.clientWidth,
+hc = wid.innerHeight|| ec.clientHeight|| gc.clientHeight;
 
 
 var marks_data, marks_headers, dataM, dataS, dataO, dataR,coverHt,offset,spacing=25;
       	let wart = document.getElementById("cover").clientWidth;
-      	coverHt=h*0.5;
+      	coverHt=hc*0.5;
       	let svgContainer1 = d3.select("#cover").append("svg").attr("width", wart).attr("height",coverHt).attr("class","coversvg");
 		d3.csv('datasets/nas/StudentDistributionByMarks.csv', function(error, data) {
 			
